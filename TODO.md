@@ -30,9 +30,10 @@
   - Design 1200x630px image with Canva
   - Save as `/og-image.png`
   - Update deployment
-- [ ] **SEO:** Create sitemap.xml and robots.txt (15 min)
-  - See `SEO_STRATEGY.md` for templates
-  - Submit to Google Search Console
+- [x] **SEO - COMPLETED:** Create sitemap.xml and robots.txt (15 min)
+  - [x] Created sitemap.xml with main page entry
+  - [x] Created robots.txt with sitemap reference
+  - [ ] Submit to Google Search Console
 - [ ] **CRITICAL:** Add Google Analytics 4 (30 min)
   - Track page views, material selections
   - Track affiliate link clicks (CTR measurement)
