@@ -6,59 +6,112 @@ A web application that provides intelligent 3D printing slicer settings recommen
 
 This application synthesizes research on FDM 3D printing parameters and material properties to provide expert-level guidance on OrcaSlicer settings. Users can:
 
-- Select from a comprehensive material database (PLA, PETG, ABS, Nylon, PC, TPU, etc.)
-- Rank their priorities across multiple objectives:
+- **Select from 28 materials** spanning standard to high-performance (PLA variants, PETG, ABS, Nylon, PC, TPU, PEEK, PEKK, and more)
+- **Receive intelligent material warnings** for special requirements (hardened nozzle, enclosure, drying, ventilation, etc.)
   - **Mechanical Strength** (Tensile Z-axis, XY-plane, Flexural, Compressive)
   - **Build Time** (Print speed optimization)
   - **Surface Quality** (Roughness/aesthetic finish)
   - **Dimensional Accuracy** (Precision)
-- Receive detailed setting recommendations with explanations and trade-offs
-- Understand conflicts between competing goals with expert advice
+
+## ✨ Key Features
+
+### 🎨 Intelligent Material Warning System
+**NEW in November 2025!**
+
+The application now includes a comprehensive warning system that automatically displays material-specific requirements and considerations:
+
+- **10 Warning Types:**
+  - 🔧 **Hardened Nozzle Required** - For abrasive materials (carbon fiber, glass fiber)
+  - 🏠 **Enclosure Recommended** - For materials sensitive to drafts and temperature
+  - 💧 **Hygroscopic Material** - Requires drying before printing
+  - 💨 **Releases Fumes** - Ventilation required for safety
+  - ⚠️ **Difficult to Print** - Requires careful calibration
+  - 📉 **Prone to Creep** - Not suitable for sustained load applications
+  - ☀️ **UV Resistant** - Excellent for outdoor applications
+  - ⚙️ **Low Friction** - Ideal for mechanical parts and bearings
+  - 🧪 **Chemical Resistance** - Suitable for harsh environments
+  - 🔥 **Annealable** - Can be heat-treated for improved properties
+
+- **Interactive UI:**
+  - Color-coded alerts (red/orange/yellow for warnings, blue/green for info)
+  - Dismissible warning cards with smooth animations
+  - Collapsible sections (individual cards + "Collapse All" button)
+  - Help guide links for each warning type
+  - Automatic display on material selection
+
+### 📊 Comprehensive Material Database
+
+**28 Materials** organized by performance tier:
+
+**Standard Materials (9):**
+- PLA, PLA Plus, High-Temp PLA, PLA Carbon Fiber
+- PLA variants: Wood-filled, Metal-filled, Silk, Glow-in-the-dark
+- PP (Polypropylene)
+
+**Engineering Materials (10):**
+- PETG, PETG Carbon Fiber, PET
+- ABS, ASA, HIPS
+- PC-ABS Blend, Polycarbonate
+- Nylon, Nylon Carbon Fiber, Nylon Glass Fiber
+
+**Functional Materials (3):**
+- TPU 95A, TPU 85A (flexible materials)
+- PVA, PVB (support materials)
+
+**High-Performance Materials (6):**
+- PEEK, PEKK, PPSU
+- ULTEM 9085
+- (Additional high-temp variants coming soon)
 
 ## 🏗️ Current Architecture
 
 ### Technology Stack
-- **Frontend**: Pure HTML5, CSS (Tailwind CSS via CDN), Vanilla JavaScript
-- **Data Format**: JSON for material properties, embedded knowledge base
-- **Deployment**: Static site (no backend required)
+- **Python Scripts**: UV package manager for data processing and synchronization
 
 ### File Structure
 ```
 .
-├── orcaslicer_assistant.html    # Main application (single-page app)
+├── orcaslicer_assistant.html    # Main application (single-page app, 1839 lines)
 ├── data/
-│   ├── material_db.csv           # Material properties database
+│   ├── material_db.csv           # Material properties database (29 materials)
 │   └── materials.json            # Material settings and properties
+├── scripts/
+│   ├── sync_materials.py         # Sync CSV to HTML/JSON
+│   ├── tds_extractor.py          # Extract data from TDS PDFs
+│   └── merge_extracted_to_csv.py # Merge TDS data into CSV
+├── tests/
+│   └── test_merge_extracted.py   # Unit tests for merge script
 ├── research/                     # Academic papers on FDM printing
 │   └── *.pdf                    # Research papers (gitignored)
+├── pyproject.toml               # Python dependencies (UV)
 ├── .gitignore
-└── README.md
+├── README.md
+└── TODO.md                      # Development roadmap
 ```
 
 ## 📊 Data Sources
 
 ### Material Database
 The application includes comprehensive data on:
-- **12+ common materials**: PLA, PLA-CF, PETG, PETG-CF, ABS, ASA, PC, PA6-CF, PA12-CF, ULTEM 9085, TPU-95A, TPE-85A
-- **Material properties**: Tensile strength, modulus, elongation, HDT, glass transition temp, density
-- **Print settings**: Temperature ranges, speeds, cooling requirements
-- **Special considerations**: Hygroscopic nature, enclosure requirements, hardened nozzle needs
+- **28 materials** spanning standard to high-performance grades
+- **Material properties**: Tensile strength, modulus, elongation, HDT, glass transition temperature, density
+- **Material characteristics**: 10+ boolean flags for special requirements
+  - `hygroscopic`: Requires drying before use
+  - `requires_enclosure`: Needs controlled temperature environment
+  - `requires_hardened_nozzle`: Abrasive materials
+  - `releases_fumes`: Requires ventilation
+  - `uv_resistant`: Suitable for outdoor use
+  - `difficult_to_print`: Needs careful calibration
+  - `prone_to_creep`: Time-dependent deformation
+  - `low_friction`: Good for mechanical parts
+  - `chemical_resistance`: Resistant to solvents/chemicals
+  - `annealable`: Can be heat-treated post-printing
 
 ### Knowledge Base
 Settings recommendations are based on:
-- **Layer height** effects on strength, quality, and speed
-- **Temperature** impact on layer adhesion and quality
-- **Wall/perimeter** strategies for different strength types
-- **Infill** patterns and densities for structural requirements
-- **Speed profiles** for balanced quality vs. time
-- **Advanced features**: Arachne engine, ironing, seam placement
 
 ### Research Foundation
 The `research/` folder contains 20+ academic papers covering:
-- Effects of FDM process parameters on mechanical properties
-- Layer height, temperature, and speed optimization studies
-- Material-specific printing characteristics
-- Annealing and post-processing techniques
 
 ## 🚀 Usage
 
@@ -66,46 +119,57 @@ The `research/` folder contains 20+ academic papers covering:
 1. Clone the repository
 2. Open `orcaslicer_assistant.html` in a modern web browser
 3. No build process or server required!
+4. Select a material and adjust priority sliders
+5. View intelligent warnings specific to your material choice
+6. Get detailed setting recommendations
 
 ### Python Scripts (Data Management)
 1. Install UV: `curl -LsSf https://astral.sh/uv/install.sh | sh` (or `brew install uv`)
 2. Sync dependencies: `uv sync`
-3. Run scripts: `uv run scripts/sync_materials.py`
+3. Run scripts:
+   ```bash
+   # Sync material database to HTML
+   uv run scripts/sync_materials.py --output data/materials_sync.js
+   
+   # Extract data from TDS PDFs
+   uv run scripts/tds_extractor.py --input tds/ --output output/
+   
+   # Run unit tests
+   uv run pytest tests/
+   ```
 
 See `scripts/README.md` for detailed script usage.
 
 ### Deployment Options
-- GitHub Pages
-- Netlify/Vercel static hosting
-- Any web server (Apache, Nginx, etc.)
 
 ## 🧠 How It Works
 
 ### 1. Material Selection
-Users select their filament material, which loads baseline temperature and speed settings.
+Users select from 28 materials, which loads:
+- Baseline temperature and speed settings
+- Material characteristics and special requirements
+- Automatic warning display for material-specific considerations
 
 ### 2. Priority Ranking
 Users adjust sliders (0-100) for each objective:
-- Values >70 are considered "high priority"
-- Multiple high priorities trigger conflict detection
 
 ### 3. Conflict Detection
 The system identifies common conflicts:
-- **Z-Strength vs. Speed**: Low layers (strength) vs. thick layers (speed)
-- **Accuracy vs. Speed**: Slow precision vs. fast printing
-- **Quality vs. Speed**: Fine details vs. rapid completion
 
 ### 4. Recommendations
 For each high-priority goal, the system provides:
-- **Specific setting values** (e.g., "Layer Height: 0.12-0.16mm")
-- **Explanation** of why this setting matters
-- **Trade-offs** to be aware of
+
+### 5. Material Warnings
+**NEW!** Intelligent warnings appear automatically based on material characteristics:
+- **Critical warnings** (red/orange): Immediate attention required
+- **Caution warnings** (yellow/purple): Important considerations
+- **Informational** (blue/green): Helpful tips and capabilities
+- Each warning includes a help link to educational resources
+- Warnings can be dismissed or collapsed as needed
 
 ## �️ Development Setup
 
 ### Prerequisites
-- Modern web browser (Chrome, Firefox, Edge, Safari)
-- **Python 3.12+** and **UV** (for data management scripts)
 
 ### Setup
 ```bash
@@ -122,6 +186,9 @@ uv sync
 
 # Test the scripts
 uv run scripts/sync_materials.py --help
+
+# Run unit tests
+uv run pytest tests/
 ```
 
 ### Project Structure
@@ -134,71 +201,67 @@ uv run scripts/sync_materials.py --help
 ├── scripts/                      # Python utilities
 │   ├── tds_extractor.py         # Extract data from TDS PDFs
 │   ├── sync_materials.py        # Sync CSV to HTML/JSON
+│   ├── merge_extracted_to_csv.py # Merge TDS extraction into CSV
 │   └── README.md                # Script documentation
+├── tests/                       # Unit tests
+│   └── test_merge_extracted.py
 ├── research/                     # Academic papers (gitignored)
 ├── pyproject.toml               # Python dependencies (UV)
-└── README.md                    # This file
+├── README.md                    # This file
+└── TODO.md                      # Development roadmap
 ```
 
 ## �🔬 Technical Details
 
 ### Material Properties Tracked
-- Tensile strength (MPa) - XY and Z-axis
-- Tensile modulus (stiffness)
-- Elongation at break (ductility)
-- Heat deflection temperature (HDT)
-- Glass transition temperature (Tg)
-- Impact strength
-- Density
-- Fatigue resistance
-- Creep behavior
+
+### Material Characteristics (Boolean Flags)
+- Hygroscopic (requires drying)
+- Requires enclosure
+- Requires hardened nozzle
+- Releases fumes
+- UV resistant
+- Difficult to print
+- Prone to creep
+- Low friction coefficient
+- Chemical resistance
+- Annealable
 
 ### Slicer Settings Covered
-- Layer height and first layer
-- Nozzle and bed temperatures
-- Print speeds (outer wall, inner wall, infill)
-- Acceleration and jerk
-- Wall count and line width
-- Infill percentage and pattern
-- Cooling/fan speeds
-- Retraction settings
-- Advanced features (ironing, seam placement, wall generator)
 
 ## 📈 Future Enhancements (See TODO.md)
 
-- Backend API for settings calculations
-- User profiles and saved configurations
-- OrcaSlicer profile export (.json)
-- Material cost calculator
-- Print time estimator
-- Multi-material/MMU support
-- Community-contributed profiles
+### High Priority
+- Material search/filter functionality in dropdown
+- Material tier badges (Standard/Engineering/High-Performance)
+- localStorage for persistent warning dismissals
+- Brand-specific material variants (3DXTech, eSUN, ColorFabb)
+- Comprehensive data quality audit (HDT, Tg, shrinkage data)
+
+### Planned Features
+- Printer capability validation
+- Material comparison tool
+
+See `TODO.md` for complete development roadmap.
 
 ## 🤝 Contributing
 
 This project synthesizes research from academic literature and practical 3D printing experience. Contributions are welcome:
-- Material property data
-- Setting validation from test prints
-- UI/UX improvements
-- Additional conflict detection logic
+- TDS (Technical Data Sheets) for new materials
+- Bug reports and feature requests
 
 ## 📚 Research Attribution
 
 This tool is based on extensive research into FDM printing parameters. Key areas:
-- Layer adhesion and Z-axis strength optimization
-- Speed/acceleration tuning for quality retention
-- Material-specific thermal requirements
-- Infill strategies for different load types
 
 See `research/` folder for complete paper list.
 
 ## ⚠️ Disclaimer
 
 These recommendations are starting points based on research and best practices. Always:
-- Test settings with small calibration prints first
-- Adjust for your specific printer hardware
-- Consider your environmental conditions
-- Dry hygroscopic materials before printing
+- Follow material-specific warnings and safety guidelines
+- Ensure adequate ventilation for materials that release fumes
+- Use appropriate nozzles for abrasive materials
 
 ## 📄 License
 
@@ -206,12 +269,23 @@ These recommendations are starting points based on research and best practices. 
 
 ## 🔗 Related Resources
 
-- [OrcaSlicer GitHub](https://github.com/SoftFever/OrcaSlicer)
-- [OrcaSlicer Documentation](https://github.com/SoftFever/OrcaSlicer/wiki)
-- Material manufacturer datasheets
+- [UV Package Manager](https://github.com/astral-sh/uv) - Fast Python package manager
 
----
+## 📊 Project Status
 
-**Version**: 1.0.0  
-**Last Updated**: November 2025  
-**Status**: Functional prototype, actively developed
+**Version**: 0.3 (Warning System Release)  
+**Materials**: 28 (expanded from 12)  
+**Warning Types**: 10 with interactive UI  
+**Last Updated**: November 12, 2025  
+**Status**: Actively developed, production-ready
+
+### Recent Updates (November 2025)
+- ✅ **Material database expanded 2.3×** (12 → 28 materials)
+- ✅ **Intelligent warning system** with 10 warning types
+- ✅ **Interactive UI** with dismissible/collapsible cards
+- ✅ **Help guide links** for educational resources
+- ✅ **Material characteristics** tracked via boolean flags
+- ✅ **Event-driven warnings** on material selection
+
+
+**Made with ❤️ for the 3D printing community**
