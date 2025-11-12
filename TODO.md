@@ -1,10 +1,142 @@
 # TODO: OrcaSlicer Settings Recommender - Integration Plan
 
 **Last Updated:** November 12, 2025  
-**Status:** UI Enhancement Phase - Material Warning System Complete
+**Status:** Revenue Generation & Deployment Phase - Prioritizing Monetization  
+**Current Revenue:** $0/month → **Target:** $30-50/month within 2 months
 
 
-## � RECENT COMPLETIONS (November 2025)
+## 🚀 PRIORITY QUEUE: REVENUE-FOCUSED QUICK WINS
+
+**Philosophy:** Ship incremental improvements that generate revenue while building toward PA-API integration. Each phase should be deployable and monetizable.
+
+### 🎯 PHASE 0: IMMEDIATE DEPLOYMENT & MONETIZATION (This Week - 4 hours)
+**Goal:** Get the application live and generating revenue ASAP
+**Revenue Impact:** 🟢 **HIGH** - Enables all future revenue
+**Difficulty:** 🟢 **EASY** - Just deployment + minor tweaks
+
+- [ ] **CRITICAL:** Deploy current app to Vercel (30 min)
+  - Follow `VERCEL_DEPLOYMENT.md` instructions
+  - Set up custom domain (optional but recommended)
+  - Enable HTTPS and configure security headers
+- [ ] **CRITICAL:** Add Google Analytics 4 (30 min)
+  - Track page views, material selections
+  - Track affiliate link clicks (CTR measurement)
+  - Set up conversion goals
+- [ ] **QUICK WIN:** Expand affiliate products to 20/28 materials (2 hours)
+  - Current: 14 materials have products
+  - Target: 20 materials (71% coverage)
+  - Focus on popular materials: Nylon, PC, HIPS, PP, PLA_Wood, PLA_Silk
+  - Add 2-3 products per material from Amazon
+- [ ] **QUICK WIN:** Add Amazon Attribution tags (30 min)
+  - Implement proper UTM parameters for tracking
+  - Set up campaign tracking in Amazon Associates
+- [ ] **POLISH:** Add "Share" functionality (30 min)
+  - Twitter, Facebook share buttons
+  - Copy link button
+  - Increases viral potential
+
+**Expected Results:**
+- ✅ Live application accessible 24/7
+- ✅ Analytics tracking user behavior
+- ✅ 71% material coverage for affiliate recommendations
+- ✅ Baseline for measuring improvement
+- 💰 **Estimated Revenue:** $5-10/month (100-200 visitors with 1-2% CTR)
+
+---
+
+### 💰 PHASE 10: STATIC AFFILIATE ENHANCEMENTS (Week 2 - 6 hours)
+**Goal:** Maximize revenue from static affiliate system before backend work
+**Revenue Impact:** 🟢 **HIGH** - Directly increases conversion rates
+**Difficulty:** 🟢 **EASY** - Pure frontend work, no backend needed
+
+#### Group 10A: Product Coverage Expansion (2 hours)
+- [ ] Complete affiliate product coverage to 28/28 materials
+  - [ ] High-performance: PEEK, PEKK, PPSU, ULTEM (premium pricing)
+  - [ ] Engineering: PC-ABS, HIPS, PP
+  - [ ] Specialty: PLA variants (Wood, Metal, Glow), PVA, PVB
+- [ ] Add accessory products where appropriate:
+  - [ ] Filament dryers for hygroscopic materials
+  - [ ] Hardened nozzles for abrasive materials
+  - [ ] Enclosure kits for warp-prone materials
+  - [ ] Build plate adhesives for difficult materials
+- [ ] **Revenue Impact:** +50% potential clicks (more products = more opportunities)
+
+#### Group 10B: Conversion Rate Optimization (2 hours)
+- [ ] Add "Why this product?" tooltips to explain recommendations
+- [ ] Implement seasonal product rotation logic
+  - Summer: PETG/ASA (outdoor, heat-resistant)
+  - Winter: ABS/enclosures (heating challenges)
+  - Holiday: Specialty materials (Silk, Metal, Glow)
+- [ ] Add "Featured Product" badge for best sellers
+- [ ] Add product comparison feature (open multiple in tabs)
+- [ ] **Revenue Impact:** +25% conversion rate (better product presentation)
+
+#### Group 10C: UI/UX Polish (1 hour)
+- [ ] Add product image placeholders (📦 → actual placeholder images)
+- [ ] Improve mobile product card layout
+- [ ] Add "Load More Products" for materials with many options
+- [ ] Add discount/deal badges when applicable
+- [ ] **Revenue Impact:** +10% mobile conversions
+
+#### Group 10D: Analytics Deep Dive (1 hour)
+- [ ] Set up GA4 custom events for:
+  - Material selection events (which materials are popular?)
+  - Product card impressions (which products are seen?)
+  - Product card clicks (which products are clicked?)
+  - Warning card interactions (do warnings affect purchases?)
+- [ ] Create basic dashboard for daily monitoring
+- [ ] Set up weekly email reports
+- [ ] **Revenue Impact:** Data-driven optimization decisions
+
+**Expected Results:**
+- ✅ 100% material coverage (28/28 with products)
+- ✅ Higher CTR through better product presentation
+- ✅ Seasonal optimization increases relevance
+- ✅ Data-driven insights for continuous improvement
+- 💰 **Estimated Revenue:** $15-25/month (2-3× improvement from Phase 0)
+
+---
+
+### 🎨 PHASE 7A: USER ENGAGEMENT FEATURES (Week 3 - 4 hours)
+**Goal:** Increase user retention and session time
+**Revenue Impact:** 🟡 **MEDIUM** - More engaged users = more affiliate clicks
+**Difficulty:** 🟢 **EASY** - Frontend-only enhancements
+
+#### Group 7A: Material Search & Filter (2 hours)
+- [ ] Add search box for materials (fuzzy search)
+- [ ] Add filter checkboxes:
+  - [ ] Difficulty level (Easy/Medium/Difficult)
+  - [ ] Special requirements (Enclosure, Hardened nozzle, Drying)
+  - [ ] Material cluster (Standard/Engineering/High-Performance)
+  - [ ] Properties (UV resistant, Low friction, Chemical resistant)
+- [ ] Add "Compare Materials" feature (side-by-side comparison)
+- [ ] **Revenue Impact:** Users find materials faster → more selections → more product views
+
+#### Group 7B: localStorage Enhancements (1 hour)
+- [ ] Save warning dismissals (don't show again)
+- [ ] Save last selected material (quick return)
+- [ ] Save favorite materials (quick access list)
+- [ ] Track viewed products (recently viewed section)
+- [ ] **Revenue Impact:** Improved UX → higher return rate
+
+#### Group 7C: Material Tier Badges (1 hour)
+- [ ] Add visual badges to material dropdown:
+  - 🟢 Standard (PLA, PETG, ABS)
+  - 🔵 Engineering (CF composites, Nylon, PC)
+  - 🔴 High-Performance (PEEK, PEKK, ULTEM, PPSU)
+- [ ] Add price range indicators (💰 / 💰💰 / 💰💰💰)
+- [ ] Add "Popular" and "Recommended" badges
+- [ ] **Revenue Impact:** Better material discovery → more product views
+
+**Expected Results:**
+- ✅ Users spend more time on site (2-3× session duration)
+- ✅ Higher material discovery (users try new materials)
+- ✅ Better return visitor rate (localStorage favorites)
+- 💰 **Estimated Revenue:** $25-35/month (engagement boost + compounding)
+
+---
+
+## 🎉 RECENT COMPLETIONS (November 2025)
 
 ### Material Database Expansion ✅
 - **Material count increased from 12 to 28** (2.3× expansion)
@@ -183,12 +315,37 @@ Added comprehensive material requirement warning system with:
 - [x] **COMPLETED:** Basic material properties present for all 28 materials
 - [x] **COMPLETED:** TPU variants (85A, 95A) present
 
-### Group 5B: Add Missing Properties (3 hours)
-- [ ] **RECOMMENDED:** Priority enhancement task
+### Group 5B: Add Missing Properties - Elongation at Break (4 hours)
+- [ ] **HIGH PRIORITY:** Research elongation_at_break_pct for all 28 materials
+  - [ ] Phase 5B.1: Common materials (PLA, PETG, ABS, ASA, Nylon) - 1.5 hours
+    - Search manufacturer TDS (Overture, HATCHBOX, eSUN, Polymaker)
+    - Check ASTM D638 / ISO 527 test results
+    - Target: 8 materials with elongation data
+  - [ ] Phase 5B.2: Engineering materials (CF variants, PC, PC-ABS) - 1 hour
+    - Check 3DXTech CarbonX technical sheets
+    - Research engineering-grade filament specs
+    - Target: 6 materials with elongation data
+  - [ ] Phase 5B.3: Specialty materials (TPU, PP, PLA variants, support) - 1 hour
+    - TPU should have 300-600% elongation (flexible)
+    - Wood/Metal/Silk based on PLA with adjustments
+    - PVA/PVB water-soluble materials
+    - Target: 8 materials with elongation data
+  - [ ] Phase 5B.4: High-performance materials (PEEK, PEKK, PPSU, ULTEM) - 0.5 hours
+    - Check Stratasys, Apium, Intamsys documentation
+    - Academic papers on high-temp polymers
+    - Target: 6 materials with elongation data
+- [ ] **TRACKING:** Use `MISSING_TDS_DATA.md` to track progress
+- [ ] **ACCEPTANCE CRITERIA:**
+  - All 28 materials have elongation_at_break_pct values
+  - Sources cited in data/material_db.csv or documentation
+  - Values validated against typical ranges for material class
+  - MISSING_TDS_DATA.md updated with completion status
 
 ### Group 5C: Validate Data Quality (2 hours)
 - [x] **COMPLETED:** Basic validation done during material sync
 - [ ] **PENDING:** Comprehensive data quality audit
+- [ ] **RECOMMENDED:** Cross-reference mechanical properties with multiple sources
+- [ ] **RECOMMENDED:** Validate HDT values against manufacturer specs
 
 
 ## 🔍 PHASE 6: EXTRACTOR IMPROVEMENT (Week 7-8)
@@ -269,7 +426,496 @@ Added comprehensive material requirement warning system with:
 ### Group 9C: Continuous Improvement (Ongoing)
 
 
-## 📋 BACKLOG: Future Enhancements
+## � PHASE 10: STATIC AFFILIATE ENHANCEMENTS (Week 12)
+**Goal:** Enhance static affiliate system before adding PA-API
+**Estimated Time:** 6-8 hours
+**Status:** Foundation complete (14 materials, 30+ products), enhancements pending
+**Platform:** Static HTML/JavaScript
+
+### Group 10A: Analytics & Tracking (3 hours)
+- [ ] Add click-through rate (CTR) tracking for affiliate links
+  - [ ] Implement Google Analytics 4 events for affiliate clicks
+  - [ ] Track which materials generate most clicks
+  - [ ] Add UTM parameters to Amazon links for campaign tracking
+  - [ ] Create simple dashboard view in console/analytics
+- [ ] Add conversion tracking
+  - [ ] Implement Amazon Attribution tags (if available)
+  - [ ] Track seasonal performance patterns
+- [ ] **Acceptance Criteria:**
+  - Analytics events fire on all affiliate link clicks
+  - Can identify top-performing materials and products
+  - Data flows to GA4 dashboard
+
+### Group 10B: Seasonal Recommendations (2 hours)
+- [ ] Implement seasonal product rotation logic
+  - [ ] Summer: Focus on PETG/ASA (outdoor, heat-resistant)
+  - [ ] Winter: Focus on ABS/enclosures (heating challenges)
+  - [ ] Back-to-school: Focus on PLA/beginner materials
+  - [ ] Holiday: Focus on specialty materials (Silk, Metal, Glow)
+- [ ] Add "Featured Product" badge for seasonal picks
+- [ ] **Acceptance Criteria:**
+  - Seasonal products automatically highlighted based on date
+  - Featured badge displays prominently
+  - Logic documented in code comments
+
+### Group 10C: Expand Product Coverage (2 hours)
+- [ ] Add products for remaining 14 materials (currently 14/28 covered)
+  - [ ] High-performance: PEEK, PEKK, PPSU, ULTEM (niche but high-value)
+  - [ ] Engineering: PC-ABS, HIPS, PP (industrial users)
+  - [ ] Specialty: PLA variants (Wood, Metal, Silk, Glow), PVA, PVB
+- [ ] Add accessory products (filament dryers, hardened nozzles)
+- [ ] Research and curate 2-3 quality products per material
+- [ ] **Acceptance Criteria:**
+  - All 28 materials have at least 1 affiliate product
+  - High-performance materials have premium filament recommendations
+  - Specialty materials have appropriate product matches
+
+### Group 10D: UI Enhancements (1 hour)
+- [ ] Add "Why this product?" explanation tooltips
+- [ ] Implement product image placeholders (prepare for PA-API images)
+- [ ] Add "Compare products" feature (open all in tabs)
+- [ ] Test responsive layout on mobile devices
+- [ ] **Acceptance Criteria:**
+  - UI remains clean and non-intrusive
+  - Mobile experience is smooth
+  - Tooltips provide value without clutter
+
+
+## 🐍 PHASE 11: PYTHON BACKEND SETUP (Week 13)
+**Goal:** Set up Python serverless functions on Vercel
+**Estimated Time:** 8-10 hours
+**Status:** Not started
+**Platform:** Python 3.11+, Vercel Hobby (free tier)
+
+### Group 11A: Vercel Project Configuration (2 hours)
+- [ ] Install Vercel CLI: `npm install -g vercel`
+- [ ] Initialize Vercel project: `vercel init`
+- [ ] Create `vercel.json` configuration:
+  ```json
+  {
+    "functions": {
+      "api/**/*.py": {
+        "runtime": "python3.11",
+        "maxDuration": 10
+      }
+    }
+  }
+  ```
+- [ ] Configure build settings for static HTML + Python functions
+- [ ] Set up environment variables in Vercel dashboard
+- [ ] **Acceptance Criteria:**
+  - Vercel project linked to GitHub repository
+  - Static HTML deploys successfully
+  - Environment variables configured (not yet populated)
+
+### Group 11B: Python Dependencies (2 hours)
+- [ ] Create `requirements.txt` for serverless functions:
+  ```
+  boto3==1.34.0          # AWS SDK for PA-API
+  requests==2.31.0       # HTTP library
+  python-dateutil==2.8.2 # Date handling
+  ```
+- [ ] Test local development setup
+- [ ] Document Python version requirements (3.11+)
+- [ ] **Acceptance Criteria:**
+  - Dependencies install cleanly
+  - Local Python environment matches Vercel runtime
+  - No conflicting dependencies
+
+### Group 11C: Environment Variables & Secrets (2 hours)
+- [ ] Configure PA-API credentials in Vercel:
+  - `PAAPI_ACCESS_KEY` (from Amazon Associates)
+  - `PAAPI_SECRET_KEY` (from Amazon Associates)
+  - `PAAPI_ASSOCIATE_TAG=mwf064-20`
+  - `PAAPI_REGION=us-east-1`
+  - `PAAPI_HOST=webservices.amazon.com`
+- [ ] Add cache configuration variables:
+  - `CACHE_TTL=3600` (1 hour cache for product data)
+  - `CACHE_ENABLED=true`
+- [ ] Document credential rotation process
+- [ ] **Acceptance Criteria:**
+  - All secrets configured in Vercel dashboard
+  - Secrets never committed to repository
+  - Environment variables accessible in serverless functions
+
+### Group 11D: Basic API Skeleton (2 hours)
+- [ ] Create `/api/health.py` endpoint (test deployment)
+  ```python
+  def handler(request):
+      return {"status": "ok", "version": "1.0.0"}
+  ```
+- [ ] Deploy to Vercel and test: `https://your-app.vercel.app/api/health`
+- [ ] Set up error logging/monitoring
+- [ ] **Acceptance Criteria:**
+  - Health endpoint returns 200 OK
+  - Vercel logs show successful function execution
+  - Error handling framework in place
+
+
+## 🔌 PHASE 12: PA-API INTEGRATION (Week 14-15)
+**Goal:** Integrate Amazon Product Advertising API 5.0
+**Estimated Time:** 12-15 hours
+**Status:** Not started
+**Platform:** Python + boto3 + PA-API 5.0
+
+### Group 12A: PA-API Authentication & Client Setup (3 hours)
+- [ ] Install PA-API SDK: Add `paapi5-python-sdk==1.0.0` to requirements.txt
+- [ ] Create `/api/lib/paapi_client.py`:
+  - Initialize PA-API client with credentials
+  - Implement request signing (AWS Signature v4)
+  - Add retry logic with exponential backoff
+  - Handle rate limiting (1 req/sec default, 8640 req/day)
+- [ ] Test authentication with simple SearchItems request
+- [ ] **Acceptance Criteria:**
+  - PA-API client authenticates successfully
+  - Can execute test SearchItems query
+  - Rate limiting prevents API throttling errors
+
+### Group 12B: Product Lookup Endpoint (4 hours)
+- [ ] Create `/api/products` endpoint:
+  - **Input:** `?material={materialKey}` (e.g., `?material=PLA`)
+  - **Output:** JSON array of products with images, prices, ratings
+  - **Logic:**
+    1. Map material key to search keywords (e.g., PLA → "PLA filament 1.75mm")
+    2. Call PA-API SearchItems with keywords
+    3. Request: Images (Large), Offers (price), CustomerReviews (rating)
+    4. Parse response and format for frontend
+    5. Cache results for 1 hour
+    6. Fallback to static data if API fails
+- [ ] Example response schema:
+  ```json
+  {
+    "material": "PLA",
+    "products": [
+      {
+        "asin": "B07PGZNM34",
+        "name": "Overture PLA Filament 1.75mm",
+        "brand": "Overture",
+        "price": "$19.99",
+        "priceAmount": 19.99,
+        "currency": "USD",
+        "imageUrl": "https://m.media-amazon.com/images/I/...",
+        "rating": 4.6,
+        "reviewCount": 15234,
+        "url": "https://amazon.com/dp/B07PGZNM34?tag=mwf064-20"
+      }
+    ],
+    "cached": false,
+    "cacheExpiry": "2025-11-12T15:30:00Z"
+  }
+  ```
+- [ ] **Acceptance Criteria:**
+  - Returns real product data from Amazon
+  - Includes product images, prices, and ratings
+  - Handles API errors gracefully
+  - Falls back to static data on failure
+  - Respects rate limits
+
+### Group 12C: Individual Product Detail Endpoint (2 hours)
+- [ ] Create `/api/product` endpoint:
+  - **Input:** `?asin={asin}` (e.g., `?asin=B07PGZNM34`)
+  - **Output:** Detailed product information
+  - **Logic:**
+    1. Call PA-API GetItems with ASIN
+    2. Request: Images, Offers, Reviews, Features, TechnicalInfo
+    3. Cache for 6 hours (product details change less frequently)
+- [ ] **Acceptance Criteria:**
+  - Returns comprehensive product details
+  - Includes bullet points/features
+  - Handles invalid ASINs gracefully
+
+### Group 12D: Caching Strategy (3 hours)
+- [ ] Implement in-memory cache (simple Python dict):
+  - Cache key: `f"{endpoint}:{params_hash}"`
+  - Cache value: `{"data": {...}, "expiry": timestamp}`
+  - TTL: 1 hour for search, 6 hours for product details
+- [ ] Add cache hit/miss metrics to response
+- [ ] Optional: Upgrade to Vercel KV (Redis) if needed:
+  - Vercel Hobby includes 256 MB KV storage
+  - Persistent cache across function invocations
+  - Better for high traffic
+- [ ] **Acceptance Criteria:**
+  - Cache reduces API calls by 80%+ (estimated)
+  - Cache expiry works correctly
+  - Cache doesn't consume excessive memory
+
+### Group 12E: Error Handling & Fallbacks (2 hours)
+- [ ] Implement comprehensive error handling:
+  - PA-API errors (InvalidParameter, TooManyRequests, etc.)
+  - Network timeouts (10s limit on Vercel Hobby)
+  - Invalid ASINs or no results found
+  - Rate limit exceeded
+- [ ] Fallback chain:
+  1. Try PA-API with fresh request
+  2. If failed, try cached data (even if expired)
+  3. If no cache, fall back to static affiliateProducts database
+- [ ] Add structured logging for debugging
+- [ ] **Acceptance Criteria:**
+  - No unhandled exceptions
+  - Users always see products (API or static)
+  - Errors logged for monitoring
+
+
+## 🖼️ PHASE 13: DYNAMIC FEATURES & UI INTEGRATION (Week 16)
+**Goal:** Replace static affiliate UI with dynamic PA-API data
+**Estimated Time:** 8-10 hours
+**Status:** Not started
+**Platform:** JavaScript frontend + Python backend
+
+### Group 13A: Frontend API Client (3 hours)
+- [ ] Create `/js/affiliateClient.js`:
+  - Fetch products from `/api/products?material={key}`
+  - Handle loading states (spinner/skeleton)
+  - Handle errors (show fallback static data)
+  - Cache responses in browser localStorage (1 hour TTL)
+- [ ] Update `displayAffiliateLinks()` function:
+  - Call API instead of reading static affiliateProducts object
+  - Show loading indicator while fetching
+  - Update UI with real product images, prices, ratings
+- [ ] **Acceptance Criteria:**
+  - API calls triggered on material selection
+  - Loading states visible to user
+  - Errors don't break UI
+
+### Group 13B: Product Card Enhancements (3 hours)
+- [ ] Update `createAffiliateProductCard()`:
+  - Display real product images (from PA-API)
+  - Show current prices with currency formatting
+  - Display star ratings (⭐⭐⭐⭐⭐ 4.6/5.0 - 15K reviews)
+  - Add "Prime eligible" badge if applicable
+  - Add "Deal" badge if price is discounted
+- [ ] Add image lazy loading for performance
+- [ ] Handle missing images gracefully (fallback to 📦 emoji)
+- [ ] **Acceptance Criteria:**
+  - Product images load correctly
+  - Prices formatted properly ($19.99 USD)
+  - Ratings displayed with stars and count
+  - UI remains fast and responsive
+
+### Group 13C: Real-Time Price Updates (2 hours)
+- [ ] Add "Last updated" timestamp to product cards
+- [ ] Implement price change indicators:
+  - Green arrow ↓ if price dropped
+  - Red arrow ↑ if price increased
+  - Track price history in localStorage
+- [ ] Add "Refresh prices" button for manual updates
+- [ ] **Acceptance Criteria:**
+  - Prices update when cache expires
+  - Price changes visually indicated
+  - Users can force refresh if needed
+
+
+## 🧪 PHASE 14: TESTING, OPTIMIZATION & MONITORING (Week 17)
+**Goal:** Production-ready deployment with monitoring
+**Estimated Time:** 8-10 hours
+**Status:** Not started
+**Platform:** Vercel + Analytics
+
+### Group 14A: Testing & Validation (3 hours)
+- [ ] Test API endpoints:
+  - All 28 materials return products
+  - Invalid material keys handled gracefully
+  - Invalid ASINs handled gracefully
+  - Rate limiting works correctly
+- [ ] Test frontend integration:
+  - Material selection triggers API calls
+  - Loading states display correctly
+  - Error fallbacks work
+  - Static data still accessible as backup
+- [ ] Test on multiple devices/browsers
+- [ ] **Acceptance Criteria:**
+  - All 28 materials tested with API
+  - No console errors on frontend
+  - Mobile experience smooth
+
+### Group 14B: Performance Optimization (2 hours)
+- [ ] Optimize API response times:
+  - Profile slow PA-API calls
+  - Implement request batching if possible
+  - Reduce JSON payload size
+- [ ] Optimize frontend:
+  - Lazy load product images
+  - Debounce API calls on rapid material changes
+  - Preload popular materials (PLA, PETG, ABS)
+- [ ] **Acceptance Criteria:**
+  - API response time <2 seconds (cold start)
+  - API response time <500ms (warm cache)
+  - Frontend remains responsive during loading
+
+### Group 14C: Cost Monitoring & Analytics (2 hours)
+- [ ] Set up Vercel analytics:
+  - Function invocation counts
+  - Function duration metrics
+  - Bandwidth usage
+- [ ] Monitor PA-API usage:
+  - Track daily API call count (limit: 8640/day)
+  - Alert if approaching 80% of daily limit
+  - Log cache hit rates
+- [ ] Set up revenue tracking:
+  - Amazon Associates earnings reports
+  - Correlate with CTR from GA4
+  - Calculate ROI (API costs vs. affiliate revenue)
+- [ ] **Acceptance Criteria:**
+  - Usage metrics visible in Vercel dashboard
+  - Alerts configured for quota warnings
+  - Can track affiliate revenue vs. costs
+
+### Group 14D: Documentation & Deployment (1 hour)
+- [ ] Update AFFILIATE_SETUP.md:
+  - Document PA-API integration
+  - Explain caching strategy
+  - Document environment variables
+- [ ] Create PA_API_GUIDE.md:
+  - Setup instructions for PA-API credentials
+  - Troubleshooting common errors
+  - Rate limit management strategies
+- [ ] Deploy to production:
+  - Tag release: `v0.4-paapi-dynamic`
+  - Update README with new features
+- [ ] **Acceptance Criteria:**
+  - Documentation complete and accurate
+  - Production deployment successful
+  - No breaking changes to existing features
+
+
+## 📊 PA-API IMPLEMENTATION NOTES
+
+### API Endpoints Contract
+
+#### `/api/products?material={materialKey}`
+**Description:** Get recommended products for a material type  
+**Method:** GET  
+**Parameters:**
+- `material` (required): Material key (e.g., "PLA", "PETG_CF", "Nylon")
+
+**Response (200 OK):**
+```json
+{
+  "material": "PLA",
+  "products": [
+    {
+      "asin": "B07PGZNM34",
+      "name": "Overture PLA Filament 1.75mm",
+      "brand": "Overture",
+      "price": "$19.99",
+      "priceAmount": 19.99,
+      "currency": "USD",
+      "imageUrl": "https://m.media-amazon.com/images/I/...",
+      "rating": 4.6,
+      "reviewCount": 15234,
+      "url": "https://amazon.com/dp/B07PGZNM34?tag=mwf064-20",
+      "isPrime": true,
+      "isOnSale": false
+    }
+  ],
+  "cached": true,
+  "cacheExpiry": "2025-11-12T15:30:00Z",
+  "source": "paapi"
+}
+```
+
+**Error Response (500 Internal Server Error):**
+```json
+{
+  "error": "PA-API request failed",
+  "message": "TooManyRequests: Rate limit exceeded",
+  "fallback": true,
+  "products": [...],  // Static fallback data
+  "source": "static"
+}
+```
+
+#### `/api/product?asin={asin}`
+**Description:** Get detailed information for a specific product  
+**Method:** GET  
+**Parameters:**
+- `asin` (required): Amazon Standard Identification Number
+
+**Response (200 OK):**
+```json
+{
+  "asin": "B07PGZNM34",
+  "name": "Overture PLA Filament 1.75mm",
+  "brand": "Overture",
+  "price": "$19.99",
+  "priceAmount": 19.99,
+  "currency": "USD",
+  "images": {
+    "large": "https://...",
+    "medium": "https://...",
+    "small": "https://..."
+  },
+  "rating": 4.6,
+  "reviewCount": 15234,
+  "features": [
+    "Dimensional Accuracy +/- 0.03mm",
+    "Smooth Finish",
+    "Vacuum Sealed with Desiccant"
+  ],
+  "url": "https://amazon.com/dp/B07PGZNM34?tag=mwf064-20",
+  "cached": true
+}
+```
+
+**Error Response (404 Not Found):**
+```json
+{
+  "error": "Product not found",
+  "message": "Invalid ASIN or product unavailable",
+  "asin": "B07INVALID"
+}
+```
+
+### Environment Variables (Vercel Dashboard)
+```bash
+# Required PA-API Credentials
+PAAPI_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE        # From Amazon Associates
+PAAPI_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/...  # From Amazon Associates
+PAAPI_ASSOCIATE_TAG=mwf064-20                # Your affiliate tag
+PAAPI_REGION=us-east-1                       # API region
+PAAPI_HOST=webservices.amazon.com            # API endpoint
+
+# Cache Configuration
+CACHE_TTL=3600                               # 1 hour (seconds)
+CACHE_ENABLED=true                           # Enable/disable caching
+
+# Optional: Vercel KV (Redis) for persistent cache
+KV_REST_API_URL=https://...                  # From Vercel dashboard
+KV_REST_API_TOKEN=...                        # From Vercel dashboard
+```
+
+### Vercel Hobby Tier Constraints
+- **Function Timeout:** 10 seconds (must handle PA-API calls within this limit)
+- **Monthly Bandwidth:** 100 GB (estimate: ~200KB per API response = 500K requests/month)
+- **Monthly Function Invocations:** 100K (estimate: sustainable with caching)
+- **PA-API Rate Limit:** 1 request/second, 8640 requests/day
+- **Caching Strategy:** Essential to stay within limits (target 80%+ cache hit rate)
+
+### Cost Estimates
+- **Vercel Hobby:** $0/month (free tier)
+- **PA-API:** $0/month (free with Amazon Associates account)
+- **Estimated Revenue (Conservative):**
+  - 1000 visitors/month × 2% CTR × 5% conversion × $20 avg order × 3% commission = **$6/month**
+  - With optimization: 5000 visitors/month → **$30/month**
+- **Break-even:** Immediate (no infrastructure costs)
+
+### Phased Rollout Strategy
+1. **Phase 10 (Static):** Enhance existing system without backend (1 week)
+2. **Phase 11 (Backend):** Set up Vercel + Python infrastructure (1 week)
+3. **Phase 12 (API):** Integrate PA-API with fallbacks (2 weeks)
+4. **Phase 13 (UI):** Replace static UI with dynamic data (1 week)
+5. **Phase 14 (Polish):** Test, optimize, monitor (1 week)
+6. **Total Timeline:** 6 weeks (part-time development)
+
+### Success Metrics
+- **API Reliability:** 99%+ uptime, <1% fallback to static data
+- **Cache Hit Rate:** 80%+ (reduces PA-API calls)
+- **Page Load Time:** <3 seconds for product data
+- **Conversion Rate:** 2%+ CTR on affiliate links (vs. 1% static baseline)
+- **Revenue:** 10× increase in affiliate earnings (from enhanced product data)
+
+
+## �📋 BACKLOG: Future Enhancements
 
 ### Material Database
 - [ ] **HIGH PRIORITY:** Add merge_extracted_to_csv.py script with unit tests
@@ -287,6 +933,13 @@ Added comprehensive material requirement warning system with:
 
 ### Advanced Features
 - [ ] **ENHANCEMENT:** Add printer temperature capability validation
+
+### Affiliate System Enhancements (Post PA-API)
+- [ ] **ENHANCEMENT:** A/B testing for product recommendations
+- [ ] **ENHANCEMENT:** Personalized recommendations based on user history
+- [ ] **ENHANCEMENT:** Price drop alerts (email notifications)
+- [ ] **ENHANCEMENT:** Multi-region support (Amazon.co.uk, Amazon.de, etc.)
+- [ ] **ENHANCEMENT:** Product comparison tool (side-by-side specs)
 
 
 ## ✅ COMPLETED TASKS
@@ -330,25 +983,61 @@ Added comprehensive material requirement warning system with:
 - Mechanical properties: ~40% coverage (improved from 30%)
 - Thermal properties: ~25% coverage (improved from 15%)
 - Material characteristics: 100% coverage (hygroscopic, enclosure, nozzle flags)
+- **Elongation at break: 0% coverage (28/28 materials missing)** ⚠️ See `MISSING_TDS_DATA.md`
 
-### Priority Order Rationale
-1. **Phase 1:** ✅ **COMPLETE** - Quick wins built momentum
-2. **Phase 2:** ✅ **COMPLETE** - Engineering materials added
-3. **Phase 3:** ✅ **COMPLETE** - High-performance materials differentiate app
-4. **Phase 4:** Specialty materials serve niche users
-5. **Phase 5:** Data quality ensures trust and accuracy
-6. **Phase 6:** Extractor improvements enable future growth
-7. **Phase 7:** ✅ **MAJOR PROGRESS** - Warning system makes features discoverable
-8. **Phase 8:** Documentation ensures usability
-9. **Phase 9:** Deployment delivers value to users
+**Missing Data Analysis:**
+- Created `MISSING_TDS_DATA.md` with comprehensive gap analysis
+- Only major gap: elongation_at_break_pct (0/28 materials)
+- All other TDS properties well-documented
+- Phase 5B targets filling elongation data through manufacturer TDS research
 
-### Next Recommended Actions
-1. **IMMEDIATE:** Create release tag `v0.3-warning-system`
-2. **HIGH PRIORITY:** Add material search/filter functionality (Phase 7A)
-3. **HIGH PRIORITY:** Create merge_extracted_to_csv.py script with tests
-4. **MEDIUM PRIORITY:** Add localStorage for persistent warning dismissals
-5. **MEDIUM PRIORITY:** Comprehensive data quality audit (Phase 5)
-6. **LOWER PRIORITY:** Add brand-specific material variants
+### Priority Order Rationale (Revenue-First Approach)
+**NEW STRATEGY:** Monetize immediately, then enhance iteratively
+
+1. **Phase 0 (Deploy):** 🔴 **CRITICAL** - Must be live to generate any revenue (30 min)
+2. **Phase 10 (Static Affiliate):** 🟢 **HIGHEST ROI** - 8 hours work → 2-3× revenue increase
+3. **Phase 7A (User Engagement):** 🟡 **HIGH ROI** - 4 hours work → 1.5× revenue increase
+4. **Phase 1-3:** ✅ **COMPLETE** - Foundation work already done
+5. **Phase 5 (Data Quality):** 🟡 **MEDIUM ROI** - Builds trust, enables better recommendations
+6. **Phase 11-14 (PA-API Backend):** ⚪ **DELAYED** - High effort (20+ hours), ROI comes later
+7. **Phase 4, 6, 8, 9:** ⚪ **LOWER PRIORITY** - Nice-to-have, not revenue-critical
+
+**Key Insight:** Static affiliate system can generate significant revenue ($25-35/month) with minimal work (12 hours total) before investing 20+ hours in PA-API backend. Ship early, ship often, validate revenue model first.
+
+**Old Priority Order (Pre-Revenue Focus):**
+1. ~~Phase 1: Quick wins (materials)~~ ✅ COMPLETE
+2. ~~Phase 2: Engineering materials~~ ✅ COMPLETE  
+3. ~~Phase 3: High-performance materials~~ ✅ COMPLETE
+4. Phase 4: Specialty materials
+5. Phase 5: Data quality
+6. Phase 6: Extractor improvements
+7. ~~Phase 7: UI/UX~~ ✅ PARTIAL (warning system done)
+8. Phase 8: Documentation
+9. Phase 9: Deployment
+
+### Next Recommended Actions (Revenue-First Priority)
+1. 🔴 **CRITICAL - DO FIRST:** Deploy to Vercel (30 min) - See `VERCEL_DEPLOYMENT.md`
+2. 🔴 **CRITICAL - DO SECOND:** Add Google Analytics 4 tracking (30 min)
+3. 🟢 **QUICK WIN:** Expand affiliate products to 20/28 materials (2 hours)
+4. 🟢 **QUICK WIN:** Complete affiliate coverage to 28/28 materials (2 hours)
+5. 🟡 **HIGH PRIORITY:** Add material search/filter functionality (Phase 7A) - 2 hours
+6. 🟡 **MEDIUM PRIORITY:** Add localStorage for persistent warning dismissals - 1 hour
+7. 🟡 **MEDIUM PRIORITY:** Research elongation_at_break_pct (Phase 5B) - See `MISSING_TDS_DATA.md` - 4 hours
+8. ⚪ **FUTURE:** Begin Phase 11 - Python backend for PA-API (8 hours)
+9. ⚪ **FUTURE:** Create merge_extracted_to_csv.py script with tests
+10. ⚪ **LOWER PRIORITY:** Add brand-specific material variants
+
+**Priority Rationale:**
+- 🔴 **Deploy first** → Application must be live to generate revenue
+- 🟢 **Static enhancements** → High ROI, low effort (8 hours → 2-3× revenue)
+- 🟡 **User engagement** → Medium ROI, low effort (keeps users on site longer)
+- ⚪ **Backend/PA-API** → High effort, delayed ROI (requires 20+ hours development)
+
+**Revenue Timeline:**
+- **Week 1:** Deploy + basic affiliate expansion → $5-10/month
+- **Week 2:** Complete static enhancements → $15-25/month
+- **Week 3:** User engagement features → $25-35/month
+- **Weeks 4-9:** PA-API integration → $50-100/month (with dynamic pricing/images)
 
 
 **Current Status:** The application has evolved significantly with 28 materials and an intelligent warning system. The foundation is solid for continued expansion. Focus should shift to data quality enhancement and additional UI features (search/filter, tier badges).

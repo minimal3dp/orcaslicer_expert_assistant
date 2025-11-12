@@ -115,7 +115,22 @@ The `research/` folder contains 20+ academic papers covering:
 
 ## 🚀 Usage
 
-### Web App (Frontend Only)
+### Quick Start: Deploy to Vercel (Recommended)
+**⚡ Get your app live in 15 minutes!**
+
+1. Follow the step-by-step guide in **[VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)**
+2. Deploy the static HTML app (no backend needed)
+3. Set up Google Analytics to track users and affiliate clicks
+4. Start generating revenue immediately!
+
+**Benefits of Deployment:**
+- ✅ Live 24/7 on Vercel's global CDN (free tier)
+- ✅ Automatic HTTPS and SSL
+- ✅ Custom domain support
+- ✅ Zero-config deployment
+- ✅ Revenue generation from affiliate links
+
+### Web App (Local Development)
 1. Clone the repository
 2. Open `orcaslicer_assistant.html` in a modern web browser
 3. No build process or server required!
@@ -139,8 +154,6 @@ The `research/` folder contains 20+ academic papers covering:
    ```
 
 See `scripts/README.md` for detailed script usage.
-
-### Deployment Options
 
 ## 🧠 How It Works
 
