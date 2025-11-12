@@ -1,0 +1,8 @@
+# robots.txt for settings.minimal3dp.com
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://settings.minimal3dp.com/sitemap.xml
