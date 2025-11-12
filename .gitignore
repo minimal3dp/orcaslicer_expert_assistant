@@ -1,2 +1,21 @@
-# Ignore PDFs
+# Research PDFs
 research/*.pdf
+
+# Python / UV
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Script outputs
+output/
+data/materials_sync.js
+data/materials_sync.json
+
+# OS files
+.DS_Store
+Thumbs.db
+tds/*.pdf

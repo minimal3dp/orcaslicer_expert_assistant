@@ -62,10 +62,17 @@ The `research/` folder contains 20+ academic papers covering:
 
 ## 🚀 Usage
 
-### Local Development
+### Web App (Frontend Only)
 1. Clone the repository
 2. Open `orcaslicer_assistant.html` in a modern web browser
 3. No build process or server required!
+
+### Python Scripts (Data Management)
+1. Install UV: `curl -LsSf https://astral.sh/uv/install.sh | sh` (or `brew install uv`)
+2. Sync dependencies: `uv sync`
+3. Run scripts: `uv run scripts/sync_materials.py`
+
+See `scripts/README.md` for detailed script usage.
 
 ### Deployment Options
 - GitHub Pages
@@ -94,7 +101,46 @@ For each high-priority goal, the system provides:
 - **Explanation** of why this setting matters
 - **Trade-offs** to be aware of
 
-## 🔬 Technical Details
+## �️ Development Setup
+
+### Prerequisites
+- Modern web browser (Chrome, Firefox, Edge, Safari)
+- **Python 3.12+** and **UV** (for data management scripts)
+
+### Setup
+```bash
+# Clone the repository
+git clone https://github.com/minimal3dp/orcaslicer_expert_assistant.git
+cd orcaslicer_expert_assistant
+
+# Install UV (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh  # macOS/Linux
+# or: brew install uv
+
+# Sync Python dependencies
+uv sync
+
+# Test the scripts
+uv run scripts/sync_materials.py --help
+```
+
+### Project Structure
+```
+.
+├── orcaslicer_assistant.html    # Main web app (standalone)
+├── data/
+│   ├── material_db.csv           # Master material database
+│   └── materials.json            # Material settings for other uses
+├── scripts/                      # Python utilities
+│   ├── tds_extractor.py         # Extract data from TDS PDFs
+│   ├── sync_materials.py        # Sync CSV to HTML/JSON
+│   └── README.md                # Script documentation
+├── research/                     # Academic papers (gitignored)
+├── pyproject.toml               # Python dependencies (UV)
+└── README.md                    # This file
+```
+
+## �🔬 Technical Details
 
 ### Material Properties Tracked
 - Tensile strength (MPa) - XY and Z-axis

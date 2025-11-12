@@ -1,0 +1,12 @@
+[project]
+name = "m3dp-orcaslicer-settings-recommender"
+version = "0.1.0"
+description = "Web app for OrcaSlicer settings recommendations based on material properties and print priorities"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fuzzywuzzy>=0.18.0",
+    "pandas>=2.3.3",
+    "pdfplumber>=0.11.8",
+    "python-levenshtein>=0.27.3",
+]

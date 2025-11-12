@@ -428,9 +428,14 @@ If you go the **Python route**, consider these additions:
 ### Immediate (This Week)
 1. ✅ Create README (DONE)
 2. ✅ Create TODO (DONE)
-3. ⬜ Fix data inconsistencies (material_db.csv vs materials.json)
-4. ⬜ Add missing materials to HTML knowledge base
-5. ⬜ Test on mobile devices
+3. ✅ Create TDS extraction script (DONE)
+4. ✅ Create CSV sync script (DONE)
+5. ✅ Set up UV for Python package management (DONE)
+6. ✅ Update documentation for UV (DONE)
+7. ⬜ Fix data inconsistencies (material_db.csv vs materials.json)
+8. ⬜ Sync CSV materials to HTML (run: `uv run scripts/sync_materials.py`)
+9. ⬜ Upload TDS PDFs and extract data
+10. ⬜ Test on mobile devices
 
 ### Short-term (Next 2 Weeks)
 1. ⬜ **Decision Point**: Choose architecture (stay JS or go Python)
