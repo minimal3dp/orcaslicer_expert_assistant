@@ -228,15 +228,48 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border: 2px solid #1e40af;
+            cursor: pointer;
             margin-top: -6px;
             /* Center thumb on track */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(59, 130, 246, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 0 0 6px rgba(59, 130, 246, 0.2);
+            transform: scale(1.1);
+        }
+
+        input[type="range"]::-webkit-slider-thumb:active {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(59, 130, 246, 0.15);
+            transform: scale(0.95);
         }
 
         input[type="range"]::-moz-range-thumb {
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            border: none;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border: 2px solid #1e40af;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(59, 130, 246, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-moz-range-thumb:hover {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 0 0 6px rgba(59, 130, 246, 0.2);
+            transform: scale(1.1);
+        }
+
+        input[type="range"]::-moz-range-thumb:active {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(59, 130, 246, 0.15);
+            transform: scale(0.95);
         }
 
         /* Custom scrollbar for affiliate products */
@@ -1959,15 +1992,15 @@
                     brand: 'AMOLEN',
                     price: '$29.99',
                     description: 'Metal-filled PLA with authentic metallic finish, contains real bronze powder',
-                    asin: 'B0BCDYQ5RW',
+                    asin: 'B0DWDPXZD3',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'SUNLU Silk Copper PLA',
-                    brand: 'SUNLU',
-                    price: '$22.99',
+                    name: 'Protopasta Ferromagnetic Iron PLA',
+                    brand: 'Protopasta',
+                    price: '$34.99',
                     description: 'Silk copper metallic finish with great luster and smooth finish',
-                    asin: 'B0BZTV44V7',
+                    asin: 'B00X8BQYPS',
                     tag: 'mwf064-20'
                 }
             ],
@@ -1977,15 +2010,15 @@
                     brand: 'AMOLEN',
                     price: '$21.99',
                     description: 'Luminous PLA that glows in the dark after light exposure',
-                    asin: 'B0BY9P5WYZ',
+                    asin: 'B0FLK7DTB6',
                     tag: 'mwf064-20'
                 },
                 {
                     name: 'SUNLU Glow in the Dark PLA',
                     brand: 'SUNLU',
-                    price: '$19.99',
+                    price: '$25.99',
                     description: 'Photoluminescent PLA with strong long-lasting glow effect',
-                    asin: 'B09BFLDTDB',
+                    asin: 'B0C4LT1ZF4',
                     tag: 'mwf064-20'
                 }
             ],
