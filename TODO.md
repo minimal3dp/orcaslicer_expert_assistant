@@ -44,10 +44,14 @@
   - [ ] **READY TO TEST:** Test all events in GA4 Realtime view - See `dev_docs/GA4_SETUP_GUIDE.md` Phase 4 (30 min)
   - [ ] **Total Time:** 2-3 hours for complete implementation
 - [ ] **IN PROGRESS:** Expand affiliate products to 20/28 materials (2 hours)
-  - Current: 14 materials have products
-  - Target: 20 materials (71% coverage)
-  - Focus on popular materials: Nylon, PC, HIPS, PP, PLA_Wood, PLA_Silk
-  - Add 2-3 products per material from Amazon
+  - **UPDATE (Nov 12):** Discovered 50%+ Amazon links broken/unavailable
+  - **DECISION:** Fix links manually FIRST before PA-API investment
+  - **REASON:** PA-API has costs ($0.50/call if sales quota not met) + complexity (8-10 hours)
+  - **STATUS:** Links fixed! 16/28 materials, 40+ products, 100% functional
+  - [x] **COMPLETED:** Replaced all broken ASINs with current products from AMAZON_LINKS.md
+  - [x] **COMPLETED:** Verified all new links working (Nov 12, 2025)
+  - [ ] **NEXT:** Expand to 20/28 materials with specialty products
+  - [ ] **FUTURE:** Implement PA-API when revenue justifies it ($15-20/month baseline)
 - [ ] **QUICK WIN:** Add Amazon Attribution tags (30 min)
   - Implement proper UTM parameters for tracking
   - Set up campaign tracking in Amazon Associates
@@ -85,19 +89,84 @@
 **Difficulty:** 🟢 **EASY** - Pure frontend work, no backend needed
 **SEO Focus:** 📈 **MEDIUM** - Content improvements boost engagement metrics
 
-#### Group 10A: Product Coverage Expansion (2 hours)
+#### ✅ Group 10A: Fix Broken Amazon Links - COMPLETED (November 12, 2025)
+**Status:** COMPLETED - All affiliate links updated with current working products
+
+- [x] **COMPLETED:** Identified broken Amazon affiliate links (50%+ non-functional)
+- [x] **COMPLETED:** Extracted ASINs from new Amazon shortlinks in AMAZON_LINKS.md
+- [x] **COMPLETED:** Replaced all PLA products (4 products - SUNLU, OVERTURE, ELEGOO, eSUN)
+- [x] **COMPLETED:** Replaced all PLA+ products (4 products - eSUN, ELEGOO, SUNLU, LANDU)
+- [x] **COMPLETED:** Added PLA Silk products (3 products - SUNLU, ELEGOO, ERYONE)
+- [x] **COMPLETED:** Added PLA Wood products (3 products - Creality, OVV3D, SUNLU)
+- [x] **COMPLETED:** Updated PETG products (3 products - OVERTURE, Creality, SUNLU)
+- [x] **COMPLETED:** Updated PETG CF products (2 products - FLASHFORGE, Generic)
+- [x] **COMPLETED:** Updated ABS products (4 products - Polymaker, Creality, OVERTURE, PolyLite)
+- [x] **COMPLETED:** Updated ASA products (3 products - Polymaker, OVERTURE, iSANMATE)
+- [x] **COMPLETED:** Updated Nylon products (2 products - OVERTURE, Polymaker)
+- [x] **COMPLETED:** Updated Nylon CF products (2 products - Polymaker PA612-CF, SUNLU PA6-CF)
+- [x] **COMPLETED:** Updated TPU products (3 products - OVERTURE, SUNLU, GIANTARM)
+- [x] **COMPLETED:** Updated Polycarbonate products (1 product - Polymaker)
+- [x] **COMPLETED:** Updated PVA products (3 products - Generic, SUNLU, Polymaker)
+- [x] **COMPLETED:** Added PVB products (1 product - Polymaker)
+- [x] **COMPLETED:** Added HIPS products (1 product - Gizmo Dorks)
+- [x] **COMPLETED:** Updated filament dryers (3 products - Creality, Comgrow, SUNLU)
+- [x] **COMPLETED:** Updated storage containers (2 products - Polymaker, YOOPAI)
+- [x] **COMPLETED:** Removed PLA CF duplicate (kept ELEGOO only)
+- [x] **COMPLETED:** Removed HTPLA section (no current product available)
+- [x] **COMPLETED:** Updated all ASINs to match current Amazon catalog
+
+**Coverage Status:**
+- ✅ **Current:** 16/28 materials have affiliate products (57%)
+- 📦 **Products:** 40+ products across 16 material categories
+- 🔧 **Accessories:** 5 products (3 dryers, 2 storage containers)
+- 💰 **All Links Working:** 100% functional as of Nov 12, 2025
+
+**Materials WITH Products:**
+1. PLA (4 products)
+2. PLA_Plus (4 products)
+3. PLA_Silk (3 products)
+4. PLA_Wood (3 products)
+5. PLA_CF (1 product)
+6. PETG (3 products)
+7. PETG_CF (2 products)
+8. ABS (4 products)
+9. ASA (3 products)
+10. Nylon (2 products)
+11. Nylon_CF (2 products)
+12. TPU_95A (3 products)
+13. Polycarbonate (1 product)
+14. PVA (3 products)
+15. PVB (1 product)
+16. HIPS (1 product)
+
+**Materials NEEDING Products:**
+1. HTPLA (high-temp PLA)
+2. PLA_Metal (metal-filled)
+3. PLA_Glow (glow-in-the-dark)
+4. TPU_85A (ultra-flexible)
+5. Nylon_GF (glass fiber)
+6. PC-ABS_Blend
+7. PET
+8. PP (polypropylene)
+9. PEEK
+10. PEKK
+11. PPSU
+12. ULTEM_9085
+
+**Revenue Impact:** ✅ 100% functional links → immediate revenue restoration
+
+#### Group 10B: Product Coverage Expansion (2 hours)
 - [ ] Complete affiliate product coverage to 28/28 materials
   - [ ] High-performance: PEEK, PEKK, PPSU, ULTEM (premium pricing)
-  - [ ] Engineering: PC-ABS, HIPS, PP
-  - [ ] Specialty: PLA variants (Wood, Metal, Glow), PVA, PVB
+  - [ ] Engineering: PC-ABS, HIPS, PP, PET
+  - [ ] Specialty: PLA variants (Metal, Glow), TPU_85A, Nylon_GF
 - [ ] Add accessory products where appropriate:
-  - [ ] Filament dryers for hygroscopic materials
-  - [ ] Hardened nozzles for abrasive materials
-  - [ ] Enclosure kits for warp-prone materials
+  - [x] **COMPLETED:** Filament dryers for hygroscopic materials (3 products)
   - [ ] Build plate adhesives for difficult materials
+  - [ ] Enclosure kits for warp-prone materials
 - [ ] **Revenue Impact:** +50% potential clicks (more products = more opportunities)
 
-#### Group 10B: Conversion Rate Optimization (2 hours)
+#### Group 10C: Conversion Rate Optimization (2 hours)
 - [ ] Add "Why this product?" tooltips to explain recommendations
 - [ ] Implement seasonal product rotation logic
   - Summer: PETG/ASA (outdoor, heat-resistant)
@@ -532,11 +601,54 @@ Added comprehensive material requirement warning system with:
   - Tooltips provide value without clutter
 
 
-## 🐍 PHASE 11: PYTHON BACKEND SETUP (Week 13)
+## 🐍 PHASE 11: PYTHON BACKEND SETUP (Week 13+)
 **Goal:** Set up Python serverless functions on Vercel
 **Estimated Time:** 8-10 hours
-**Status:** Not started
+**Status:** ⏸️ **DEFERRED** - Manual link fixes completed, PA-API delayed until revenue justifies investment
 **Platform:** Python 3.11+, Vercel Hobby (free tier)
+**Decision Date:** November 12, 2025
+
+### 📊 **Why Deferred:**
+- ✅ **Problem Solved:** All 40+ affiliate links manually updated and working (Nov 12, 2025)
+- 💰 **Cost Concern:** PA-API charges $0.50 per call if sales quota not met (need 3 sales per call)
+- ⏱️ **Time Investment:** 20-30 hours total for full PA-API implementation
+- 📈 **Revenue First:** Need $15-20/month baseline to justify API costs
+- 🔄 **Maintenance:** Manual updates take 1-2 hours every 3-6 months vs continuous API calls
+- ✅ **Current Solution:** Static links work, GA4 tracking will show which products need attention
+
+### 🎯 **Activation Criteria:**
+Implement PA-API when ANY of these conditions are met:
+1. 📊 Monthly revenue consistently hits $15-20/month for 2+ months
+2. 🔗 More than 10 products break per month (high maintenance burden)
+3. 📈 Traffic exceeds 1000 monthly visitors (scale justifies automation)
+4. 💼 YouTube channel monetization enables API budget
+5. 🏆 Success with affiliate proves worth additional investment
+
+### 🛠️ **Current Alternative: Manual Quarterly Updates**
+**Process (1-2 hours every 3 months):**
+1. Check GA4 for affiliate_click events with errors (broken links)
+2. Use Amazon Associates SiteStripe to find current products
+3. Extract ASINs from amzn.to shortlinks (see dev_docs/AMAZON_LINKS.md)
+4. Update index.html affiliateProducts object
+5. Test on staging, deploy to production
+6. Update AMAZON_LINKS.md with new links for future reference
+
+**Advantages:**
+- ✅ Zero API costs
+- ✅ Zero rate limits
+- ✅ Full control over product selection
+- ✅ Can pick specific products (best reviews, prices, affiliate commission)
+- ✅ Works immediately
+
+**Disadvantages:**
+- ⏱️ Manual effort required (but only 1-2 hours quarterly)
+- 📊 No real-time availability checking
+- 💰 Manual price updates (but customers see current price on Amazon anyway)
+
+---
+
+## 🐍 PHASE 11 (ARCHIVED): PYTHON BACKEND SETUP
+**Note:** This section preserved for future reference when revenue justifies PA-API
 
 ### Group 11A: Vercel Project Configuration (2 hours)
 - [ ] Install Vercel CLI: `npm install -g vercel`
@@ -603,11 +715,12 @@ Added comprehensive material requirement warning system with:
   - Error handling framework in place
 
 
-## 🔌 PHASE 12: PA-API INTEGRATION (Week 14-15)
+## 🔌 PHASE 12 (ARCHIVED): PA-API INTEGRATION
 **Goal:** Integrate Amazon Product Advertising API 5.0
 **Estimated Time:** 12-15 hours
-**Status:** Not started
+**Status:** ⏸️ **DEFERRED** - See Phase 11 header for rationale
 **Platform:** Python + boto3 + PA-API 5.0
+**Note:** This section preserved for future reference when activation criteria met
 
 ### Group 12A: PA-API Authentication & Client Setup (3 hours)
 - [ ] Install PA-API SDK: Add `paapi5-python-sdk==1.0.0` to requirements.txt

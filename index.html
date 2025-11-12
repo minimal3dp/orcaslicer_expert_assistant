@@ -1548,272 +1548,404 @@
         };
 
         // Amazon Affiliate Product Database
-        // Replace 'mwf064-20' with your actual Amazon Associates tag
+        // Using affiliate tag: mwf064-20
         const affiliateProducts = {
             // PLA Products
             'PLA': [
                 {
-                    name: 'Overture PLA Filament 1.75mm',
-                    brand: 'Overture',
-                    price: '$19.99',
+                    name: 'SUNLU PLA 3D Printer Filament',
+                    brand: 'SUNLU',
+                    price: '$18.99',
                     description: 'Premium PLA with excellent layer adhesion and dimensional accuracy',
-                    asin: 'B07PGZNM34',
+                    asin: 'B0CRXZ99BS',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'HATCHBOX PLA 3D Printer Filament',
-                    brand: 'HATCHBOX',
-                    price: '$22.99',
+                    name: 'OVERTURE PLA Filament',
+                    brand: 'OVERTURE',
+                    price: '$19.99',
                     description: 'Consistent diameter, smooth finish, wide color selection',
-                    asin: 'B00J0ECR5I',
+                    asin: 'B07PGY2JP1',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'eSUN PLA+ (PLA Plus) Filament',
+                    name: 'ELEGOO PLA Filament',
+                    brand: 'ELEGOO',
+                    price: '$16.99',
+                    description: 'High-quality PLA with vibrant colors',
+                    asin: 'B0D421Q2Q2',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'eSUN PLA Basic Filament',
                     brand: 'eSUN',
-                    price: '$20.99',
-                    description: 'Enhanced toughness and strength over standard PLA',
-                    asin: 'B01EKEMDA6',
+                    price: '$17.99',
+                    description: 'Reliable basic PLA for everyday printing',
+                    asin: 'B0CS2XHNKL',
                     tag: 'mwf064-20'
                 }
             ],
             'PLA_Plus': [
                 {
-                    name: 'eSUN PLA+ (PLA Plus) Filament',
+                    name: 'eSUN PLA+ Filament',
                     brand: 'eSUN',
                     price: '$20.99',
                     description: 'Enhanced toughness and strength over standard PLA',
-                    asin: 'B01EKEMDA6',
+                    asin: 'B07FQDKR28',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'SUNLU PLA+ 3D Printer Filament',
-                    brand: 'SUNLU',
+                    name: 'ELEGOO PLA Plus Filament',
+                    brand: 'ELEGOO',
                     price: '$18.99',
-                    description: 'Upgraded PLA with improved toughness and heat resistance',
-                    asin: 'B07X6DTR3L',
+                    description: 'Upgraded PLA with improved layer adhesion',
+                    asin: 'B0C14M5HR9',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'SUNLU PLA+2.0 3D Printer Filament',
+                    brand: 'SUNLU',
+                    price: '$19.99',
+                    description: 'Second generation PLA+ with enhanced properties',
+                    asin: 'B0DHCT8YDN',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'LANDU PLA Plus (PLA+) Filament',
+                    brand: 'LANDU',
+                    price: '$17.99',
+                    description: 'Cost-effective PLA+ with excellent strength',
+                    asin: 'B0D69RV8W1',
                     tag: 'mwf064-20'
                 }
             ],
-            'HTPLA': [
+            'PLA_Silk': [
                 {
-                    name: 'Proto-pasta High Temperature PLA',
-                    brand: 'Proto-pasta',
-                    price: '$39.99',
-                    description: 'Annealable PLA for high-temperature applications',
-                    asin: 'B07RMPQ6XY',
+                    name: 'SUNLU 3D Printer Silk Filament',
+                    brand: 'SUNLU',
+                    price: '$19.99',
+                    description: 'Beautiful silk finish with metallic sheen',
+                    asin: 'B0B5ZK5TLC',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'ELEGOO Silk PLA 3D Printer Filament',
+                    brand: 'ELEGOO',
+                    price: '$18.99',
+                    description: 'Premium silk PLA with smooth surface finish',
+                    asin: 'B0C2VDTPKX',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'ERYONE Silk PLA Filament',
+                    brand: 'ERYONE',
+                    price: '$17.99',
+                    description: 'Vibrant silk colors with excellent printability',
+                    asin: 'B0FJCR7HM1',
+                    tag: 'mwf064-20'
+                }
+            ],
+            'PLA_Wood': [
+                {
+                    name: 'Creality Wood Filament PLA',
+                    brand: 'Creality',
+                    price: '$19.99',
+                    description: 'Natural wood fiber composite with authentic wood texture',
+                    asin: 'B0DDWM2TX7',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'OVV3D Wood 3D Printer Filament',
+                    brand: 'OVV3D',
+                    price: '$18.99',
+                    description: 'Wood-filled PLA for realistic wooden prints',
+                    asin: 'B0BZ8XWX5D',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'SUNLU Real Wood Fiber PLA Filament',
+                    brand: 'SUNLU',
+                    price: '$21.99',
+                    description: 'Genuine wood fiber blend for natural appearance',
+                    asin: 'B0F1FH9T2J',
                     tag: 'mwf064-20'
                 }
             ],
             'PLA_CF': [
                 {
-                    name: '3DXTech CarbonX PLA Carbon Fiber',
-                    brand: '3DXTech',
-                    price: '$39.99',
-                    description: 'Carbon fiber reinforced PLA for enhanced rigidity',
-                    asin: 'B07VHNW5TB',
-                    tag: 'mwf064-20'
-                },
-                {
-                    name: 'ERYONE Carbon Fiber PLA Filament',
-                    brand: 'ERYONE',
+                    name: 'ELEGOO Carbon Fiber PLA Filament',
+                    brand: 'ELEGOO',
                     price: '$24.99',
-                    description: 'Lightweight and strong carbon fiber composite',
-                    asin: 'B09MJMKS5C',
+                    description: 'Carbon fiber reinforced PLA for enhanced rigidity',
+                    asin: 'B0D86M3RM4',
                     tag: 'mwf064-20'
                 }
             ],
             'PETG': [
                 {
-                    name: 'Overture PETG Filament 1.75mm',
-                    brand: 'Overture',
+                    name: 'OVERTURE PETG 3D Printer Filament',
+                    brand: 'OVERTURE',
                     price: '$21.99',
                     description: 'Durable PETG with excellent layer adhesion',
-                    asin: 'B07VFVPMW9',
+                    asin: 'B07PGYHYV8',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'HATCHBOX PETG 3D Printer Filament',
-                    brand: 'HATCHBOX',
-                    price: '$24.99',
-                    description: 'Strong and flexible with minimal warping',
-                    asin: 'B015I1CZUI',
-                    tag: 'mwf064-20'
-                },
-                {
-                    name: 'Amazon Basics PETG 3D Printer Filament',
-                    brand: 'Amazon Basics',
+                    name: 'Creality PETG 3D Printer Filament',
+                    brand: 'Creality',
                     price: '$19.99',
-                    description: 'Affordable PETG with reliable quality',
-                    asin: 'B07XGRZSV7',
+                    description: 'Strong and flexible with minimal warping',
+                    asin: 'B0C8NP63GD',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'SUNLU PETG Filament',
+                    brand: 'SUNLU',
+                    price: '$18.99',
+                    description: 'Reliable PETG with consistent quality',
+                    asin: 'B0DJS3PJVX',
                     tag: 'mwf064-20'
                 }
             ],
             'PETG_CF': [
                 {
-                    name: '3DXTech CarbonX PETG Carbon Fiber',
-                    brand: '3DXTech',
+                    name: 'FLASHFORGE Carbon Fiber PETG Filament',
+                    brand: 'FLASHFORGE',
                     price: '$44.99',
                     description: 'Carbon fiber reinforced PETG for engineering applications',
-                    asin: 'B07VJ1GG7K',
+                    asin: 'B0CNYX58SV',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'Carbon Fiber PETG Filament',
+                    brand: 'Generic',
+                    price: '$39.99',
+                    description: 'Reinforced PETG with enhanced stiffness',
+                    asin: 'B0CC7RH6M3',
                     tag: 'mwf064-20'
                 }
             ],
             'ABS': [
                 {
-                    name: 'HATCHBOX ABS 3D Printer Filament',
-                    brand: 'HATCHBOX',
-                    price: '$22.99',
-                    description: 'Strong and heat-resistant ABS filament',
-                    asin: 'B00J0GMMP6',
+                    name: 'Polymaker ABS Filament',
+                    brand: 'Polymaker',
+                    price: '$29.99',
+                    description: 'High-quality ABS with minimal warping',
+                    asin: 'B09DKQR8HD',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'Overture ABS Filament 1.75mm',
-                    brand: 'Overture',
-                    price: '$20.99',
-                    description: 'High-quality ABS with minimal warping',
-                    asin: 'B07RR64QVV',
+                    name: 'Creality ABS Filament',
+                    brand: 'Creality',
+                    price: '$19.99',
+                    description: 'Strong and heat-resistant ABS filament',
+                    asin: 'B0C7BW71L8',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'OVERTURE ABS Filament',
+                    brand: 'OVERTURE',
+                    price: '$22.99',
+                    description: 'Durable ABS for functional parts',
+                    asin: 'B087LW1YP3',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'PolyLite ABS Filament',
+                    brand: 'Polymaker',
+                    price: '$27.99',
+                    description: 'Professional-grade ABS for demanding applications',
+                    asin: 'B09DKQ46H3',
                     tag: 'mwf064-20'
                 }
             ],
             'ASA': [
                 {
-                    name: 'Polymaker PolyLite ASA Filament',
+                    name: 'Polymaker ASA Filament',
                     brand: 'Polymaker',
                     price: '$29.99',
                     description: 'UV-resistant ASA for outdoor applications',
-                    asin: 'B0814ZLCVJ',
+                    asin: 'B09DKPYYBP',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'OVERTURE ASA Filament',
+                    brand: 'OVERTURE',
+                    price: '$26.99',
+                    description: 'Weather-resistant ASA with excellent UV stability',
+                    asin: 'B09DCQ972K',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'iSANMATE ASA Filament',
+                    brand: 'iSANMATE',
+                    price: '$24.99',
+                    description: 'Reliable ASA for outdoor and UV-exposed parts',
+                    asin: 'B0DB16JG74',
                     tag: 'mwf064-20'
                 }
             ],
             'Nylon': [
                 {
-                    name: 'Overture Nylon Filament 1.75mm',
-                    brand: 'Overture',
+                    name: 'OVERTURE Nylon Filament',
+                    brand: 'OVERTURE',
                     price: '$27.99',
                     description: 'Strong and flexible nylon for mechanical parts',
-                    asin: 'B07V61NY7C',
+                    asin: 'B087R3M9Z2',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'PRILINE Nylon Carbon Fiber Filament',
-                    brand: 'PRILINE',
-                    price: '$39.99',
-                    description: 'Reinforced nylon with excellent strength',
-                    asin: 'B07PNX4JPX',
+                    name: 'Polymaker Nylon Filament',
+                    brand: 'Polymaker',
+                    price: '$34.99',
+                    description: 'Engineering-grade nylon with excellent toughness',
+                    asin: 'B09KKZ23VP',
                     tag: 'mwf064-20'
                 }
             ],
             'Nylon_CF': [
                 {
-                    name: '3DXTech CarbonX Nylon Carbon Fiber',
-                    brand: '3DXTech',
+                    name: 'Polymaker Fiberon PA612-CF Carbon Fiber Nylon Filament',
+                    brand: 'Polymaker',
                     price: '$69.99',
                     description: 'Industrial-grade carbon fiber nylon composite',
-                    asin: 'B07VK1TNJB',
+                    asin: 'B0D4QF5QVL',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'MatterHackers PRO Series Nylon CF',
-                    brand: 'MatterHackers',
-                    price: '$79.99',
-                    description: 'Professional carbon fiber reinforced nylon',
-                    asin: 'B08N5KFVQH',
+                    name: 'SUNLU PA6-CF 3D Filament',
+                    brand: 'SUNLU',
+                    price: '$49.99',
+                    description: 'Carbon fiber reinforced nylon for high-strength applications',
+                    asin: 'B0F23B1B2L',
                     tag: 'mwf064-20'
                 }
             ],
             'TPU_95A': [
                 {
-                    name: 'Overture TPU 95A Flexible Filament',
-                    brand: 'Overture',
+                    name: 'OVERTURE TPU Filament',
+                    brand: 'OVERTURE',
                     price: '$23.99',
                     description: 'Flexible TPU for durable, elastic prints',
-                    asin: 'B07VCN3DFN',
+                    asin: 'B07VDP2S3P',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'HATCHBOX TPU 3D Printer Filament',
-                    brand: 'HATCHBOX',
-                    price: '$27.99',
+                    name: 'SUNLU TPU 3D Printer Filament',
+                    brand: 'SUNLU',
+                    price: '$21.99',
                     description: 'High-quality flexible filament with great layer adhesion',
-                    asin: 'B0828Y7VPW',
+                    asin: 'B0BXNWK6NS',
                     tag: 'mwf064-20'
-                }
-            ],
-            'TPU_85A': [
+                },
                 {
-                    name: 'NinjaFlex 85A TPU Flexible Filament',
-                    brand: 'NinjaTek',
-                    price: '$49.99',
-                    description: 'Ultra-flexible TPU for advanced applications',
-                    asin: 'B00ZE8Y4C6',
+                    name: 'GIANTARM TPU Filament',
+                    brand: 'GIANTARM',
+                    price: '$19.99',
+                    description: 'Affordable flexible TPU with reliable performance',
+                    asin: 'B0C3TNZHZK',
                     tag: 'mwf064-20'
                 }
             ],
             'Polycarbonate': [
                 {
-                    name: 'Polymaker PolyLite PC Filament',
+                    name: 'Polymaker 3D Printing Filament',
                     brand: 'Polymaker',
                     price: '$39.99',
                     description: 'Strong polycarbonate for high-impact parts',
-                    asin: 'B07VC3BXQG',
+                    asin: 'B09KLCMGKC',
                     tag: 'mwf064-20'
                 }
             ],
             'PVA': [
                 {
-                    name: 'HATCHBOX PVA 3D Printer Filament',
-                    brand: 'HATCHBOX',
-                    price: '$34.99',
+                    name: 'PVA Filament',
+                    brand: 'Generic',
+                    price: '$29.99',
                     description: 'Water-soluble support material',
-                    asin: 'B019PIG2Q0',
+                    asin: 'B07RYSSVC3',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'SUNLU PVA Filament',
+                    brand: 'SUNLU',
+                    price: '$32.99',
+                    description: 'Premium water-soluble support filament',
+                    asin: 'B0FCLNC27N',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'Polymaker PVA Filament',
+                    brand: 'Polymaker',
+                    price: '$34.99',
+                    description: 'High-quality PVA for complex support structures',
+                    asin: 'B09KL8WBRY',
+                    tag: 'mwf064-20'
+                }
+            ],
+            'PVB': [
+                {
+                    name: 'Polymaker PVB Filament',
+                    brand: 'Polymaker',
+                    price: '$39.99',
+                    description: 'Smoothable PVB for post-processing with IPA',
+                    asin: 'B09KLH5DMH',
+                    tag: 'mwf064-20'
+                }
+            ],
+            'HIPS': [
+                {
+                    name: 'Gizmo Dorks 3D Printer Filament 1.75mm HIPS',
+                    brand: 'Gizmo Dorks',
+                    price: '$24.99',
+                    description: 'Dissolvable support material compatible with ABS',
+                    asin: 'B00FG7C5BE',
                     tag: 'mwf064-20'
                 }
             ],
             // Generic recommendations for materials without specific products
             '_default': [
                 {
-                    name: '3D Printer Filament Storage Container',
-                    brand: 'SUNLU',
+                    name: 'Polymaker 3D Printing Filament Storage Box',
+                    brand: 'Polymaker',
                     price: '$29.99',
                     description: 'Keep your filament dry with built-in hygrometer',
-                    asin: 'B0863YB1LQ',
+                    asin: 'B0CK17RTP4',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'Hardened Steel Nozzle Set',
-                    brand: 'LUTER',
-                    price: '$12.99',
-                    description: 'Essential for abrasive filaments like carbon fiber',
-                    asin: 'B07V4PNBNF',
+                    name: 'YOOPAI Filament Storage Box',
+                    brand: 'YOOPAI',
+                    price: '$34.99',
+                    description: 'Premium storage solution for multiple spools',
+                    asin: 'B0F8BBD5Z8',
                     tag: 'mwf064-20'
                 }
             ],
             // Filament dryer recommendations for hygroscopic materials
             '_filament_dryers': [
                 {
-                    name: 'SUNLU FilaDryer S2 Filament Dryer Box',
-                    brand: 'SUNLU',
+                    name: 'Creality Official Filament Dryer Box',
+                    brand: 'Creality',
+                    price: '$39.99',
+                    description: 'Efficient filament dryer with adjustable temperature. Perfect for PETG, Nylon, ABS, and other moisture-sensitive filaments',
+                    asin: 'B0CJ2YVVFM',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'Comgrow 3D Printer Filament Dryer Box',
+                    brand: 'Comgrow',
                     price: '$49.99',
-                    description: 'Dual-spool dryer with adjustable temperature (35-70°C). Perfect for PETG, Nylon, ABS, and other moisture-sensitive filaments',
-                    asin: 'B0B7C91C4V',
-                    tag: 'mwf064-20'
-                },
-                {
-                    name: 'EIBOS EASDRY Filament Dryer Box',
-                    brand: 'EIBOS',
-                    price: '$69.99',
                     description: 'Premium dryer with PTC heating, supports 2 spools, temperature range 40-70°C. Ideal for Nylon and PA materials',
-                    asin: 'B0B1ZLBJ8B',
+                    asin: 'B098D366R3',
                     tag: 'mwf064-20'
                 },
                 {
-                    name: 'PrintDry Filament Dryer',
-                    brand: 'PrintDry',
+                    name: 'SUNLU Filament Dryer Box',
+                    brand: 'SUNLU',
                     price: '$44.99',
                     description: 'Affordable single-spool dryer with precise temperature control. Great for occasional use with hygroscopic materials',
-                    asin: 'B07VP8F1BD',
+                    asin: 'B09HJL95RH',
                     tag: 'mwf064-20'
                 }
             ]
