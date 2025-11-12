@@ -1476,15 +1476,18 @@
             }
             
             const warnings = [];
+            const infos = [];
             const chars = material.characteristics;
             
-            // Check for special requirements
+            // CRITICAL REQUIREMENTS (Red/Orange)
             if (chars.requires_hardened_nozzle) {
                 warnings.push({
                     icon: '🔧',
                     color: 'orange',
                     title: 'Hardened Nozzle Required',
-                    message: 'This material is abrasive and will damage a brass nozzle. Use a hardened steel or ruby nozzle.'
+                    message: 'This material is abrasive and will damage a brass nozzle. Use a hardened steel or ruby nozzle.',
+                    helpLink: 'https://all3dp.com/2/hardened-nozzle-3d-printing/',
+                    helpText: 'Learn about nozzle types'
                 });
             }
             
@@ -1493,7 +1496,9 @@
                     icon: '🏠',
                     color: 'red',
                     title: 'Heated Enclosure Required',
-                    message: 'This material is prone to warping. Print in a heated enclosure (chamber temp 50-70°C recommended).'
+                    message: 'This material is prone to warping. Print in a heated enclosure (chamber temp 50-70°C recommended).',
+                    helpLink: 'https://www.printables.com/model/130780-ikea-lack-enclosure',
+                    helpText: 'DIY enclosure guide'
                 });
             }
             
@@ -1502,7 +1507,9 @@
                     icon: '💧',
                     color: 'yellow',
                     title: 'Must Be Dried',
-                    message: 'This material absorbs moisture from the air. Dry before printing (typically 60-80°C for 4-6 hours).'
+                    message: 'This material absorbs moisture from the air. Dry before printing (typically 60-80°C for 4-6 hours).',
+                    helpLink: 'https://all3dp.com/2/how-to-dry-filament-pla-abs-nylon/',
+                    helpText: 'Filament drying guide'
                 });
             }
             
@@ -1511,16 +1518,9 @@
                     icon: '💨',
                     color: 'purple',
                     title: 'Ventilation Required',
-                    message: 'This material releases fumes during printing. Use in a well-ventilated area or with active filtration.'
-                });
-            }
-            
-            if (chars.uv_resistant) {
-                warnings.push({
-                    icon: '☀️',
-                    color: 'blue',
-                    title: 'UV Resistant',
-                    message: 'Great for outdoor use! This material resists UV degradation and won\'t become brittle in sunlight.'
+                    message: 'This material releases fumes during printing. Use in a well-ventilated area or with active filtration (HEPA + activated carbon).',
+                    helpLink: 'https://www.reddit.com/r/3Dprinting/wiki/filtration/',
+                    helpText: 'Air filtration options'
                 });
             }
             
@@ -1530,17 +1530,103 @@
                     icon: '⚠️',
                     color: 'red',
                     title: 'Difficult to Print',
-                    message: 'This material requires an experienced user and well-tuned printer. Expect challenges with warping, stringing, or bed adhesion.'
+                    message: 'This material requires an experienced user and well-tuned printer. Expect challenges with warping, stringing, or bed adhesion.',
+                    helpLink: 'https://teachingtechyt.github.io/calibration.html',
+                    helpText: 'Printer calibration guide'
                 });
             }
             
-            // Display warnings
-            if (warnings.length > 0) {
-                warningsContainer.innerHTML = '';
-                warnings.forEach(warning => {
-                    warningsContainer.appendChild(createWarningCard(warning));
+            if (chars.prone_to_creep) {
+                warnings.push({
+                    icon: '📉',
+                    color: 'yellow',
+                    title: 'Prone to Creep',
+                    message: 'This material deforms under sustained load over time. Not recommended for load-bearing parts under constant stress.',
+                    helpLink: 'https://en.wikipedia.org/wiki/Creep_(deformation)',
+                    helpText: 'Understanding material creep'
                 });
+            }
+            
+            // POSITIVE ATTRIBUTES (Blue/Green)
+            if (chars.uv_resistant) {
+                infos.push({
+                    icon: '☀️',
+                    color: 'blue',
+                    title: 'UV Resistant',
+                    message: 'Great for outdoor use! This material resists UV degradation and won\'t become brittle in sunlight.',
+                    helpLink: 'https://all3dp.com/2/uv-resistant-3d-printing-filament/',
+                    helpText: 'UV-resistant materials guide'
+                });
+            }
+            
+            if (chars.low_friction) {
+                infos.push({
+                    icon: '⚙️',
+                    color: 'green',
+                    title: 'Low Friction',
+                    message: 'Excellent for mechanical parts like gears, bearings, and sliding components. Self-lubricating properties reduce wear.',
+                    helpLink: 'https://www.simplify3d.com/resources/materials-guide/nylon/',
+                    helpText: 'Low-friction applications'
+                });
+            }
+            
+            if (chars.chemical_resistance_score >= 2) {
+                const resistanceLevel = chars.chemical_resistance_score === 3 ? 'Excellent' : 'Good';
+                infos.push({
+                    icon: '🧪',
+                    color: 'green',
+                    title: `${resistanceLevel} Chemical Resistance`,
+                    message: 'Resistant to oils, solvents, and many chemicals. Suitable for automotive, industrial, and chemical handling applications.',
+                    helpLink: 'https://omnexus.specialchem.com/polymer-properties/properties/chemical-resistance',
+                    helpText: 'Chemical resistance chart'
+                });
+            }
+            
+            if (chars.annealable && material.annealed) {
+                const hdtGain = material.annealed.HDT_C - material.properties.HDT_C;
+                infos.push({
+                    icon: '🔥',
+                    color: 'blue',
+                    title: 'Annealable for Higher Temp',
+                    message: `Can be annealed to increase heat resistance by ${hdtGain.toFixed(0)}°C (from ${material.properties.HDT_C}°C to ${material.annealed.HDT_C}°C HDT). Also increases strength.`,
+                    helpLink: 'https://www.cnckitchen.com/blog/annealing-of-3d-printed-parts',
+                    helpText: 'Annealing guide'
+                });
+            }
+            
+            // Display warnings and infos
+            const allAlerts = [...warnings, ...infos];
+            
+            if (allAlerts.length > 0) {
+                warningsContainer.innerHTML = '';
+                
+                // Add a header with collapse toggle
+                const header = document.createElement('div');
+                header.className = 'flex items-center justify-between mb-2';
+                header.innerHTML = `
+                    <h4 class="text-sm font-semibold text-gray-300">
+                        Material Information (${allAlerts.length})
+                    </h4>
+                    <button id="toggle-warnings" class="text-xs text-blue-400 hover:text-blue-300 focus:outline-none">
+                        Collapse All
+                    </button>
+                `;
+                warningsContainer.appendChild(header);
+                
+                // Add warnings container
+                const alertsContainer = document.createElement('div');
+                alertsContainer.id = 'alerts-container';
+                alertsContainer.className = 'space-y-2';
+                
+                allAlerts.forEach((alert, index) => {
+                    alertsContainer.appendChild(createWarningCard(alert, index));
+                });
+                
+                warningsContainer.appendChild(alertsContainer);
                 warningsContainer.classList.remove('hidden');
+                
+                // Add toggle functionality
+                document.getElementById('toggle-warnings').addEventListener('click', toggleAllWarnings);
             } else {
                 hideMaterialWarnings();
             }
@@ -1556,28 +1642,133 @@
         }
         
         /**
+         * Toggle all warning cards
+         */
+        function toggleAllWarnings() {
+            const button = document.getElementById('toggle-warnings');
+            const alertsContainer = document.getElementById('alerts-container');
+            const allCards = alertsContainer.querySelectorAll('[data-warning-card]');
+            
+            const isExpanded = alertsContainer.style.display !== 'none';
+            
+            if (isExpanded) {
+                alertsContainer.style.display = 'none';
+                button.textContent = 'Expand All';
+            } else {
+                alertsContainer.style.display = 'block';
+                button.textContent = 'Collapse All';
+            }
+        }
+        
+        /**
+         * Toggle individual warning card
+         */
+        function toggleWarningCard(index) {
+            const content = document.getElementById(`warning-content-${index}`);
+            const icon = document.getElementById(`warning-toggle-icon-${index}`);
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.textContent = '▼';
+            } else {
+                content.style.display = 'none';
+                icon.textContent = '▶';
+            }
+        }
+        
+        /**
+         * Dismiss individual warning card
+         */
+        function dismissWarningCard(index) {
+            const card = document.getElementById(`warning-card-${index}`);
+            card.style.transition = 'opacity 0.3s ease-out';
+            card.style.opacity = '0';
+            setTimeout(() => {
+                card.remove();
+                
+                // Check if all warnings are dismissed
+                const alertsContainer = document.getElementById('alerts-container');
+                if (alertsContainer && alertsContainer.children.length === 0) {
+                    hideMaterialWarnings();
+                }
+            }, 300);
+        }
+        
+        /**
          * Create a warning card
          */
-        function createWarningCard(warning) {
+        function createWarningCard(warning, index) {
             const colorClasses = {
                 red: 'bg-red-900/30 border-red-500 text-red-200',
                 orange: 'bg-orange-900/30 border-orange-500 text-orange-200',
                 yellow: 'bg-yellow-900/30 border-yellow-500 text-yellow-200',
                 blue: 'bg-blue-900/30 border-blue-500 text-blue-200',
+                green: 'bg-green-900/30 border-green-500 text-green-200',
                 purple: 'bg-purple-900/30 border-purple-500 text-purple-200'
             };
             
             const colorClass = colorClasses[warning.color] || colorClasses.yellow;
             
             const card = document.createElement('div');
-            card.className = `${colorClass} border-l-4 rounded-lg p-3 flex items-start space-x-3`;
-            card.innerHTML = `
+            card.id = `warning-card-${index}`;
+            card.setAttribute('data-warning-card', '');
+            card.className = `${colorClass} border-l-4 rounded-lg overflow-hidden transition-all duration-200`;
+            
+            // Header with icon, title, and controls
+            const header = document.createElement('div');
+            header.className = 'flex items-center justify-between p-3 cursor-pointer hover:bg-black/10';
+            header.onclick = () => toggleWarningCard(index);
+            
+            const titleSection = document.createElement('div');
+            titleSection.className = 'flex items-center space-x-3 flex-1';
+            titleSection.innerHTML = `
                 <span class="text-2xl flex-shrink-0">${warning.icon}</span>
-                <div class="flex-1">
-                    <h4 class="font-semibold text-sm mb-1">${warning.title}</h4>
-                    <p class="text-xs opacity-90">${warning.message}</p>
-                </div>
+                <h4 class="font-semibold text-sm">${warning.title}</h4>
             `;
+            
+            const controls = document.createElement('div');
+            controls.className = 'flex items-center space-x-2';
+            controls.innerHTML = `
+                <span id="warning-toggle-icon-${index}" class="text-xs">▼</span>
+                <button 
+                    onclick="event.stopPropagation(); dismissWarningCard(${index});" 
+                    class="text-xs opacity-60 hover:opacity-100 transition-opacity"
+                    title="Dismiss">
+                    ✕
+                </button>
+            `;
+            
+            header.appendChild(titleSection);
+            header.appendChild(controls);
+            
+            // Content (collapsible)
+            const content = document.createElement('div');
+            content.id = `warning-content-${index}`;
+            content.className = 'px-3 pb-3';
+            
+            const message = document.createElement('p');
+            message.className = 'text-xs opacity-90 mb-2';
+            message.textContent = warning.message;
+            
+            content.appendChild(message);
+            
+            // Add help link if provided
+            if (warning.helpLink) {
+                const helpLink = document.createElement('a');
+                helpLink.href = warning.helpLink;
+                helpLink.target = '_blank';
+                helpLink.rel = 'noopener noreferrer';
+                helpLink.className = 'text-xs underline opacity-75 hover:opacity-100 inline-flex items-center space-x-1';
+                helpLink.innerHTML = `
+                    <span>${warning.helpText || 'Learn more'}</span>
+                    <span>↗</span>
+                `;
+                content.appendChild(helpLink);
+            }
+            
+            card.appendChild(header);
+            card.appendChild(content);
+            
             return card;
         }
 
