@@ -66,6 +66,142 @@
         gtag('js', new Date());
         gtag('config', 'G-GERCPZ07KR');
     </script>
+    <script>
+        // ============================================================
+        // GOOGLE ANALYTICS 4 - CUSTOM EVENT TRACKING
+        // ============================================================
+
+        /**
+         * Track affiliate link clicks
+         * Fires when user clicks any Amazon affiliate link
+         */
+        document.addEventListener('click', function (e) {
+            const affiliateLink = e.target.closest('a[href*="amazon.com"]');
+
+            if (affiliateLink) {
+                // Extract product information from the link
+                const href = affiliateLink.getAttribute('href');
+                const productCard = affiliateLink.closest('.product-card');
+
+                // Try to extract ASIN from URL (format: /dp/ASIN or /gp/product/ASIN)
+                const asinMatch = href.match(/\/(?:dp|gp\/product)\/([A-Z0-9]{10})/);
+                const asin = asinMatch ? asinMatch[1] : 'unknown';
+
+                // Get product name from card if available
+                let productName = 'Unknown Product';
+                if (productCard) {
+                    const nameElement = productCard.querySelector('.product-name, h3, h4');
+                    if (nameElement) {
+                        productName = nameElement.textContent.trim();
+                    }
+                }
+
+                // Get currently selected material
+                const materialSelect = document.getElementById('material');
+                const currentMaterial = materialSelect ? materialSelect.value : 'unknown';
+
+                // Send event to GA4
+                gtag('event', 'affiliate_click', {
+                    'product_name': productName,
+                    'product_asin': asin,
+                    'material': currentMaterial,
+                    'link_url': href,
+                    'timestamp': new Date().toISOString()
+                });
+
+                console.log('📊 GA4 Event: affiliate_click', {
+                    product_name: productName,
+                    product_asin: asin,
+                    material: currentMaterial
+                });
+            }
+        });
+
+        /**
+         * Track material selections
+         * Fires when user selects a material from dropdown
+         */
+        function trackMaterialSelection(materialKey, materialName) {
+            gtag('event', 'material_selected', {
+                'material_key': materialKey,
+                'material_name': materialName,
+                'timestamp': new Date().toISOString()
+            });
+
+            console.log('📊 GA4 Event: material_selected', {
+                material_key: materialKey,
+                material_name: materialName
+            });
+        }
+
+        /**
+         * Track warning dismissals
+         * Fires when user dismisses a warning card
+         */
+        function trackWarningDismissal(warningType, materialKey) {
+            gtag('event', 'warning_dismissed', {
+                'warning_type': warningType,
+                'material': materialKey,
+                'timestamp': new Date().toISOString()
+            });
+
+            console.log('📊 GA4 Event: warning_dismissed', {
+                warning_type: warningType,
+                material: materialKey
+            });
+        }
+
+        /**
+         * Track warning expansions/collapses
+         * Fires when user interacts with collapsible warnings
+         */
+        function trackWarningInteraction(action, warningType, materialKey) {
+            gtag('event', 'warning_interaction', {
+                'action': action, // 'expand' or 'collapse'
+                'warning_type': warningType,
+                'material': materialKey,
+                'timestamp': new Date().toISOString()
+            });
+
+            console.log('📊 GA4 Event: warning_interaction', {
+                action: action,
+                warning_type: warningType,
+                material: materialKey
+            });
+        }
+
+        // Track page engagement (time on site)
+        let pageLoadTime = new Date();
+        let engagementTracked = false;
+
+        window.addEventListener('beforeunload', function () {
+            if (!engagementTracked) {
+                const timeOnSite = Math.round((new Date() - pageLoadTime) / 1000); // seconds
+
+                gtag('event', 'page_engagement', {
+                    'time_on_site_seconds': timeOnSite,
+                    'timestamp': new Date().toISOString()
+                });
+
+                engagementTracked = true;
+            }
+        });
+
+        // Track at 30-second intervals for longer sessions
+        setInterval(function () {
+            const timeOnSite = Math.round((new Date() - pageLoadTime) / 1000);
+
+            if (timeOnSite % 30 === 0 && timeOnSite > 0) {
+                gtag('event', 'engagement_milestone', {
+                    'time_on_site_seconds': timeOnSite,
+                    'milestone': timeOnSite + 's',
+                    'timestamp': new Date().toISOString()
+                });
+            }
+        }, 1000);
+
+        console.log('✅ GA4 Custom Event Tracking Initialized');
+    </script>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -1613,6 +1749,33 @@
                     asin: 'B07V4PNBNF',
                     tag: 'mwf064-20'
                 }
+            ],
+            // Filament dryer recommendations for hygroscopic materials
+            '_filament_dryers': [
+                {
+                    name: 'SUNLU FilaDryer S2 Filament Dryer Box',
+                    brand: 'SUNLU',
+                    price: '$49.99',
+                    description: 'Dual-spool dryer with adjustable temperature (35-70°C). Perfect for PETG, Nylon, ABS, and other moisture-sensitive filaments',
+                    asin: 'B0B7C91C4V',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'EIBOS EASDRY Filament Dryer Box',
+                    brand: 'EIBOS',
+                    price: '$69.99',
+                    description: 'Premium dryer with PTC heating, supports 2 spools, temperature range 40-70°C. Ideal for Nylon and PA materials',
+                    asin: 'B0B1ZLBJ8B',
+                    tag: 'mwf064-20'
+                },
+                {
+                    name: 'PrintDry Filament Dryer',
+                    brand: 'PrintDry',
+                    price: '$44.99',
+                    description: 'Affordable single-spool dryer with precise temperature control. Great for occasional use with hygroscopic materials',
+                    asin: 'B07VP8F1BD',
+                    tag: 'mwf064-20'
+                }
             ]
         };
 
@@ -1650,6 +1813,11 @@
         materialSelect.addEventListener('change', (e) => {
             const materialKey = e.target.value;
             if (materialKey && materialsData[materialKey]) {
+                // Track material selection in GA4
+                const materialData = materialsData[materialKey];
+                const materialName = materialData.name || materialKey;
+                trackMaterialSelection(materialKey, materialName);
+                
                 displayMaterialWarnings(materialKey);
                 displayAffiliateLinks(materialKey);
             } else {
@@ -2029,6 +2197,15 @@
          */
         function dismissWarningCard(index) {
             const card = document.getElementById(`warning-card-${index}`);
+            
+            // Track warning dismissal in GA4
+            const warningTitle = card.getAttribute('data-warning-title');
+            const materialSelect = document.getElementById('material-select');
+            const materialKey = materialSelect ? materialSelect.value : 'unknown';
+            if (warningTitle) {
+                trackWarningDismissal(warningTitle, materialKey);
+            }
+            
             card.style.transition = 'opacity 0.3s ease-out';
             card.style.opacity = '0';
             setTimeout(() => {
@@ -2060,6 +2237,7 @@
             const card = document.createElement('div');
             card.id = `warning-card-${index}`;
             card.setAttribute('data-warning-card', '');
+            card.setAttribute('data-warning-title', warning.title); // Store title for tracking
             card.className = `${colorClass} border-l-4 rounded-lg overflow-hidden transition-all duration-200`;
             
             // Header with icon, title, and controls
@@ -2129,6 +2307,15 @@
             
             // Get products for this material, or use default
             let products = affiliateProducts[materialKey] || affiliateProducts['_default'];
+            
+            // Check if material is hygroscopic and needs a dryer
+            const material = materialsData[materialKey];
+            const needsDryer = material && material.characteristics && material.characteristics.hygroscopic === true;
+            
+            // If material needs drying, add filament dryers to recommendations
+            if (needsDryer && affiliateProducts['_filament_dryers']) {
+                products = [...products, ...affiliateProducts['_filament_dryers']];
+            }
             
             // If still no products, hide the container
             if (!products || products.length === 0) {

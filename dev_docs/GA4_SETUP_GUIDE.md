@@ -208,54 +208,93 @@ console.log('✅ GA4 Custom Event Tracking Initialized');
 
 ### Step 1.2: Integrate with Existing Material Selection Function
 
-**Location:** `index.html`, find the `handleMaterialSelection()` function (around line 1500-1600)
+**Location:** `index.html`, find the material selection event listener (around line 1786)
 
 **Find this code:**
 ```javascript
-function handleMaterialSelection() {
-  const selectedMaterial = materialSelect.value;
-  // ... existing code ...
+// Material selection change - show warnings and affiliate links
+materialSelect.addEventListener('change', (e) => {
+    const materialKey = e.target.value;
+    if (materialKey && materialsData[materialKey]) {
+        displayMaterialWarnings(materialKey);
+        displayAffiliateLinks(materialKey);
+    } else {
+        hideMaterialWarnings();
+        hideAffiliateLinks();
+    }
+});
 ```
 
-**Add this line right after getting `selectedMaterial`:**
+**Add tracking after getting `materialKey` and before displaying warnings:**
 ```javascript
-function handleMaterialSelection() {
-  const selectedMaterial = materialSelect.value;
-  
-  // Track material selection in GA4
-  const materialData = materials.find(m => m.key === selectedMaterial);
-  const materialName = materialData ? materialData.name : selectedMaterial;
-  trackMaterialSelection(selectedMaterial, materialName);
-  
-  // ... rest of existing code ...
+// Material selection change - show warnings and affiliate links
+materialSelect.addEventListener('change', (e) => {
+    const materialKey = e.target.value;
+    if (materialKey && materialsData[materialKey]) {
+        // Track material selection in GA4
+        const materialData = materialsData[materialKey];
+        const materialName = materialData.name || materialKey;
+        trackMaterialSelection(materialKey, materialName);
+        
+        displayMaterialWarnings(materialKey);
+        displayAffiliateLinks(materialKey);
+    } else {
+        hideMaterialWarnings();
+        hideAffiliateLinks();
+    }
+});
 ```
 
 ### Step 1.3: Integrate with Warning Dismissal Function
 
-**Location:** `index.html`, find the `dismissWarning()` function (around line 1700-1800)
+**Important:** The warning dismissal function is named `dismissWarningCard(index)` and uses an index-based system. We need to store the warning title as a data attribute on the card element and retrieve it when dismissing.
 
-**Find this code:**
+**Part A - Store Warning Title (Already Done):**
+
+Location: `index.html`, in the `createWarningCard()` function (around line 2202)
+
+The warning title is now stored as a data attribute:
 ```javascript
-function dismissWarning(warningType) {
-  const warningElement = document.getElementById(`warning-${warningType}`);
-  if (warningElement) {
-    warningElement.remove();
-    // ... existing code ...
+card.setAttribute('data-warning-title', warning.title); // Store title for tracking
 ```
 
-**Add tracking before the element is removed:**
+**Part B - Track Dismissal:**
+
+Location: `index.html`, find the `dismissWarningCard(index)` function (around line 2171)
+
+This code has been added to track warning dismissals:
+
 ```javascript
-function dismissWarning(warningType) {
-  const warningElement = document.getElementById(`warning-${warningType}`);
-  if (warningElement) {
-    // Track warning dismissal in GA4
-    const materialSelect = document.getElementById('material');
-    const currentMaterial = materialSelect ? materialSelect.value : 'unknown';
-    trackWarningDismissal(warningType, currentMaterial);
+function dismissWarningCard(index) {
+    const card = document.getElementById(`warning-card-${index}`);
     
-    warningElement.remove();
-    // ... rest of existing code ...
+    // Track warning dismissal in GA4
+    const warningTitle = card.getAttribute('data-warning-title');
+    const materialSelect = document.getElementById('material-select');
+    const materialKey = materialSelect ? materialSelect.value : 'unknown';
+    if (warningTitle) {
+        trackWarningDismissal(warningTitle, materialKey);
+    }
+    
+    card.style.transition = 'opacity 0.3s ease-out';
+    card.style.opacity = '0';
+    setTimeout(() => {
+        card.remove();
+        
+        // Check if all warnings are dismissed
+        const alertsContainer = document.getElementById('alerts-container');
+        if (alertsContainer && alertsContainer.children.length === 0) {
+            hideMaterialWarnings();
+        }
+    }, 300);
+}
 ```
+
+**What this does:**
+- Retrieves the warning title from the `data-warning-title` attribute
+- Gets the current material selection
+- Calls `trackWarningDismissal()` to send event to GA4
+- Then proceeds with the normal dismissal animation
 
 ### Step 1.4: Test Locally
 
@@ -267,12 +306,15 @@ function dismissWarning(warningType) {
 4. Look for console message: `📊 GA4 Event: material_selected`
 5. Click an affiliate link
 6. Look for console message: `📊 GA4 Event: affiliate_click`
+7. Dismiss a warning card
+8. Look for console message: `📊 GA4 Event: warning_dismissed`
 
 **Expected console output:**
 ```
 ✅ GA4 Custom Event Tracking Initialized
 📊 GA4 Event: material_selected { material_key: 'PLA', material_name: 'PLA' }
 📊 GA4 Event: affiliate_click { product_name: 'Overture PLA Filament', product_asin: 'B07PGZNM34', material: 'PLA' }
+📊 GA4 Event: warning_dismissed { warning_type: 'Hardened Nozzle Required', material: 'PLA' }
 ```
 
 ---
