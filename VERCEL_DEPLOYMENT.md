@@ -10,11 +10,10 @@
 ## ⚡ Quick Start (Your Specific Setup)
 
 **Your Configuration:**
-- **Root Domain:** `minimal3dp.com` (owned)
-- **Subdomain for this app:** `orcaslicer.minimal3dp.com` (recommended)
-- **Alternative names:** `assistant.minimal3dp.com` or `settings.minimal3dp.com`
+- **Root Domain:** `minimal3dp.com` (registered at GoDaddy, DNS managed by Cloudflare)
+- **Subdomain for this app:** `settings.minimal3dp.com` ✅ **DEPLOYED**
 - **Deployment:** Vercel (free tier)
-- **DNS Setup:** CNAME record only (simple!)
+- **DNS Setup:** CNAME record via Cloudflare
 - **YouTube Channel:** youtube.com/channel/UCM_8Mv-0S1LnnJpRJLjahaw
 - **Target Keyword:** "best slicer settings for 3d printing" (from YouTube Analytics Trends)
 
@@ -37,7 +36,7 @@
 **Multi-App Portfolio Example:**
 ```
 minimal3dp.com                     → Main site/landing page
-├── orcaslicer.minimal3dp.com     → This app (OrcaSlicer Assistant)
+├── settings.minimal3dp.com       → This app (OrcaSlicer Assistant) ✅ LIVE
 ├── filament.minimal3dp.com       → Future: Filament database
 ├── calc.minimal3dp.com           → Future: Print calculator
 └── docs.minimal3dp.com           → Future: Documentation
@@ -135,7 +134,7 @@ https://orcaslicer-expert-assistant-<random>.vercel.app
 **Recommended Subdomain Structure:**
 ```
 minimal3dp.com                    → Main marketing site (landing page)
-├── orcaslicer.minimal3dp.com    → OrcaSlicer Expert Assistant (this app)
+├── settings.minimal3dp.com      → OrcaSlicer Expert Assistant (this app) ✅ LIVE
 ├── filament.minimal3dp.com      → Filament calculator/database (future)
 ├── slicer.minimal3dp.com        → Slicer comparison tool (future)
 ├── bed.minimal3dp.com           → Bed leveling assistant (future)
@@ -145,7 +144,7 @@ minimal3dp.com                    → Main marketing site (landing page)
 **Alternative Naming (Shorter URLs):**
 ```
 minimal3dp.com                    → Main site
-├── assistant.minimal3dp.com     → OrcaSlicer Expert Assistant
+├── settings.minimal3dp.com      → OrcaSlicer Expert Assistant ✅ LIVE
 ├── calc.minimal3dp.com          → Calculators/tools
 ├── compare.minimal3dp.com       → Comparison tools
 └── guides.minimal3dp.com        → Guides and tutorials
@@ -160,12 +159,15 @@ minimal3dp.com                    → Main site
 
 ### Step 1: Choose Your Subdomain
 
-**For this app, we recommend:**
-- `orcaslicer.minimal3dp.com` (clear, descriptive)
-- `assistant.minimal3dp.com` (shorter, easier to type)
-- `settings.minimal3dp.com` (keyword-focused for SEO)
+**For this app:** `settings.minimal3dp.com` ✅ **DEPLOYED**
 
-**Pick one and stick with it!** For this guide, we'll use `orcaslicer.minimal3dp.com`
+**Why "settings"?**
+- Keyword-focused for SEO ("best slicer settings")
+- Short, memorable, easy to type
+- Clear purpose for users
+- Consistent with "settings" terminology in 3D printing
+
+**Pick one and stick with it!** For this guide, we'll use `settings.minimal3dp.com`
 
 ### Step 2: Add Subdomain to Vercel
 
@@ -173,22 +175,52 @@ minimal3dp.com                    → Main site
 
 1. In Vercel dashboard, go to your project (`orcaslicer-expert-assistant`)
 2. Click "Settings" → "Domains"
-3. Enter your subdomain: `orcaslicer.minimal3dp.com`
+3. Enter your subdomain: `settings.minimal3dp.com`
 4. Click "Add"
 
 **Vercel will show you the DNS configuration needed.**
 
 ### Step 3: Configure DNS at Your Domain Registrar
 
+**Your Setup:** Domain registered at GoDaddy, DNS managed by Cloudflare
+
 **For subdomains, you only need a CNAME record** (much simpler than root domains!)
 
-#### Option A: CNAME Record Method (RECOMMENDED for Subdomains)
+#### Configure DNS in Cloudflare (YOUR SETUP ✅)
 
-Go to your domain registrar (where you purchased `minimal3dp.com`) and add:
+Since your DNS is managed by Cloudflare, follow these steps:
+
+**Cloudflare Steps:**
+1. Log in to Cloudflare → Select `minimal3dp.com`
+2. Click "DNS" in the left sidebar
+3. Click "Add Record"
+4. Configure the CNAME record:
+   - **Type:** CNAME
+   - **Name:** `settings`
+   - **Target:** `cname.vercel-dns.com`
+   - **Proxy status:** ⚠️ **Turn OFF** (DNS only, gray cloud)
+   - **TTL:** Auto
+5. Click "Save"
+
+**⚠️ CRITICAL: Proxy Status Must Be OFF**
+- The cloud icon should be **GRAY** (DNS only)
+- If the cloud is **ORANGE** (Proxied), Vercel SSL won't work
+- Click the cloud icon to toggle between Proxied and DNS only
+
+**Why Turn Off Proxy?**
+- Vercel needs direct DNS access to provision SSL certificates
+- Cloudflare proxy will interfere with Vercel's automatic HTTPS
+- DNS-only mode still benefits from Cloudflare's network
+
+#### Alternative: CNAME Record Method (Other Registrars)
+
+If you weren't using Cloudflare, here's how it works at other registrars:
+
+Go to your domain registrar and add:
 
 ```
 Type:   CNAME
-Name:   orcaslicer (or full: orcaslicer.minimal3dp.com)
+Name:   settings (or full: settings.minimal3dp.com)
 Value:  cname.vercel-dns.com.
 TTL:    3600 (or "Automatic")
 ```
@@ -198,68 +230,78 @@ TTL:    3600 (or "Automatic")
 **Namecheap:**
 1. Log in → Domain List → Manage
 2. Advanced DNS → Add New Record
-3. Type: CNAME, Host: `orcaslicer`, Value: `cname.vercel-dns.com`, TTL: Automatic
+3. Type: CNAME, Host: `settings`, Value: `cname.vercel-dns.com`, TTL: Automatic
 4. Save
 
-**Cloudflare:**
+**Cloudflare (YOUR SETUP - See above for detailed instructions):**
 1. Log in → Select `minimal3dp.com`
 2. DNS → Add Record
-3. Type: CNAME, Name: `orcaslicer`, Target: `cname.vercel-dns.com`, Proxy: Off (DNS only)
+3. Type: CNAME, Name: `settings`, Target: `cname.vercel-dns.com`, Proxy: **OFF** (DNS only)
 4. Save
 
 **Google Domains:**
 1. Log in → My Domains → Manage
 2. DNS → Custom Records
-3. Host: `orcaslicer`, Type: CNAME, Data: `cname.vercel-dns.com`, TTL: 1H
+3. Host: `settings`, Type: CNAME, Data: `cname.vercel-dns.com`, TTL: 1H
 4. Save
 
-**GoDaddy:**
+**GoDaddy (Your Domain Registrar - But DNS is at Cloudflare):**
 1. Log in → My Products → DNS
-2. Add → Type: CNAME, Name: `orcaslicer`, Value: `cname.vercel-dns.com`, TTL: 1 Hour
+2. Add → Type: CNAME, Name: `settings`, Value: `cname.vercel-dns.com`, TTL: 1 Hour
 3. Save
 
+**Note:** Since your DNS is managed by Cloudflare, you should configure the CNAME there, not at GoDaddy.
+
 **Important Notes:**
-- ✅ For the "Name" field, use just `orcaslicer` (not the full subdomain)
-- ✅ Some registrars auto-append `.minimal3dp.com` to the name
+- ✅ For the "Name" field, use just `settings` (not the full subdomain)
+- ✅ Cloudflare auto-appends `.minimal3dp.com` to the name
+- ✅ **CRITICAL:** Set Proxy Status to OFF (gray cloud icon) in Cloudflare
 - ✅ Make sure to include the trailing dot: `cname.vercel-dns.com.` (some require it)
 - ✅ DNS propagation typically takes 5-15 minutes for CNAME records (much faster than A records!)
+- ✅ Cloudflare DNS updates are usually instant (1-2 minutes)
 
 #### Option B: Vercel Nameservers (Alternative - For Root Domain Management)
 
 **Only use this if you want Vercel to manage ALL DNS for `minimal3dp.com`**
 
-⚠️ **Not recommended if you have other services on `minimal3dp.com`** (email, other subdomains, etc.)
+⚠️ **Not recommended for your setup** - You're already using Cloudflare for DNS management, which is excellent for performance and security.
 
 If you choose this route:
 1. Vercel will show you nameservers: `ns1.vercel-dns.com`, `ns2.vercel-dns.com`
-2. Go to your registrar and replace ALL nameservers with Vercel's
+2. Go to your registrar (GoDaddy) and replace ALL nameservers with Vercel's
 3. Wait 24-48 hours for propagation
 
-**We recommend Option A (CNAME) for subdomains** - it's simpler and doesn't affect your main domain.
+**We recommend sticking with Cloudflare** - it's simpler and provides additional benefits like caching, security, and analytics.
 
 ### Step 4: Verify DNS Configuration
 
 **Check DNS Propagation:**
 1. Visit https://www.whatsmydns.net/
-2. Enter: `orcaslicer.minimal3dp.com`
+2. Enter: `settings.minimal3dp.com`
 3. Select "CNAME" from dropdown
 4. Should show: `cname.vercel-dns.com`
 5. Green checkmarks = propagated globally
 
 **Typical propagation times:**
+- 1-5 minutes: Cloudflare DNS updates (very fast!)
 - 5-15 minutes: Most locations see the change
 - 1-2 hours: Global propagation complete
 - 24-48 hours: Maximum (rare for CNAME records)
+
+**Your Setup Benefits:**
+- ✅ Cloudflare DNS is one of the fastest in the world
+- ✅ Updates typically propagate in 1-2 minutes
+- ✅ Global CDN ensures fast lookups everywhere
 
 ### Step 5: Verify HTTPS
 
 Once DNS is configured:
 1. Vercel automatically provisions SSL certificate (5-10 minutes)
-2. Visit `https://orcaslicer.minimal3dp.com`
+2. Visit `https://settings.minimal3dp.com`
 3. Verify padlock icon in browser
 4. Certificate is auto-renewed every 90 days (no action needed)
 
-✅ **Custom subdomain configured!** Your app is now live at `orcaslicer.minimal3dp.com`
+✅ **Custom subdomain configured!** Your app is now live at `settings.minimal3dp.com`
 
 ---
 
@@ -276,7 +318,7 @@ Once DNS is configured:
   
   <div class="tool-grid">
     <!-- OrcaSlicer Assistant -->
-    <a href="https://orcaslicer.minimal3dp.com" class="tool-card">
+    <a href="https://settings.minimal3dp.com" class="tool-card">
       <h3>🎯 OrcaSlicer Expert Assistant</h3>
       <p>Get intelligent slicer settings recommendations based on material and print goals</p>
       <span class="badge">Free Tool</span>
@@ -302,7 +344,7 @@ Once DNS is configured:
 
 **1. Add Navigation Bar on All Apps:**
 ```html
-<!-- Add to orcaslicer.minimal3dp.com header -->
+<!-- Add to settings.minimal3dp.com header -->
 <nav class="main-nav">
   <a href="https://minimal3dp.com">← Back to minimal3dp</a>
   <a href="https://minimal3dp.com/tools">All Tools</a>
@@ -316,7 +358,7 @@ Once DNS is configured:
     <div>
       <h4>minimal3dp Tools</h4>
       <ul>
-        <li><a href="https://orcaslicer.minimal3dp.com">OrcaSlicer Assistant</a></li>
+        <li><a href="https://settings.minimal3dp.com">OrcaSlicer Assistant</a></li>
         <li><a href="https://filament.minimal3dp.com">Filament Database</a></li>
         <li><a href="https://minimal3dp.com">Main Site</a></li>
       </ul>
@@ -327,8 +369,8 @@ Once DNS is configured:
 
 **3. Add Canonical Tags (Important for SEO):**
 ```html
-<!-- In <head> of orcaslicer.minimal3dp.com -->
-<link rel="canonical" href="https://orcaslicer.minimal3dp.com">
+<!-- In <head> of settings.minimal3dp.com -->
+<link rel="canonical" href="https://settings.minimal3dp.com">
 
 <!-- Also add -->
 <meta name="description" content="Free OrcaSlicer settings recommendations for 28 materials. Expert guidance on strength, speed, quality, and accuracy.">
@@ -340,10 +382,10 @@ Once DNS is configured:
 **In Google Analytics 4, set up Cross-Domain Tracking:**
 
 ```javascript
-// In both minimal3dp.com AND orcaslicer.minimal3dp.com
+// In both minimal3dp.com AND settings.minimal3dp.com
 gtag('config', 'G-XXXXXXXXXX', {
   'linker': {
-    'domains': ['minimal3dp.com', 'orcaslicer.minimal3dp.com']
+    'domains': ['minimal3dp.com', 'settings.minimal3dp.com']
   }
 });
 ```
@@ -369,14 +411,14 @@ This ensures you can track:
 
 **3. Social Media Strategy:**
 - Share main site in bio: `minimal3dp.com`
-- Share specific tools in posts: `orcaslicer.minimal3dp.com`
+- Share specific tools in posts: `settings.minimal3dp.com`
 - Builds recognition for your brand
 
 **Example Twitter Bio:**
 ```
 3D Printing Tools & Guides
 🔧 Free calculators & assistants
-🎯 orcaslicer.minimal3dp.com
+🎯 settings.minimal3dp.com
 🌐 minimal3dp.com
 ```
 
@@ -400,7 +442,7 @@ This ensures you can track:
    - Each app can have different resource requirements
 
 3. **Clear Separation of Concerns:**
-   - OrcaSlicer Assistant: `orcaslicer.minimal3dp.com`
+   - OrcaSlicer Assistant: `settings.minimal3dp.com`
    - Filament Database: `filament.minimal3dp.com`
    - Print Calculator: `calc.minimal3dp.com`
    - Each app is focused and maintainable
@@ -421,7 +463,7 @@ This ensures you can track:
 
 ```
 Your Vercel Account
-├── orcaslicer-expert-assistant      → orcaslicer.minimal3dp.com
+├── orcaslicer-expert-assistant      → settings.minimal3dp.com
 ├── filament-database                → filament.minimal3dp.com
 ├── print-calculator                 → calc.minimal3dp.com
 ├── minimal3dp-main                  → minimal3dp.com (root domain)
@@ -464,14 +506,14 @@ npm install @minimal3dp/ui-components
 
 **Keep a DNS Record Spreadsheet:**
 ```
-Subdomain              | Type  | Value                | App
------------------------|-------|----------------------|------------------
-orcaslicer             | CNAME | cname.vercel-dns.com | OrcaSlicer Assistant
-filament               | CNAME | cname.vercel-dns.com | Filament Database
-calc                   | CNAME | cname.vercel-dns.com | Print Calculator
-docs                   | CNAME | cname.vercel-dns.com | Documentation
-@                      | A     | <IP>                 | Main Site
-www                    | CNAME | cname.vercel-dns.com | Main Site (www)
+Subdomain              | Type  | Value                | App                  | DNS Provider
+-----------------------|-------|----------------------|----------------------|-------------
+settings               | CNAME | cname.vercel-dns.com | OrcaSlicer Assistant | Cloudflare
+filament               | CNAME | cname.vercel-dns.com | Filament Database    | Cloudflare
+calc                   | CNAME | cname.vercel-dns.com | Print Calculator     | Cloudflare
+docs                   | CNAME | cname.vercel-dns.com | Documentation        | Cloudflare
+@                      | A     | <IP>                 | Main Site            | Cloudflare
+www                    | CNAME | cname.vercel-dns.com | Main Site (www)      | Cloudflare
 ```
 
 **Why This Matters:**
@@ -497,7 +539,7 @@ www                    | CNAME | cname.vercel-dns.com | Main Site (www)
 **Option C: Main Site as Simple Redirect**
 - `minimal3dp.com` → redirects to primary tool
 - Simplest approach for single-focus brand
-- Example: `minimal3dp.com` → `orcaslicer.minimal3dp.com`
+- Example: `minimal3dp.com` → `settings.minimal3dp.com`
 
 ### Future-Proofing Your Architecture
 
@@ -518,7 +560,7 @@ www                    | CNAME | cname.vercel-dns.com | Main Site (www)
 minimal3dp.com              → Main marketing site
 api.minimal3dp.com          → Shared API backend
 auth.minimal3dp.com         → Authentication service
-├── orcaslicer.minimal3dp.com
+├── settings.minimal3dp.com
 ├── filament.minimal3dp.com
 ├── calc.minimal3dp.com
 ├── compare.minimal3dp.com
@@ -674,7 +716,7 @@ Headline: "Best Slicer Settings for 3D Printing"
 Subheadline: "Free Expert Tool - 28 Materials"
 Visual: Screenshot of your app or 3D printing imagery
 Branding: "minimal3dp" logo (if you have one)
-Call-to-action: "orcaslicer.minimal3dp.com"
+Call-to-action: "settings.minimal3dp.com"
 ```
 
 **Tools to Create:**
@@ -696,7 +738,7 @@ Call-to-action: "orcaslicer.minimal3dp.com"
 
 **Where to Save:**
 - Save as `/og-image.png` in your project root
-- Vercel will serve it at `https://orcaslicer.minimal3dp.com/og-image.png`
+- Vercel will serve it at `https://settings.minimal3dp.com/og-image.png`
 - Your HTML already references this file (meta tags updated)
 
 **Deploy:**
@@ -716,7 +758,7 @@ A sitemap tells Google about all the pages on your site, helping them index fast
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://orcaslicer.minimal3dp.com/</loc>
+    <loc>https://settings.minimal3dp.com/</loc>
     <lastmod>2025-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -725,7 +767,7 @@ A sitemap tells Google about all the pages on your site, helping them index fast
   <!-- Add more URLs here when you create material pages -->
   <!--
   <url>
-    <loc>https://orcaslicer.minimal3dp.com/materials/pla</loc>
+    <loc>https://settings.minimal3dp.com/materials/pla</loc>
     <lastmod>2025-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -751,7 +793,7 @@ Tells search engines what they can and cannot crawl.
 User-agent: *
 Allow: /
 
-Sitemap: https://orcaslicer.minimal3dp.com/sitemap.xml
+Sitemap: https://settings.minimal3dp.com/sitemap.xml
 ```
 
 **Deploy:**
@@ -774,7 +816,7 @@ This is THE tool for tracking your SEO performance. You'll see:
 1. Go to https://search.google.com/search-console
 2. Click "Add Property"
 3. Choose "URL prefix" (not "Domain")
-4. Enter: `https://orcaslicer.minimal3dp.com`
+4. Enter: `https://settings.minimal3dp.com`
 5. Verify ownership using one of these methods:
    - **HTML file upload** (easiest for Vercel):
      - Download verification file (`google123abc.html`)
@@ -871,7 +913,7 @@ git push origin amazon
 ```
 Free 3D printing tools and guides! 
 
-�🔧 BEST SLICER SETTINGS TOOL (FREE): https://orcaslicer.minimal3dp.com
+�🔧 BEST SLICER SETTINGS TOOL (FREE): https://settings.minimal3dp.com
 Get personalized settings for 28 materials (PLA, PETG, ABS, Nylon, PEEK, and more)
 
 🌐 Main Site: https://minimal3dp.com
@@ -895,7 +937,7 @@ New video every week!
 ### Step 2: Update YouTube Channel Banner (10 min)
 
 **Add Text to Banner:**
-- "Free Tool: orcaslicer.minimal3dp.com"
+- "Free Tool: settings.minimal3dp.com"
 - "Best Slicer Settings for 3D Printing"
 
 **Banner Specifications:**
@@ -913,7 +955,7 @@ Use Canva's "YouTube Channel Art" template and add your text overlay.
 2. Scroll to "Links"
 3. Add these custom links:
    - **Title:** "Free Settings Tool"
-     **URL:** https://orcaslicer.minimal3dp.com
+     **URL:** https://settings.minimal3dp.com
    - **Title:** "Main Site"
      **URL:** https://minimal3dp.com
 
@@ -932,7 +974,7 @@ Use Canva's "YouTube Channel Art" template and add your text overlay.
 ━━━━━━━━━━━━━━━━━━━━━
 
 Get personalized OrcaSlicer settings for 28 materials:
-👉 https://orcaslicer.minimal3dp.com
+👉 https://settings.minimal3dp.com
 
 Optimize for:
 ✅ Strength
@@ -959,7 +1001,7 @@ Perfect for PLA, PETG, ABS, Nylon, Carbon Fiber, PEEK, and more!
 📌 BEST SLICER SETTINGS TOOL (FREE)
 
 Want to know the PERFECT settings for your material?
-👉 https://orcaslicer.minimal3dp.com
+👉 https://settings.minimal3dp.com
 
 28 materials | Expert recommendations | Optimized for your goals
 
@@ -981,7 +1023,7 @@ Whether you're printing PLA, PETG, ABS, Nylon, or high-temp materials like PEEK,
 - **Solution (1-2min):** Show your tool in action
 - **Material Examples (2-8min):** PLA, PETG, ABS, Nylon settings
 - **Optimization Goals (8-10min):** Strength vs Speed vs Quality
-- **CTA (10min):** "Use the free tool at orcaslicer.minimal3dp.com"
+- **CTA (10min):** "Use the free tool at settings.minimal3dp.com"
 
 **SEO Optimization:**
 - **Title:** "Best Slicer Settings for 3D Printing - Complete Guide 2025 (OrcaSlicer, PLA, PETG, ABS)"

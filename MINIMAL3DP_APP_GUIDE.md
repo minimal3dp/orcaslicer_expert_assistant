@@ -28,7 +28,7 @@ Build a portfolio of high-quality, free 3D printing tools under the `minimal3dp.
 **Subdomain Structure:** One app = One subdomain
 ```
 minimal3dp.com                     → Main site/landing page
-├── orcaslicer.minimal3dp.com     → OrcaSlicer Expert Assistant
+├── settings.minimal3dp.com     → OrcaSlicer Expert Assistant
 ├── filament.minimal3dp.com       → Filament Database (future)
 ├── calc.minimal3dp.com           → Print Calculator (future)
 ├── compare.minimal3dp.com        → Slicer Comparison (future)
@@ -669,7 +669,7 @@ Perfect for <use cases>!
   <h2>Free 3D Printing Tools</h2>
   
   <div class="tool-grid">
-    <a href="https://orcaslicer.minimal3dp.com" class="tool-card">
+    <a href="https://settings.minimal3dp.com" class="tool-card">
       <h3>🎯 OrcaSlicer Expert Assistant</h3>
       <p>Get intelligent slicer settings for 28 materials</p>
       <span class="badge">Live</span>
@@ -710,7 +710,7 @@ Perfect for <use cases>!
     <div class="footer-section">
       <h4>minimal3dp Tools</h4>
       <ul>
-        <li><a href="https://orcaslicer.minimal3dp.com">OrcaSlicer Assistant</a></li>
+        <li><a href="https://settings.minimal3dp.com">OrcaSlicer Assistant</a></li>
         <li><a href="https://filament.minimal3dp.com">Filament Database</a></li>
         <li><a href="https://calc.minimal3dp.com">Print Calculator</a></li>
         <li><a href="https://minimal3dp.com/tools">All Tools</a></li>

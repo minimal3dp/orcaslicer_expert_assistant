@@ -127,7 +127,8 @@ The `research/` folder contains 20+ academic papers covering:
 **Benefits of Deployment:**
 - ✅ Live 24/7 on Vercel's global CDN (free tier)
 - ✅ Automatic HTTPS and SSL
-- ✅ Custom domain support (e.g., orcaslicer.minimal3dp.com)
+- ✅ Custom domain support: **settings.minimal3dp.com** ✅ DEPLOYED
+- ✅ DNS managed by Cloudflare for fast, reliable access
 - ✅ Zero-config deployment
 - ✅ SEO optimized for "best slicer settings for 3d printing"
 - ✅ YouTube traffic integration
