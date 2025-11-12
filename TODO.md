@@ -1,481 +1,375 @@
-# TODO & RECOMMENDATIONS
+# TODO: OrcaSlicer Settings Recommender - Integration Plan
 
-## 🔴 Critical TODOs (High Priority)
-
-### Data & Accuracy
-- [ ] **Validate material data against manufacturer specs**
-  - Cross-reference CSV and JSON data for consistency
-  - Some materials have incomplete properties (e.g., PC, ULTEM missing common settings in JSON)
-  - Add missing materials from CSV to the HTML knowledge base (HTPLA, Tough PLA, PET, HIPS, PP, PVA, etc.)
-
-- [ ] **Expand knowledge base coverage**
-  - Add recommendations for all material types in the database
-  - Currently only ~12 materials in HTML, but CSV has 30+ materials
-  - Include composite materials (CF, GF variants)
-
-- [ ] **Add data sources/references**
-  - Document which settings come from which research papers
-  - Add confidence levels to recommendations
-  - Include manufacturer recommendation ranges
-
-### User Experience
-- [ ] **Add input validation**
-  - Prevent invalid material selections
-  - Validate slider values
-  - Handle edge cases gracefully
-
-- [ ] **Improve mobile responsiveness**
-  - Test on various screen sizes
-  - Optimize touch interactions for sliders
-  - Ensure readable card layouts on small screens
-
-- [ ] **Add loading states**
-  - Show feedback when generating recommendations
-  - Animate transitions between states
-
-## 🟡 Important TODOs (Medium Priority)
-
-### Features
-- [ ] **Export functionality**
-  - Generate OrcaSlicer-compatible JSON profiles
-  - Export as PDF report for reference
-  - Copy recommendations to clipboard
-  - Generate G-code modifications for temperature/speed
-
-- [ ] **Settings preview**
-  - Show visual comparison of layer heights
-  - Estimated print time impact
-  - Material usage calculator
-  - Cost estimator (based on material price in CSV)
-
-- [ ] **History/Comparison**
-  - Save user's previous configurations (localStorage)
-  - Compare different priority combinations
-  - A/B test different approaches
-
-- [ ] **Advanced mode toggle**
-  - Expert mode with granular control
-  - Show all available settings, not just priorities
-  - Direct parameter input
-
-### Data Management
-- [ ] **Separate data from code**
-  - Move materials data to external JSON file
-  - Move knowledge base to structured JSON
-  - Enable easier updates without code changes
-
-- [ ] **Add more materials**
-  - PP (Polypropylene) - great chemical resistance
-  - PVA/BVOH - support materials
-  - Specialty materials (wood-fill, metal-fill, etc.)
-  - PEEK, PEKK, PPSU (high-performance)
-
-## 🟢 Nice-to-Have TODOs (Low Priority)
-
-### Enhancement Ideas
-- [ ] **Printer profile integration**
-  - Let users specify their printer capabilities
-  - Adjust recommendations based on max temps, speeds
-  - Warn about limitations (e.g., "Your printer can't reach 280°C")
-
-- [ ] **Visual improvements**
-  - Add material preview images
-  - Show example prints for each goal
-  - Include diagrams explaining technical concepts
-  - Add dark/light mode toggle (currently dark only)
-
-- [ ] **Community features**
-  - User-submitted profiles
-  - Rating system for recommendations
-  - Comments/notes on specific materials
-
-- [ ] **Internationalization**
-  - Support for metric/imperial units (currently metric)
-  - Multi-language interface
-  - Localized material names
+**Last Updated:** November 11, 2025  
+**Status:** Material Database Enhancement Phase
 
 ---
 
-## 💡 RECOMMENDATIONS
+## 🎯 PHASE 1: QUICK WINS - Foundation (Week 1)
+**Goal:** Add 6-8 high-confidence materials with verified temperature data
+**Estimated Time:** 4-6 hours
 
-### 🏗️ Architecture Recommendations
+### Group 1A: Extract & Validate Top Materials (2 hours)
+- [ ] Review `output/extracted_materials.json` for top 6 materials:
+  - [ ] OBC 905 (62% confidence)
+  - [ ] NylonX 2019 (54% confidence)
+  - [ ] Flexible TPU 98A (54% confidence)
+  - [ ] PLA Prusament (38% confidence)
+  - [ ] PolyTerra PLA (38% confidence)
+  - [ ] SILK PLA (46% confidence)
+- [ ] Verify extracted temperatures against source TDS PDFs
+- [ ] Check for any missing critical data (HDT, shrinkage, etc.)
 
-#### **Option A: Keep Pure JavaScript (Recommended for MVP)**
-**Pros:**
-- Zero dependencies, fast loading
-- Easy deployment (static hosting)
-- Simple to maintain
-- Works offline
-- Great for learning/education
+### Group 1B: Update Material Database (2 hours)
+- [ ] Add new materials to `data/material_db.csv`:
+  - [ ] Add OBC 905 as new material
+  - [ ] Add NylonX 2019 (keep original name; verify carbon-fibre/filled status before renaming)
+  - [ ] Add Flexible TPU 98A, 92A, 85A variants
+  - [ ] Add PLA Prusament as PLA variant
+  - [ ] Add PolyTerra PLA as PLA variant
+  - [ ] Add SILK PLA as PLA variant
+- [ ] Update `data/materials.json` with same materials
+- [ ] Document data sources in extraction notes
+- [ ] Create `scripts/merge_extracted_to_csv.py` to semi-automate merging `output/extracted_materials.json` into `data/material_db.csv` with validation and review flags
+- [ ] Add unit tests for the merge/validation script (small set of sample JSON -> CSV cases)
 
-**Cons:**
-- Manual DOM manipulation becomes complex at scale
-- No built-in state management
-- Harder to test
-- Code organization requires discipline
-
-**Recommended if:**
-- You want maximum simplicity
-- Hosting budget is $0
-- Offline functionality is important
-- Quick iterations are priority
-
-**Next steps:**
-1. Refactor JavaScript into modules (use ES6 modules)
-2. Separate concerns (data, UI, logic)
-3. Add basic testing with Jest or Vitest
-4. Consider TypeScript for type safety
-
----
-
-#### **Option B: Python Backend + Modern Frontend**
-**Pros:**
-- Better data processing capabilities
-- Can integrate ML for smarter recommendations
-- Easier to connect to research data/APIs
-- Professional-grade architecture
-- Easier testing and validation
-
-**Cons:**
-- Requires hosting (costs $$)
-- More complex deployment
-- Slower initial development
-- Need to learn multiple technologies
-
-**Recommended if:**
-- You want to scale beyond MVP
-- Plan to add ML/AI features
-- Need user accounts/database
-- Want professional portfolio piece
-
-**Suggested Stack:**
-- **Backend**: FastAPI (Python) - modern, fast, async
-- **Frontend**: React or Vue.js with Vite
-- **Database**: PostgreSQL (material data) + Redis (caching)
-- **Deployment**: Railway, Render, or DigitalOcean
-
-**Alternative Simpler Stack:**
-- **Backend**: Flask (Python) - simpler than FastAPI
-- **Frontend**: Keep vanilla JS or use Alpine.js (tiny framework)
-- **Database**: SQLite (no separate server)
-- **Deployment**: PythonAnywhere or Heroku
-
-**Project Structure:**
-```
-m3dp_orcaslicer_settings_recommender/
-├── backend/
-│   ├── app/
-│   │   ├── __init__.py
-│   │   ├── main.py              # FastAPI app
-│   │   ├── models.py            # Data models
-│   │   ├── routers/
-│   │   │   ├── materials.py     # Material endpoints
-│   │   │   └── recommendations.py
-│   │   ├── services/
-│   │   │   ├── recommender.py   # Core logic
-│   │   │   └── conflict_detector.py
-│   │   └── data/
-│   │       ├── materials.json
-│   │       └── knowledge_base.json
-│   ├── tests/
-│   ├── requirements.txt
-│   └── Dockerfile
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.js
-├── data/                        # Shared data
-├── research/
-├── README.md
-└── TODO.md
-```
+### Group 1C: Test & Validate (1 hour)
+- [ ] Test application with new materials
+- [ ] Verify recommendations are generated correctly
+- [ ] Check that all material properties display properly
+- [ ] Validate temperature ranges are reasonable
+- [ ] **CHECKPOINT:** Commit changes, tag as v0.2-materials-phase1
 
 ---
 
-### 🎯 Feature Recommendations by Priority
+## 🔧 PHASE 2: ENGINEERING MATERIALS (Weeks 2-3)
+**Goal:** Add CarbonX composite series and PETG variants
+**Estimated Time:** 6-8 hours
 
-#### **Phase 1: Data Quality & Validation (Do First)**
-1. **Reconcile data sources**
-   - Merge material_db.csv and materials.json
-   - Create single source of truth
-   - Add validation scripts
+### Group 2A: CarbonX Composite Series (3 hours)
+- [ ] Extract and validate CarbonX materials (31% confidence each):
+  - [ ] CarbonX CF-PETG (245°C, 60°C bed)
+  - [ ] CarbonX CF-ABS (230°C, 110°C bed)
+  - [ ] CarbonX CF-PA12 (285°C, 110°C bed)
+  - [ ] CarbonX CF-PC (300°C, 140°C bed)
+  - [ ] CarbonX CF-ASA (250°C, 110°C bed)
+- [ ] Verify hardened nozzle detection for all CF materials
+- [ ] Supplement with manufacturer website data if needed
+- [ ] Add to database as new "Engineering" cluster materials
 
-2. **Add data versioning**
-   - Track when material data was last updated
-   - Document data sources (which manufacturer, which research paper)
+### Group 2B: PETG & ABS Variants (2 hours)
+- [ ] Add PETG variants:
+  - [ ] 3DXPRO LG PETG (255°C, 70°C bed)
+  - [ ] Update existing PETG with better data
+- [ ] Add ABS variants:
+  - [ ] 3DXMAX ABS (225°C, 110°C bed)
+  - [ ] Update existing ABS with better data
+- [ ] Add ASA Extrafill (240-255°C with mechanical properties)
+- [ ] Update material clusters if needed
 
-3. **Create test suite**
-   - Unit tests for recommendation logic
-   - Integration tests for UI interactions
-   - Validate material property ranges
+### Group 2C: Update Application Logic (2 hours)
+- [ ] Enhance hardened nozzle detection for composites
+- [ ] Add enclosure requirement warnings where detected
+- [ ] Update material recommendation algorithm for new materials
+- [ ] Test material selection and recommendations
 
-#### **Phase 2: Core UX Improvements**
-1. **Export OrcaSlicer profiles** (HIGH VALUE)
-   - Users want to directly import settings
-   - Differentiate from generic advice
-   - Research OrcaSlicer JSON format
-
-2. **Print time estimator**
-   - Show estimated time impact of settings
-   - Help users make informed trade-offs
-
-3. **Cost calculator**
-   - Use material prices from CSV
-   - Show cost per print with different infill%
-
-#### **Phase 3: Advanced Features**
-1. **Machine learning integration** (Python strongly recommended)
-   - Train model on successful prints
-   - Predict optimal settings combinations
-   - Learn from user feedback
-
-2. **Community profiles**
-   - Users share successful configs
-   - Ratings and reviews
-   - Filter by printer model
-
-3. **Printer compatibility checker**
-   - Database of common printer specs
-   - Auto-adjust recommendations
-   - Warn about limitations
+### Group 2D: Test & Validate (1 hour)
+- [ ] Test all engineering materials
+- [ ] Verify composite material warnings
+- [ ] Check temperature recommendations
+- [ ] Test edge cases (high-temp materials)
+- [ ] **CHECKPOINT:** Commit changes, tag as v0.3-engineering-materials
 
 ---
 
-### 🔧 Code Quality Recommendations
+## 🚀 PHASE 3: HIGH-PERFORMANCE MATERIALS (Week 4)
+**Goal:** Add PEEK/PEKK/ULTEM family for professional users
+**Estimated Time:** 8-10 hours
 
-#### **Current JavaScript Issues**
-1. **Monolithic structure**
-   - 900+ lines in one `<script>` tag
-   - Hard to maintain and test
-   - Should be split into modules
+### Group 3A: PEEK Family (3 hours)
+- [ ] Extract and validate PEEK materials:
+  - [ ] Thermax PEEK (380-400°C, 130-140°C bed)
+  - [ ] CarbonX CF20 PEEK (420°C, 140°C bed)
+  - [ ] FIBREX GF20 PEEK (400°C, 160°C bed)
+- [ ] Supplement with HDT data from manufacturer sites
+- [ ] Add glass transition temperature data
+- [ ] Verify drying requirements
 
-2. **Data duplication**
-   - Materials data defined in JS and exists in JSON
-   - Knowledge base hardcoded
-   - Update coordination is error-prone
+### Group 3B: ULTEM/PEI Series (3 hours)
+- [ ] Extract and validate ULTEM materials:
+  - [ ] THERMAX PEI 9085 (365-385°C, 130-140°C bed)
+  - [ ] THERMAX PEI 1010 (380-400°C, 130-140°C bed)
+  - [ ] CarbonX CF Ultem (390°C, 140°C bed)
+- [ ] Add to database as "High-Performance" cluster
+- [ ] Update with annealing data if available
 
-3. **No error handling**
-   - What if material data is missing?
-   - What if sliders malfunction?
-   - Need try-catch and validation
+### Group 3C: PEKK & PC Variants (2 hours)
+- [ ] Add PEKK variants:
+  - [ ] Thermax PEKK-A (350°C)
+  - [ ] CarbonX CF15 PEKK-A (390°C)
+- [ ] Add PC variants:
+  - [ ] 3DXMAX PC (275-295°C, 110-120°C bed)
+  - [ ] 3DXSTAT ESD PC (295°C, 130°C bed)
 
-#### **Refactoring Suggestions**
-```javascript
-// Suggested file structure for vanilla JS version:
-// js/
-// ├── data/
-// │   ├── materials.js
-// │   └── knowledgeBase.js
-// ├── services/
-// │   ├── recommender.js
-// │   └── conflictDetector.js
-// ├── components/
-// │   ├── materialSelector.js
-// │   ├── prioritySliders.js
-// │   └── resultsDisplay.js
-// ├── utils/
-// │   ├── validators.js
-// │   └── formatters.js
-// └── main.js
-```
+### Group 3D: Application Enhancement (2 hours)
+- [ ] Add high-temperature material warnings
+- [ ] Enhance enclosure requirement detection
+- [ ] Add printer capability checks (max temp support)
+- [ ] Update UI to show material tier (Standard/Engineering/High-Performance)
+- [ ] **CHECKPOINT:** Commit changes, tag as v0.4-high-performance
 
 ---
 
-### 📊 Data Science Recommendations
+## 🎨 PHASE 4: SPECIALTY MATERIALS (Week 5)
+**Goal:** Add ESD, flame-retardant, and specialty materials
+**Estimated Time:** 4-6 hours
 
-If you go the **Python route**, consider these additions:
+### Group 4A: ESD/Conductive Materials (2 hours)
+- [ ] Add 3DXSTAT ESD series:
+  - [ ] ESD PLA (210°C, 23°C bed)
+  - [ ] ESD ABS (230°C, 110°C bed)
+  - [ ] ESD PETG (250°C, 70°C bed)
+  - [ ] ESD PVDF (275°C, 120°C bed)
+- [ ] Add ESD property flag to database
+- [ ] Update recommendations for electronics applications
 
-1. **Research Integration**
-   - Parse PDFs in `research/` folder automatically
-   - Extract parameter correlations
-   - Build evidence-based recommendations
+### Group 4B: Glass Fiber Composites (2 hours)
+- [ ] Add FIBREX GF series:
+  - [ ] FIBREX PA12 GF30 (285°C, 110°C bed)
+  - [ ] FIBREX GF PP (265°C, 85°C bed)
+  - [ ] FIBREX GF ABS (245°C, 110°C bed)
+- [ ] Verify hardened nozzle requirements
+- [ ] Add to engineering materials cluster
 
-2. **Statistical Analysis**
-   - Analyze material property distributions
-   - Find optimal setting ranges per material
-   - Identify parameter correlations
-
-3. **Visualization**
-   - Plot strength vs. speed trade-off curves
-   - Show parameter sensitivity analysis
-   - Interactive 3D surface plots (plotly)
-
-4. **ML Features**
-   - Predict optimal settings from print requirements
-   - Clustering similar materials for recommendations
-   - Anomaly detection for invalid combinations
-
-**Python Libraries to Consider:**
-- **pandas**: Data manipulation (CSV/JSON processing)
-- **scikit-learn**: ML models for prediction
-- **plotly**: Interactive visualizations
-- **PyPDF2/pdfplumber**: Parse research PDFs
-- **numpy**: Numerical calculations
-- **pytest**: Testing framework
+### Group 4C: Test Specialty Features (1 hour)
+- [ ] Test ESD material selection
+- [ ] Verify specialty material warnings
+- [ ] Check composite material detection
+- [ ] **CHECKPOINT:** Commit changes, tag as v0.5-specialty-materials
 
 ---
 
-### 🎨 UI/UX Recommendations
+## 📊 PHASE 5: DATA QUALITY IMPROVEMENT (Week 6)
+**Goal:** Enhance existing materials with better data
+**Estimated Time:** 6-8 hours
 
-1. **Add visual feedback**
-   - Show which settings conflict visually (red highlights)
-   - Use icons consistently
-   - Add tooltips for technical terms
+### Group 5A: Update Existing Materials (3 hours)
+- [ ] Update PLA Standard → Use PLA Prusament data
+- [ ] Update PETG → Use 3DXPRO LG PETG data
+- [ ] Update ABS → Use 3DXMAX ABS data
+- [ ] Update Nylon → Use NylonX or AMIDEX data
+- [ ] Update TPU 95A → Use Flexible 98A data
+- [ ] Update PC → Use 3DXMAX PC data
 
-2. **Progressive disclosure**
-   - Start simple (material + one priority)
-   - "Advanced options" for multi-priority
-   - Explain concepts with expandable sections
+### Group 5B: Add Missing Properties (3 hours)
+- [ ] Research and add HDT values for top 20 materials
+- [ ] Add glass transition temperatures where available
+- [ ] Add shrinkage data from manufacturer websites
+- [ ] Update drying requirements for hygroscopic materials
+- [ ] Add annealing data for annealable materials
 
-3. **Better mobile experience**
-   - Larger touch targets
-   - Simplified layout for small screens
-   - Swipe gestures for cards
-
-4. **Accessibility**
-   - Add ARIA labels
-   - Keyboard navigation
-   - Screen reader compatibility
-   - High contrast mode
-
----
-
-### 🚀 Deployment Recommendations
-
-#### **Current Setup (Static)**
-- ✅ GitHub Pages (free)
-- ✅ Netlify (free tier)
-- ✅ Vercel (free tier)
-- ✅ Cloudflare Pages (free)
-
-#### **If Moving to Python**
-- **Free tier options:**
-  - Railway (500 hrs/month free)
-  - Render (free tier with limitations)
-  - PythonAnywhere (free with constraints)
-  - Google Cloud Run (generous free tier)
-
-- **Paid but affordable:**
-  - DigitalOcean App Platform ($5/month)
-  - Heroku ($5/month)
-  - AWS Lightsail ($3.50/month)
+### Group 5C: Validate Data Quality (2 hours)
+- [ ] Cross-reference all temperature data with multiple sources
+- [ ] Verify mechanical properties are reasonable
+- [ ] Check for inconsistencies in material properties
+- [ ] Update confidence scores for all materials
+- [ ] **CHECKPOINT:** Commit changes, tag as v0.6-data-quality
 
 ---
 
-### 🧪 Testing Strategy
+## 🔍 PHASE 6: EXTRACTOR IMPROVEMENT (Week 7-8)
+**Goal:** Improve TDS extraction for future updates
+**Estimated Time:** 8-10 hours
 
-**For Vanilla JS version:**
-1. Use **Vitest** or **Jest** for unit tests
-2. Use **Playwright** for E2E tests
-3. Manual testing checklist for each release
+### Group 6A: Enhance Extraction Patterns (4 hours)
+- [ ] Analyze failed PDFs (0% confidence)
+- [ ] Add OCR support for image-based PDFs
+- [ ] Add brand-specific extraction patterns:
+  - [ ] 3DXTech specific patterns
+  - [ ] eSUN specific patterns
+  - [ ] ColorFabb/Extrafill patterns
+- [ ] Improve HDT and Tg extraction
+- [ ] Add shrinkage data extraction
 
-**For Python version:**
-1. **pytest** for backend unit tests
-2. **pytest-cov** for coverage reports
-3. **Playwright** or **Selenium** for E2E
-4. CI/CD with GitHub Actions
+### Group 6B: Handle Problem Cases (2 hours)
+- [ ] Manually process high-priority 0% confidence PDFs:
+  - [ ] PLA MATTE HS.pptx → Convert to proper PDF
+  - [ ] ASA Prime.pptx → Convert to proper PDF
+  - [ ] ABS Prime.pptx → Convert to proper PDF
+  - [ ] EN_TDS-PC-ABS.pdf → Apply OCR
+  - [ ] PETG_TechSheet_ENG.pdf → Apply OCR
+- [ ] Re-run extraction on converted files
 
----
-
-### 📝 Documentation Recommendations
-
-1. **API Documentation** (if Python backend)
-   - Auto-generate with FastAPI/Swagger
-   - Include example requests/responses
-
-2. **User Guide**
-   - Video walkthrough
-   - Step-by-step tutorial
-   - FAQ section
-
-3. **Developer Guide**
-   - How to add new materials
-   - How to modify knowledge base
-   - Contributing guidelines
-
-4. **Data Dictionary**
-   - Explain all material properties
-   - Define technical terms
-   - Show units and ranges
+### Group 6C: Test & Document (2 hours)
+- [ ] Test improved extractor on all PDFs
+- [ ] Document extraction success rate
+- [ ] Create guide for adding new TDS PDFs
+- [ ] Update TDS_UPLOAD_GUIDE.md with best practices
+- [ ] **CHECKPOINT:** Commit changes, tag as v0.7-extractor-improvements
 
 ---
 
-## 🎓 Learning Resources
+## 🎨 PHASE 7: UI/UX ENHANCEMENTS (Week 9)
+**Goal:** Improve user experience with expanded material library
+**Estimated Time:** 6-8 hours
 
-### If staying with JavaScript:
-- [JavaScript.info](https://javascript.info/) - Modern JS tutorial
-- [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) - Native components
-- [Vite](https://vitejs.dev/) - Modern build tool
+### Group 7A: Material Selection Enhancement (3 hours)
+- [ ] Add material search/filter functionality
+- [ ] Group materials by cluster in UI
+- [ ] Add material tier badges (Standard/Engineering/High-Performance)
+- [ ] Show specialty properties (ESD, flame-retardant, etc.)
+- [ ] Add "most popular" materials section
 
-### If switching to Python:
-- [FastAPI Tutorial](https://fastapi.tiangolo.com/tutorial/) - Best Python web framework for APIs
-- [Real Python](https://realpython.com/) - Quality Python tutorials
-- [Full Stack Python](https://www.fullstackpython.com/) - Complete guide
+### Group 7B: Information Display (2 hours)
+- [ ] Enhance material details display
+- [ ] Show confidence score for recommendations
+- [ ] Add "Why this setting?" explanations
+- [ ] Show data source (TDS, community, manufacturer)
+- [ ] Add material comparison feature
 
-### 3D Printing Technical Resources:
-- [OrcaSlicer Wiki](https://github.com/SoftFever/OrcaSlicer/wiki)
-- [Teaching Tech 3D Printer Calibration](https://teachingtechyt.github.io/calibration.html)
-- [CNC Kitchen](https://www.youtube.com/c/CNCKitchen) - Testing-focused YouTube channel
-
----
-
-## 🏁 Recommended Next Steps
-
-### Immediate (This Week)
-1. ✅ Create README (DONE)
-2. ✅ Create TODO (DONE)
-3. ✅ Create TDS extraction script (DONE)
-4. ✅ Create CSV sync script (DONE)
-5. ✅ Set up UV for Python package management (DONE)
-6. ✅ Update documentation for UV (DONE)
-7. ⬜ Fix data inconsistencies (material_db.csv vs materials.json)
-8. ⬜ Sync CSV materials to HTML (run: `uv run scripts/sync_materials.py`)
-9. ⬜ Upload TDS PDFs and extract data
-10. ⬜ Test on mobile devices
-
-### Short-term (Next 2 Weeks)
-1. ⬜ **Decision Point**: Choose architecture (stay JS or go Python)
-2. ⬜ Implement OrcaSlicer JSON export (HUGE value add)
-3. ⬜ Add print time estimator
-4. ⬜ Create test suite
-5. ⬜ Deploy to free hosting
-
-### Medium-term (Next Month)
-1. ⬜ Refactor code into modules
-2. ⬜ Add user profile saving (localStorage)
-3. ⬜ Create video demo/tutorial
-4. ⬜ Share on 3D printing communities (Reddit r/3Dprinting, r/orcaslicer)
-
-### Long-term (Next 3 Months)
-1. ⬜ If Python: Build backend API
-2. ⬜ Add ML-based recommendations
-3. ⬜ Community profile sharing
-4. ⬜ Mobile app (React Native/Flutter)
+### Group 7C: Warnings & Alerts (2 hours)
+- [ ] Add hardened nozzle requirement warnings
+- [ ] Add enclosure requirement notifications
+- [ ] Show high-temperature material alerts
+- [ ] Add drying requirement reminders
+- [ ] Display material-specific tips
+- [ ] **CHECKPOINT:** Commit changes, tag as v0.8-ui-enhancements
 
 ---
 
-## 💭 Final Thoughts
+## 📚 PHASE 8: DOCUMENTATION & TESTING (Week 10)
+**Goal:** Complete documentation and comprehensive testing
+**Estimated Time:** 6-8 hours
 
-**Your project is solid!** The core concept is valuable, and the research foundation is excellent. Here's my opinion:
+### Group 8A: Documentation (3 hours)
+- [ ] Update README.md with new material count
+- [ ] Document all material properties and sources
+- [ ] Create material selection guide for users
+- [ ] Add troubleshooting guide for material issues
+- [ ] Update QUICK_REFERENCE.md with new materials
 
-### **Stay with JavaScript if:**
-- You want to ship fast
-- You're learning web development
-- Hosting cost is a concern
-- You just want a useful tool
+### Group 8B: Comprehensive Testing (3 hours)
+- [ ] Test all 90+ materials
+- [ ] Verify all temperature recommendations
+- [ ] Test edge cases (extreme temperatures, rare materials)
+- [ ] Validate all special requirements (hardened nozzle, enclosure, etc.)
+- [ ] Test on different browsers/devices
 
-### **Switch to Python if:**
-- You want to process research PDFs programmatically
-- You plan to add ML features
-- You're comfortable with backend development
-- You want a portfolio piece for job applications
+### Group 8C: Final Polish (2 hours)
+- [ ] Fix any bugs found during testing
+- [ ] Optimize performance with large material database
+- [ ] Add analytics to track material usage
+- [ ] Prepare release notes
+- [ ] **CHECKPOINT:** Commit changes, tag as v1.0-release
 
-**My recommendation:** Start by polishing the current JavaScript version, get it deployed and used by real users, then consider Python backend if you hit limitations or need advanced features.
+---
 
-The most important thing is to **get feedback from actual 3D printer users** - they'll tell you what features matter most!
+## 🚀 PHASE 9: DEPLOYMENT & MONITORING (Week 11)
+**Goal:** Deploy enhanced application and gather feedback
+**Estimated Time:** 4-6 hours
 
-Good luck! 🚀🖨️
+### Group 9A: Deployment (2 hours)
+- [ ] Deploy to production
+- [ ] Update GitHub repository
+- [ ] Create release on GitHub
+- [ ] Update documentation website
+- [ ] Announce new features
+
+### Group 9B: Monitoring & Feedback (2 hours)
+- [ ] Monitor application performance
+- [ ] Track material usage statistics
+- [ ] Gather user feedback
+- [ ] Identify most-requested materials
+- [ ] Plan next iteration
+
+### Group 9C: Continuous Improvement (Ongoing)
+- [ ] Add user-requested materials
+- [ ] Update material data based on feedback
+- [ ] Improve recommendations based on usage patterns
+- [ ] Keep TDS database updated with new filaments
+
+---
+
+## 📋 BACKLOG: Future Enhancements
+
+### Material Database
+- [ ] Add support for multi-material printing recommendations
+- [ ] Add material cost tracking and comparison
+- [ ] Integrate with filament vendor APIs for pricing
+- [ ] Add material availability tracking
+- [ ] Create community material database contribution system
+
+### Application Features
+- [ ] Add printer profile system (validate material compatibility)
+- [ ] Create print failure troubleshooting guide
+- [ ] Add material property calculator
+- [ ] Implement material substitution recommender
+- [ ] Add batch material processing for multiple parts
+
+### Data Sources
+- [ ] Partner with filament manufacturers for official data
+- [ ] Integrate with 3D printing community databases
+- [ ] Add user-contributed settings (with moderation)
+- [ ] Create automated TDS monitoring for updates
+- [ ] Add scientific paper references for material properties
+
+### Advanced Features
+- [ ] Machine learning for recommendation improvement
+- [ ] A/B testing for different recommendation algorithms
+- [ ] Integration with OrcaSlicer API (when available)
+- [ ] Mobile app version
+- [ ] API for third-party integrations
+
+---
+
+## ✅ COMPLETED TASKS
+
+### Initial Development
+- [x] Create basic application structure
+- [x] Build material database (29 materials)
+- [x] Implement recommendation engine
+- [x] Deploy initial version
+- [x] Extract TDS data from 129 PDFs
+- [x] Analyze TDS extraction results
+- [x] Create TDS analysis report
+
+---
+
+## 📝 NOTES
+
+### Success Metrics
+- **Phase 1:** 6-8 new materials added, 100% tested
+- **Phase 2:** 10-12 engineering materials added, composite detection working
+- **Phase 3:** 8-10 high-performance materials added, high-temp warnings working
+- **Phase 4:** 10-15 specialty materials added, property flags working
+- **Phase 5:** All existing materials have verified data
+- **Overall:** 90+ materials in database, 95%+ accuracy
+
+### Time Estimates
+- **Total Development Time:** 50-60 hours
+- **Timeline:** 10-11 weeks (5-6 hours/week)
+- **Quick Wins (Phase 1):** Can be completed in 1 weekend
+
+### Data Quality Goals
+- Nozzle temp: 100% coverage (currently 90%)
+- Bed temp: 100% coverage (currently 85%)
+- Print speed: 70% coverage (currently 40%)
+- Mechanical properties: 60% coverage (currently 30%)
+- Thermal properties: 50% coverage (currently 15%)
+
+### Priority Order Rationale
+1. **Phase 1:** Quick wins build momentum and validate approach
+2. **Phase 2:** Engineering materials are highly requested
+3. **Phase 3:** High-performance materials differentiate application
+4. **Phase 4:** Specialty materials serve niche users
+5. **Phase 5:** Data quality ensures trust and accuracy
+6. **Phase 6:** Extractor improvements enable future growth
+7. **Phase 7:** UI/UX makes features discoverable
+8. **Phase 8:** Documentation ensures usability
+9. **Phase 9:** Deployment delivers value to users
+
+---
+
+**Remember:** Each phase ends with a checkpoint. Test thoroughly, commit changes, and tag releases. This allows rollback if issues arise and provides clear progress milestones.
+
+**Start with Phase 1 Group 1A today!** 🚀
