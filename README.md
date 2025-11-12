@@ -121,14 +121,24 @@ The `research/` folder contains 20+ academic papers covering:
 1. Follow the step-by-step guide in **[VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)**
 2. Deploy the static HTML app (no backend needed)
 3. Set up Google Analytics to track users and affiliate clicks
-4. Start generating revenue immediately!
+4. Optimize for SEO (sitemap, OG image, YouTube integration)
+5. Start generating revenue immediately!
 
 **Benefits of Deployment:**
 - ✅ Live 24/7 on Vercel's global CDN (free tier)
 - ✅ Automatic HTTPS and SSL
-- ✅ Custom domain support
+- ✅ Custom domain support (e.g., orcaslicer.minimal3dp.com)
 - ✅ Zero-config deployment
+- ✅ SEO optimized for "best slicer settings for 3d printing"
+- ✅ YouTube traffic integration
 - ✅ Revenue generation from affiliate links
+
+**SEO & Marketing:**
+- See **[SEO_STRATEGY.md](./SEO_STRATEGY.md)** for comprehensive SEO plan
+- Target keyword: "best slicer settings for 3d printing" (from YouTube Analytics)
+- YouTube channel: [youtube.com/channel/UCM_8Mv-0S1LnnJpRJLjahaw](https://youtube.com/channel/UCM_8Mv-0S1LnnJpRJLjahaw)
+- Video companion content strategy
+- Material landing pages roadmap
 
 ### Web App (Local Development)
 1. Clone the repository
@@ -286,11 +296,12 @@ These recommendations are starting points based on research and best practices. 
 
 ## 📊 Project Status
 
-**Version**: 0.3 (Warning System Release)  
+**Version**: 0.3 (Warning System + SEO Optimization)  
 **Materials**: 28 (expanded from 12)  
 **Warning Types**: 10 with interactive UI  
 **Last Updated**: November 12, 2025  
-**Status**: Actively developed, production-ready
+**Status**: Actively developed, production-ready  
+**SEO Status**: Optimized for "best slicer settings for 3d printing"
 
 ### Recent Updates (November 2025)
 - ✅ **Material database expanded 2.3×** (12 → 28 materials)
@@ -299,6 +310,13 @@ These recommendations are starting points based on research and best practices. 
 - ✅ **Help guide links** for educational resources
 - ✅ **Material characteristics** tracked via boolean flags
 - ✅ **Event-driven warnings** on material selection
+- ✅ **SEO optimization** for target keyword (Nov 12, 2025)
+  - Title tag: "Best Slicer Settings for 3D Printing"
+  - Meta descriptions with material keywords
+  - Schema.org structured data (WebApplication)
+  - Open Graph tags for social sharing
+  - YouTube channel integration
+- ✅ **YouTube strategy** documented in SEO_STRATEGY.md
 
 
 **Made with ❤️ for the 3D printing community**

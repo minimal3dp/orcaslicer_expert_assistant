@@ -3,6 +3,54 @@
 **Last Updated:** November 12, 2025  
 **Deployment Target:** Vercel Hobby (Free Tier)  
 **Estimated Time:** 15-30 minutes  
+**Domain Strategy:** Subdomain deployment on existing root domain
+
+---
+
+## ⚡ Quick Start (Your Specific Setup)
+
+**Your Configuration:**
+- **Root Domain:** `minimal3dp.com` (owned)
+- **Subdomain for this app:** `orcaslicer.minimal3dp.com` (recommended)
+- **Alternative names:** `assistant.minimal3dp.com` or `settings.minimal3dp.com`
+- **Deployment:** Vercel (free tier)
+- **DNS Setup:** CNAME record only (simple!)
+- **YouTube Channel:** youtube.com/channel/UCM_8Mv-0S1LnnJpRJLjahaw
+- **Target Keyword:** "best slicer settings for 3d printing" (from YouTube Analytics Trends)
+
+**SEO Strategy:** ✅ Already Optimized!
+- ✅ Title tag optimized for target keyword
+- ✅ Meta descriptions with material keywords
+- ✅ Schema.org structured data (WebApplication)
+- ✅ Open Graph tags for social sharing
+- ✅ YouTube channel link in header
+- ⏳ Pending: OG image, sitemap.xml, robots.txt
+
+**Why Subdomains? ✅ Highly Recommended**
+- ✅ One domain → unlimited apps (free subdomains)
+- ✅ Shared brand identity (`minimal3dp.com`)
+- ✅ Easy cross-linking between apps
+- ✅ SEO boost for root domain
+- ✅ Professional appearance
+- ✅ Independent deployments per app
+
+**Multi-App Portfolio Example:**
+```
+minimal3dp.com                     → Main site/landing page
+├── orcaslicer.minimal3dp.com     → This app (OrcaSlicer Assistant)
+├── filament.minimal3dp.com       → Future: Filament database
+├── calc.minimal3dp.com           → Future: Print calculator
+└── docs.minimal3dp.com           → Future: Documentation
+```
+
+**Jump to Your Section:**
+- [Part 1: Deploy to Vercel](#-part-1-initial-deployment-static-html) (15 min)
+- [Part 2: Configure Subdomain](#-part-2-set-up-custom-domain-recommended-for-production) (10 min)
+- [Part 2B: Link from Main Site](#-part-2b-linking-from-your-main-site) (strategy)
+- [Part 2C: Multi-App Architecture](#-part-2c-multi-app-architecture-best-practices) (best practices)
+- [Part 3: Google Analytics Setup](#-part-3-set-up-google-analytics-4-revenue-tracking) (15 min)
+- [Part 4: SEO Setup](#-part-4-seo-optimization-get-found-on-google) (30 min) **NEW!**
+- [Part 5: YouTube Integration](#-part-5-youtube-integration-drive-traffic-from-videos) (15 min) **NEW!**
 
 ---
 
@@ -61,58 +109,421 @@ https://orcaslicer-expert-assistant-<random>.vercel.app
 
 ---
 
-## 🎯 Part 2: Set Up Custom Domain (Optional but Recommended)
+## 🎯 Part 2: Set Up Custom Domain (Recommended for Production)
 
 ### Why Use a Custom Domain?
 - Professional appearance
 - Better SEO
 - Easier to remember and share
 - Builds brand trust
+- Consistent branding across multiple apps
 
-### Step 1: Purchase a Domain (if you don't have one)
+### Multi-App Subdomain Strategy (RECOMMENDED)
 
-**Recommended Registrars:**
-- **Namecheap:** https://www.namecheap.com (~$10-15/year)
-- **Google Domains:** https://domains.google (~$12/year)
-- **Cloudflare:** https://www.cloudflare.com/products/registrar/ (~$8-10/year)
+**If you own a root domain like `minimal3dp.com`:**
 
-**Suggested Domain Names:**
-- `orcaslicer-assistant.com`
-- `orcaslicer-expert.com`
-- `3dprint-settings.com`
-- `orcaslicer-helper.com`
+✅ **Use subdomains for each app** (Highly Recommended)
 
-### Step 2: Add Domain to Vercel
+**Benefits:**
+1. **Shared Brand Identity:** All apps under `minimal3dp.com` reinforce your brand
+2. **SEO Boost:** Subdomains contribute to root domain authority
+3. **Easy Cross-Linking:** Link between apps naturally
+4. **Cost Effective:** One domain, unlimited subdomains (free)
+5. **Flexible Deployment:** Each app is independent but connected
+6. **Professional Appearance:** Shows you have a portfolio of tools
 
-1. In Vercel dashboard, go to your project
+**Recommended Subdomain Structure:**
+```
+minimal3dp.com                    → Main marketing site (landing page)
+├── orcaslicer.minimal3dp.com    → OrcaSlicer Expert Assistant (this app)
+├── filament.minimal3dp.com      → Filament calculator/database (future)
+├── slicer.minimal3dp.com        → Slicer comparison tool (future)
+├── bed.minimal3dp.com           → Bed leveling assistant (future)
+└── docs.minimal3dp.com          → Documentation hub (future)
+```
+
+**Alternative Naming (Shorter URLs):**
+```
+minimal3dp.com                    → Main site
+├── assistant.minimal3dp.com     → OrcaSlicer Expert Assistant
+├── calc.minimal3dp.com          → Calculators/tools
+├── compare.minimal3dp.com       → Comparison tools
+└── guides.minimal3dp.com        → Guides and tutorials
+```
+
+**Why NOT to use separate root domains:**
+- ❌ Higher cost ($10-15/year per domain)
+- ❌ Split SEO authority (dilutes your ranking)
+- ❌ Harder to maintain branding consistency
+- ❌ More DNS management overhead
+- ❌ Confuses users with multiple brand identities
+
+### Step 1: Choose Your Subdomain
+
+**For this app, we recommend:**
+- `orcaslicer.minimal3dp.com` (clear, descriptive)
+- `assistant.minimal3dp.com` (shorter, easier to type)
+- `settings.minimal3dp.com` (keyword-focused for SEO)
+
+**Pick one and stick with it!** For this guide, we'll use `orcaslicer.minimal3dp.com`
+
+### Step 2: Add Subdomain to Vercel
+
+### Step 2: Add Subdomain to Vercel
+
+1. In Vercel dashboard, go to your project (`orcaslicer-expert-assistant`)
 2. Click "Settings" → "Domains"
-3. Enter your domain (e.g., `orcaslicer-assistant.com`)
+3. Enter your subdomain: `orcaslicer.minimal3dp.com`
 4. Click "Add"
 
-### Step 3: Configure DNS
+**Vercel will show you the DNS configuration needed.**
 
-Vercel will show you DNS records to add. You have two options:
+### Step 3: Configure DNS at Your Domain Registrar
 
-**Option A: Nameserver Method (Recommended)**
-1. Copy the nameservers shown by Vercel
-2. Go to your domain registrar
-3. Replace existing nameservers with Vercel's nameservers
-4. Wait 24-48 hours for DNS propagation
+**For subdomains, you only need a CNAME record** (much simpler than root domains!)
 
-**Option B: A/CNAME Records Method**
-1. Add these records at your domain registrar:
-   ```
-   Type: A
-   Name: @
-   Value: 76.76.21.21
+#### Option A: CNAME Record Method (RECOMMENDED for Subdomains)
 
-   Type: CNAME
-   Name: www
-   Value: cname.vercel-dns.com
-   ```
-2. Wait 1-4 hours for DNS propagation
+Go to your domain registrar (where you purchased `minimal3dp.com`) and add:
 
-✅ **Custom domain configured!** Your site is now accessible at your chosen domain.
+```
+Type:   CNAME
+Name:   orcaslicer (or full: orcaslicer.minimal3dp.com)
+Value:  cname.vercel-dns.com.
+TTL:    3600 (or "Automatic")
+```
+
+**Common Registrars:**
+
+**Namecheap:**
+1. Log in → Domain List → Manage
+2. Advanced DNS → Add New Record
+3. Type: CNAME, Host: `orcaslicer`, Value: `cname.vercel-dns.com`, TTL: Automatic
+4. Save
+
+**Cloudflare:**
+1. Log in → Select `minimal3dp.com`
+2. DNS → Add Record
+3. Type: CNAME, Name: `orcaslicer`, Target: `cname.vercel-dns.com`, Proxy: Off (DNS only)
+4. Save
+
+**Google Domains:**
+1. Log in → My Domains → Manage
+2. DNS → Custom Records
+3. Host: `orcaslicer`, Type: CNAME, Data: `cname.vercel-dns.com`, TTL: 1H
+4. Save
+
+**GoDaddy:**
+1. Log in → My Products → DNS
+2. Add → Type: CNAME, Name: `orcaslicer`, Value: `cname.vercel-dns.com`, TTL: 1 Hour
+3. Save
+
+**Important Notes:**
+- ✅ For the "Name" field, use just `orcaslicer` (not the full subdomain)
+- ✅ Some registrars auto-append `.minimal3dp.com` to the name
+- ✅ Make sure to include the trailing dot: `cname.vercel-dns.com.` (some require it)
+- ✅ DNS propagation typically takes 5-15 minutes for CNAME records (much faster than A records!)
+
+#### Option B: Vercel Nameservers (Alternative - For Root Domain Management)
+
+**Only use this if you want Vercel to manage ALL DNS for `minimal3dp.com`**
+
+⚠️ **Not recommended if you have other services on `minimal3dp.com`** (email, other subdomains, etc.)
+
+If you choose this route:
+1. Vercel will show you nameservers: `ns1.vercel-dns.com`, `ns2.vercel-dns.com`
+2. Go to your registrar and replace ALL nameservers with Vercel's
+3. Wait 24-48 hours for propagation
+
+**We recommend Option A (CNAME) for subdomains** - it's simpler and doesn't affect your main domain.
+
+### Step 4: Verify DNS Configuration
+
+**Check DNS Propagation:**
+1. Visit https://www.whatsmydns.net/
+2. Enter: `orcaslicer.minimal3dp.com`
+3. Select "CNAME" from dropdown
+4. Should show: `cname.vercel-dns.com`
+5. Green checkmarks = propagated globally
+
+**Typical propagation times:**
+- 5-15 minutes: Most locations see the change
+- 1-2 hours: Global propagation complete
+- 24-48 hours: Maximum (rare for CNAME records)
+
+### Step 5: Verify HTTPS
+
+Once DNS is configured:
+1. Vercel automatically provisions SSL certificate (5-10 minutes)
+2. Visit `https://orcaslicer.minimal3dp.com`
+3. Verify padlock icon in browser
+4. Certificate is auto-renewed every 90 days (no action needed)
+
+✅ **Custom subdomain configured!** Your app is now live at `orcaslicer.minimal3dp.com`
+
+---
+
+## 🔗 Part 2B: Linking from Your Main Site
+
+### Create a Portfolio/App Directory on minimal3dp.com
+
+**Recommended Structure for Your Main Site:**
+
+```html
+<!-- On minimal3dp.com - Tools/Apps Section -->
+<section class="tools-portfolio">
+  <h2>3D Printing Tools & Calculators</h2>
+  
+  <div class="tool-grid">
+    <!-- OrcaSlicer Assistant -->
+    <a href="https://orcaslicer.minimal3dp.com" class="tool-card">
+      <h3>🎯 OrcaSlicer Expert Assistant</h3>
+      <p>Get intelligent slicer settings recommendations based on material and print goals</p>
+      <span class="badge">Free Tool</span>
+    </a>
+    
+    <!-- Future App Placeholders -->
+    <a href="https://filament.minimal3dp.com" class="tool-card coming-soon">
+      <h3>📊 Filament Database</h3>
+      <p>Comprehensive database of 100+ filament specifications</p>
+      <span class="badge">Coming Soon</span>
+    </a>
+    
+    <a href="https://calc.minimal3dp.com" class="tool-card coming-soon">
+      <h3>🧮 Print Calculator</h3>
+      <p>Calculate print time, material cost, and weight</p>
+      <span class="badge">Coming Soon</span>
+    </a>
+  </div>
+</section>
+```
+
+### SEO Benefits of Cross-Linking
+
+**1. Add Navigation Bar on All Apps:**
+```html
+<!-- Add to orcaslicer.minimal3dp.com header -->
+<nav class="main-nav">
+  <a href="https://minimal3dp.com">← Back to minimal3dp</a>
+  <a href="https://minimal3dp.com/tools">All Tools</a>
+</nav>
+```
+
+**2. Add Footer Links:**
+```html
+<footer>
+  <div class="footer-links">
+    <div>
+      <h4>minimal3dp Tools</h4>
+      <ul>
+        <li><a href="https://orcaslicer.minimal3dp.com">OrcaSlicer Assistant</a></li>
+        <li><a href="https://filament.minimal3dp.com">Filament Database</a></li>
+        <li><a href="https://minimal3dp.com">Main Site</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+```
+
+**3. Add Canonical Tags (Important for SEO):**
+```html
+<!-- In <head> of orcaslicer.minimal3dp.com -->
+<link rel="canonical" href="https://orcaslicer.minimal3dp.com">
+
+<!-- Also add -->
+<meta name="description" content="Free OrcaSlicer settings recommendations for 28 materials. Expert guidance on strength, speed, quality, and accuracy.">
+<meta name="keywords" content="orcaslicer, 3d printing, slicer settings, bambu lab, filament settings">
+```
+
+### Analytics - Track Cross-Site Traffic
+
+**In Google Analytics 4, set up Cross-Domain Tracking:**
+
+```javascript
+// In both minimal3dp.com AND orcaslicer.minimal3dp.com
+gtag('config', 'G-XXXXXXXXXX', {
+  'linker': {
+    'domains': ['minimal3dp.com', 'orcaslicer.minimal3dp.com']
+  }
+});
+```
+
+This ensures you can track:
+- Users coming from main site → subdomain
+- User journey across your app portfolio
+- Which apps drive the most engagement
+
+### Marketing Strategy
+
+**1. Main Site (minimal3dp.com) as Hub:**
+- Showcase all your tools
+- About page explaining your mission
+- Blog posts driving traffic to tools
+- Newsletter signup
+
+**2. Each Subdomain as Specialized Tool:**
+- Deep functionality
+- Tool-specific landing page
+- Call-to-action to other tools
+- Links back to main site
+
+**3. Social Media Strategy:**
+- Share main site in bio: `minimal3dp.com`
+- Share specific tools in posts: `orcaslicer.minimal3dp.com`
+- Builds recognition for your brand
+
+**Example Twitter Bio:**
+```
+3D Printing Tools & Guides
+🔧 Free calculators & assistants
+🎯 orcaslicer.minimal3dp.com
+🌐 minimal3dp.com
+```
+
+---
+
+## 🏗️ Part 2C: Multi-App Architecture Best Practices
+
+### Subdomain Strategy: One App = One Subdomain ✅
+
+**Why This Works:**
+
+1. **Independent Deployment:**
+   - Each app has its own Vercel project
+   - Deploy/update apps without affecting others
+   - Different frameworks per app (HTML, Next.js, Python, etc.)
+   - Isolated environments and configs
+
+2. **Scalability:**
+   - Add new apps easily (just add CNAME record)
+   - No limit on number of subdomains (Vercel free tier supports unlimited)
+   - Each app can have different resource requirements
+
+3. **Clear Separation of Concerns:**
+   - OrcaSlicer Assistant: `orcaslicer.minimal3dp.com`
+   - Filament Database: `filament.minimal3dp.com`
+   - Print Calculator: `calc.minimal3dp.com`
+   - Each app is focused and maintainable
+
+4. **SEO Benefits:**
+   - Each subdomain can rank independently
+   - Specific keywords per subdomain
+   - All subdomains boost `minimal3dp.com` authority
+
+5. **Analytics:**
+   - Track each app separately
+   - Compare performance across apps
+   - Identify which tools drive most engagement
+
+### Vercel Project Organization
+
+**Recommended Setup:**
+
+```
+Your Vercel Account
+├── orcaslicer-expert-assistant      → orcaslicer.minimal3dp.com
+├── filament-database                → filament.minimal3dp.com
+├── print-calculator                 → calc.minimal3dp.com
+├── minimal3dp-main                  → minimal3dp.com (root domain)
+└── minimal3dp-docs                  → docs.minimal3dp.com
+```
+
+**Each Project Gets:**
+- Own GitHub repository (or monorepo with separate folders)
+- Own environment variables
+- Own deployment pipeline
+- Own domain configuration
+
+### Shared Components Across Apps
+
+**Option 1: Shared UI Library (Recommended for Consistency)**
+```
+GitHub: minimal3dp/ui-components
+├── components/
+│   ├── Header.js        → Consistent header across all apps
+│   ├── Footer.js        → Consistent footer
+│   ├── Navigation.js    → Cross-app navigation
+│   └── Analytics.js     → Shared GA4 setup
+├── styles/
+│   └── theme.css        → Shared Tailwind config
+└── package.json
+```
+
+Install in each app:
+```bash
+npm install @minimal3dp/ui-components
+```
+
+**Option 2: Copy-Paste Approach (Simpler for Now)**
+- Copy header/footer HTML across apps
+- Maintain consistency manually
+- Good for early stage (2-3 apps)
+- Migrate to shared library later (5+ apps)
+
+### DNS Management Tips
+
+**Keep a DNS Record Spreadsheet:**
+```
+Subdomain              | Type  | Value                | App
+-----------------------|-------|----------------------|------------------
+orcaslicer             | CNAME | cname.vercel-dns.com | OrcaSlicer Assistant
+filament               | CNAME | cname.vercel-dns.com | Filament Database
+calc                   | CNAME | cname.vercel-dns.com | Print Calculator
+docs                   | CNAME | cname.vercel-dns.com | Documentation
+@                      | A     | <IP>                 | Main Site
+www                    | CNAME | cname.vercel-dns.com | Main Site (www)
+```
+
+**Why This Matters:**
+- Easy to see all your subdomains at a glance
+- Documentation for future you
+- Helps debug DNS issues
+- Onboarding new team members
+
+### Root Domain (minimal3dp.com) Options
+
+**Option A: Main Site on Vercel** (Recommended)
+- Deploy your marketing/portfolio site to Vercel
+- Configure as root domain: `minimal3dp.com`
+- Consistent deployment pipeline for all apps
+- Free Vercel hosting
+
+**Option B: Main Site Elsewhere** (Traditional Hosting)
+- Host main site on traditional hosting (Bluehost, SiteGround, etc.)
+- Subdomains point to Vercel
+- Good if you already have hosting
+- Mixed deployment pipeline
+
+**Option C: Main Site as Simple Redirect**
+- `minimal3dp.com` → redirects to primary tool
+- Simplest approach for single-focus brand
+- Example: `minimal3dp.com` → `orcaslicer.minimal3dp.com`
+
+### Future-Proofing Your Architecture
+
+**When You Hit 5+ Apps:**
+1. Consider a monorepo structure (Turborepo, Nx)
+2. Implement shared component library
+3. Unified CI/CD pipeline
+4. Centralized analytics dashboard
+
+**When You Need API Backend:**
+1. Create `api.minimal3dp.com` subdomain
+2. Shared API for all apps (Phase 11-14 PA-API work)
+3. Centralized authentication if needed
+4. Shared database access
+
+**Example Future Architecture:**
+```
+minimal3dp.com              → Main marketing site
+api.minimal3dp.com          → Shared API backend
+auth.minimal3dp.com         → Authentication service
+├── orcaslicer.minimal3dp.com
+├── filament.minimal3dp.com
+├── calc.minimal3dp.com
+├── compare.minimal3dp.com
+└── guides.minimal3dp.com
+```
 
 ---
 
@@ -230,7 +641,358 @@ Vercel will automatically redeploy (takes ~30 seconds).
 
 ---
 
-## 🔧 Part 4: Environment Variables (For Future PA-API Integration)
+## � Part 4: SEO Optimization (Get Found on Google)
+
+**Goal:** Rank for "best slicer settings for 3d printing" and drive organic traffic
+
+### Step 1: Verify SEO Meta Tags (Already Done ✅)
+
+Your HTML has been optimized with:
+- ✅ **Title tag:** "Best Slicer Settings for 3D Printing - OrcaSlicer Expert Assistant"
+- ✅ **Meta description:** Keyword-rich description with 28 materials listed
+- ✅ **Schema.org structured data:** WebApplication with keywords
+- ✅ **Open Graph tags:** Social sharing optimization
+- ✅ **H1 heading:** "Best Slicer Settings for 3D Printing"
+- ✅ **YouTube link:** Prominent in header for cross-promotion
+
+**No action needed** - These are already in your HTML!
+
+### Step 2: Create OG Image for Social Sharing (30 min)
+
+**Why This Matters:**
+When someone shares your link on Facebook, Twitter, LinkedIn, or Discord, a preview image will appear. This increases click-through rates by 30-40%.
+
+**Specifications:**
+- **Dimensions:** 1200x630 pixels
+- **Format:** PNG (preferred) or JPG
+- **File Size:** <300KB (ideally <200KB)
+- **File Name:** `og-image.png`
+
+**Design Content:**
+```
+Headline: "Best Slicer Settings for 3D Printing"
+Subheadline: "Free Expert Tool - 28 Materials"
+Visual: Screenshot of your app or 3D printing imagery
+Branding: "minimal3dp" logo (if you have one)
+Call-to-action: "orcaslicer.minimal3dp.com"
+```
+
+**Tools to Create:**
+1. **Canva** (Easiest - Free)
+   - Go to canva.com
+   - Search for "Facebook Post" template (1200x630)
+   - Use "3D Printing" or "Technology" theme
+   - Add your text and branding
+   - Download as PNG
+
+2. **Figma** (More Control - Free)
+   - Create 1200x630 frame
+   - Design from scratch
+   - Export as PNG
+
+3. **Use AI Image Generator** (Quick)
+   - Prompt: "Professional banner image for '3D printing slicer settings tool', technology theme, blue gradient, modern minimalist design"
+   - Add text overlay in Canva
+
+**Where to Save:**
+- Save as `/og-image.png` in your project root
+- Vercel will serve it at `https://orcaslicer.minimal3dp.com/og-image.png`
+- Your HTML already references this file (meta tags updated)
+
+**Deploy:**
+```bash
+git add og-image.png
+git commit -m "Add OG image for social sharing"
+git push origin amazon
+```
+
+### Step 3: Create Sitemap.xml (10 min)
+
+**Why This Matters:**
+A sitemap tells Google about all the pages on your site, helping them index faster.
+
+**Create `sitemap.xml` in project root:**
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://orcaslicer.minimal3dp.com/</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Add more URLs here when you create material pages -->
+  <!--
+  <url>
+    <loc>https://orcaslicer.minimal3dp.com/materials/pla</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  -->
+</urlset>
+```
+
+**Deploy:**
+```bash
+git add sitemap.xml
+git commit -m "Add sitemap.xml for SEO"
+git push origin amazon
+```
+
+### Step 4: Create Robots.txt (5 min)
+
+**Why This Matters:**
+Tells search engines what they can and cannot crawl.
+
+**Create `robots.txt` in project root:**
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://orcaslicer.minimal3dp.com/sitemap.xml
+```
+
+**Deploy:**
+```bash
+git add robots.txt
+git commit -m "Add robots.txt for search engines"
+git push origin amazon
+```
+
+### Step 5: Submit to Google Search Console (15 min)
+
+**Why This Matters:**
+This is THE tool for tracking your SEO performance. You'll see:
+- How many people search for your keywords
+- How many click through to your site
+- What position you rank for each keyword
+- Any indexing issues
+
+**Setup Steps:**
+1. Go to https://search.google.com/search-console
+2. Click "Add Property"
+3. Choose "URL prefix" (not "Domain")
+4. Enter: `https://orcaslicer.minimal3dp.com`
+5. Verify ownership using one of these methods:
+   - **HTML file upload** (easiest for Vercel):
+     - Download verification file (`google123abc.html`)
+     - Add to project root
+     - Deploy to Vercel
+     - Click "Verify" in Search Console
+   - **Meta tag** (also easy):
+     - Copy meta tag from Search Console
+     - Add to `<head>` in HTML
+     - Deploy to Vercel
+     - Click "Verify"
+6. Once verified, submit your sitemap:
+   - Go to "Sitemaps" in left menu
+   - Enter: `sitemap.xml`
+   - Click "Submit"
+
+**What to Monitor (Weekly):**
+- **Performance Tab:**
+  - Total clicks (goal: growing each week)
+  - Total impressions (how many times you appear in search)
+  - Average CTR (goal: 5%+)
+  - Average position (goal: top 10, then top 3)
+- **Top Queries:**
+  - Are you ranking for "best slicer settings for 3d printing"?
+  - What other keywords are working?
+- **Pages:**
+  - Which pages get the most traffic?
+  - Are there any indexing errors?
+
+### Step 6: Add FAQ Section to HTML (30 min)
+
+**Why This Matters:**
+FAQ sections help you rank for question-based queries like "what are the best slicer settings for 3d printing?" and can appear as featured snippets in Google.
+
+**Add this section before the closing `</main>` tag in your HTML (around line 2100):**
+
+```html
+<!-- FAQ Section for SEO -->
+<section class="mt-8 bg-gray-800 rounded-lg p-6">
+    <h2 class="text-2xl font-bold mb-4 text-gray-200">Frequently Asked Questions</h2>
+    
+    <div class="space-y-4">
+        <div>
+            <h3 class="text-lg font-semibold text-blue-400 mb-2">What are the best slicer settings for 3D printing?</h3>
+            <p class="text-gray-300">The best slicer settings depend on your material and print goals. For PLA, use 200-220°C hotend, 20-40mm/s speed, 20% infill. For PETG, use 230-250°C, slower speeds, and higher bed temperature. Use our tool above to get personalized recommendations for 28 materials.</p>
+        </div>
+        
+        <div>
+            <h3 class="text-lg font-semibold text-blue-400 mb-2">What are the best OrcaSlicer settings for PLA?</h3>
+            <p class="text-gray-300">For PLA in OrcaSlicer: 210°C hotend, 60°C bed, 50-60mm/s speed, 20% infill, 0.2mm layer height. Adjust based on your printer and priorities (strength, speed, quality). Our tool provides optimized recommendations.</p>
+        </div>
+        
+        <div>
+            <h3 class="text-lg font-semibold text-blue-400 mb-2">How do I optimize 3D print strength?</h3>
+            <p class="text-gray-300">To maximize strength: increase wall thickness (3-4 perimeters), use 40%+ infill, slow print speed to 30-40mm/s, increase temperature slightly, and consider engineering materials like Nylon or carbon fiber composites.</p>
+        </div>
+        
+        <div>
+            <h3 class="text-lg font-semibold text-blue-400 mb-2">What materials does this tool support?</h3>
+            <p class="text-gray-300">We support 28 materials including PLA, PETG, ABS, ASA, Nylon, TPU, PC, PEEK, PEKK, and more. Each material includes temperature recommendations, speed settings, and special requirements (enclosure, hardened nozzle, etc.).</p>
+        </div>
+        
+        <div>
+            <h3 class="text-lg font-semibold text-blue-400 mb-2">Is this tool free to use?</h3>
+            <p class="text-gray-300">Yes! This tool is completely free. We earn a small commission if you purchase recommended products through our Amazon affiliate links, which helps us keep the tool free and updated.</p>
+        </div>
+    </div>
+</section>
+```
+
+**Deploy:**
+```bash
+git add orcaslicer_assistant.html
+git commit -m "Add FAQ section for SEO"
+git push origin amazon
+```
+
+**Expected Results:**
+- ✅ Better rankings for question-based queries
+- ✅ Potential featured snippets in Google
+- ✅ Improved user experience (answers common questions)
+
+---
+
+## 📺 Part 5: YouTube Integration (Drive Traffic from Videos)
+
+**Goal:** Leverage your YouTube channel to drive traffic and build SEO authority
+
+### Step 1: Update YouTube Channel Description (5 min)
+
+**Current Channel:** youtube.com/channel/UCM_8Mv-0S1LnnJpRJLjahaw
+
+**New Channel Description:**
+```
+Free 3D printing tools and guides! 
+
+�🔧 BEST SLICER SETTINGS TOOL (FREE): https://orcaslicer.minimal3dp.com
+Get personalized settings for 28 materials (PLA, PETG, ABS, Nylon, PEEK, and more)
+
+🌐 Main Site: https://minimal3dp.com
+
+Subscribe for:
+• Slicer settings guides
+• Material reviews & comparisons
+• 3D printing tips & tricks
+• Project walkthroughs
+• Troubleshooting help
+
+New video every week!
+```
+
+**Where to Update:**
+1. Go to YouTube Studio
+2. Customization → Basic Info
+3. Paste new description
+4. Click "Publish"
+
+### Step 2: Update YouTube Channel Banner (10 min)
+
+**Add Text to Banner:**
+- "Free Tool: orcaslicer.minimal3dp.com"
+- "Best Slicer Settings for 3D Printing"
+
+**Banner Specifications:**
+- **Dimensions:** 2560x1440 pixels
+- **Safe area (always visible):** 1546x423 pixels (center)
+- **Format:** JPG or PNG
+
+**Quick Option:**
+Use Canva's "YouTube Channel Art" template and add your text overlay.
+
+### Step 3: Add Custom Links to Channel (5 min)
+
+**In YouTube Studio:**
+1. Go to Customization → Basic Info
+2. Scroll to "Links"
+3. Add these custom links:
+   - **Title:** "Free Settings Tool"
+     **URL:** https://orcaslicer.minimal3dp.com
+   - **Title:** "Main Site"
+     **URL:** https://minimal3dp.com
+
+**These links appear:**
+- On your channel banner
+- In your About page
+- Hover over your channel name
+
+### Step 4: Update Video Descriptions (30 min)
+
+**Add this section to ALL your video descriptions:**
+
+```
+━━━━━━━━━━━━━━━━━━━━━
+🔧 FREE TOOL: BEST SLICER SETTINGS
+━━━━━━━━━━━━━━━━━━━━━
+
+Get personalized OrcaSlicer settings for 28 materials:
+👉 https://orcaslicer.minimal3dp.com
+
+Optimize for:
+✅ Strength
+✅ Speed
+✅ Quality
+✅ Accuracy
+
+Perfect for PLA, PETG, ABS, Nylon, Carbon Fiber, PEEK, and more!
+
+━━━━━━━━━━━━━━━━━━━━━
+```
+
+**Place this:**
+- At the top of the description (after your intro)
+- OR in a "Resources" section
+- Make it prominent and easy to find
+
+### Step 5: Pin Comments on Popular Videos (10 min)
+
+**For each video with 1000+ views:**
+
+**Pin this comment:**
+```
+📌 BEST SLICER SETTINGS TOOL (FREE)
+
+Want to know the PERFECT settings for your material?
+👉 https://orcaslicer.minimal3dp.com
+
+28 materials | Expert recommendations | Optimized for your goals
+
+Whether you're printing PLA, PETG, ABS, Nylon, or high-temp materials like PEEK, this free tool gives you personalized settings in seconds!
+```
+
+**Why Pin Comments?**
+- They stay at the top (even with 1000+ comments)
+- Mobile users see them immediately
+- Increases click-through rate by 20-30%
+
+### Step 6: Plan Companion Video (Long-Term)
+
+**Video Idea:** "Best Slicer Settings for 3D Printing - Complete Guide 2025"
+
+**Script Outline:**
+- **Hook (0-15s):** "Struggling with slicer settings? Here's the BEST settings for any material."
+- **Problem (15s-1min):** Common issues (warping, stringing, weak prints)
+- **Solution (1-2min):** Show your tool in action
+- **Material Examples (2-8min):** PLA, PETG, ABS, Nylon settings
+- **Optimization Goals (8-10min):** Strength vs Speed vs Quality
+- **CTA (10min):** "Use the free tool at orcaslicer.minimal3dp.com"
+
+**SEO Optimization:**
+- **Title:** "Best Slicer Settings for 3D Printing - Complete Guide 2025 (OrcaSlicer, PLA, PETG, ABS)"
+- **Thumbnail:** Bold text "BEST SLICER SETTINGS" with material comparison
+- **Tags:** 3d printing, orcaslicer, slicer settings, bambu lab, pla settings, petg settings
+
+**See `SEO_STRATEGY.md` for full video production guide.**
+
+---
+
+## 🔧 Part 6: Environment Variables (For Future PA-API Integration)
 
 When you're ready to add the Python backend (Phases 11-14), you'll need to configure environment variables.
 

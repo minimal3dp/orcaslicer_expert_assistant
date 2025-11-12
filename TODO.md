@@ -9,19 +9,35 @@
 
 **Philosophy:** Ship incremental improvements that generate revenue while building toward PA-API integration. Each phase should be deployable and monetizable.
 
-### 🎯 PHASE 0: IMMEDIATE DEPLOYMENT & MONETIZATION (This Week - 4 hours)
+### 🚀 PHASE 0: IMMEDIATE DEPLOYMENT & MONETIZATION (This Week - 4 hours)
 **Goal:** Get the application live and generating revenue ASAP
 **Revenue Impact:** 🟢 **HIGH** - Enables all future revenue
 **Difficulty:** 🟢 **EASY** - Just deployment + minor tweaks
+**SEO Focus:** ✅ **CRITICAL** - Optimize for "best slicer settings for 3d printing"
 
 - [ ] **CRITICAL:** Deploy current app to Vercel (30 min)
   - Follow `VERCEL_DEPLOYMENT.md` instructions
-  - Set up custom domain (optional but recommended)
+  - Set up custom domain: orcaslicer.minimal3dp.com
   - Enable HTTPS and configure security headers
+- [x] **SEO - COMPLETED:** Optimize HTML for target keyword (30 min)
+  - [x] Updated title: "Best Slicer Settings for 3D Printing"
+  - [x] Added comprehensive meta descriptions
+  - [x] Added Schema.org structured data (WebApplication)
+  - [x] Added Open Graph tags for social sharing
+  - [x] Updated H1 heading with target keyword
+  - [x] Added YouTube channel link in header
+- [ ] **SEO:** Create OG image for social sharing (30 min)
+  - Design 1200x630px image with Canva
+  - Save as `/og-image.png`
+  - Update deployment
+- [ ] **SEO:** Create sitemap.xml and robots.txt (15 min)
+  - See `SEO_STRATEGY.md` for templates
+  - Submit to Google Search Console
 - [ ] **CRITICAL:** Add Google Analytics 4 (30 min)
   - Track page views, material selections
   - Track affiliate link clicks (CTR measurement)
   - Set up conversion goals
+  - **NEW:** Track YouTube referral traffic
 - [ ] **QUICK WIN:** Expand affiliate products to 20/28 materials (2 hours)
   - Current: 14 materials have products
   - Target: 20 materials (71% coverage)
@@ -35,12 +51,26 @@
   - Copy link button
   - Increases viral potential
 
+**SEO Actions (YouTube Integration):**
+- [ ] **HIGH PRIORITY:** Update YouTube channel description (5 min)
+  - Add link to orcaslicer.minimal3dp.com
+  - Add "Best slicer settings tool" in description
+- [ ] **HIGH PRIORITY:** Update YouTube channel banner (10 min)
+  - Add text: "orcaslicer.minimal3dp.com - Free Settings Tool"
+- [ ] **MEDIUM PRIORITY:** Update all video descriptions (30 min)
+  - Add tool link to all existing videos
+  - Pin comment with tool link on popular videos
+
 **Expected Results:**
 - ✅ Live application accessible 24/7
-- ✅ Analytics tracking user behavior
+- ✅ SEO-optimized for "best slicer settings for 3d printing"
+- ✅ YouTube → Web App traffic funnel established
+- ✅ Analytics tracking user behavior + YouTube referrals
 - ✅ 71% material coverage for affiliate recommendations
 - ✅ Baseline for measuring improvement
+- ✅ Searchable on Google within 1-2 weeks
 - 💰 **Estimated Revenue:** $5-10/month (100-200 visitors with 1-2% CTR)
+- 📊 **SEO Baseline:** Start tracking impressions in Google Search Console
 
 ---
 
@@ -48,6 +78,7 @@
 **Goal:** Maximize revenue from static affiliate system before backend work
 **Revenue Impact:** 🟢 **HIGH** - Directly increases conversion rates
 **Difficulty:** 🟢 **EASY** - Pure frontend work, no backend needed
+**SEO Focus:** 📈 **MEDIUM** - Content improvements boost engagement metrics
 
 #### Group 10A: Product Coverage Expansion (2 hours)
 - [ ] Complete affiliate product coverage to 28/28 materials
@@ -84,16 +115,30 @@
   - Product card impressions (which products are seen?)
   - Product card clicks (which products are clicked?)
   - Warning card interactions (do warnings affect purchases?)
+  - **NEW:** YouTube referral tracking (which videos drive traffic?)
+  - **NEW:** Search keyword tracking (organic vs. YouTube)
 - [ ] Create basic dashboard for daily monitoring
 - [ ] Set up weekly email reports
 - [ ] **Revenue Impact:** Data-driven optimization decisions
+
+#### Group 10E: SEO Content Enhancements (NEW - 1 hour)
+- [ ] Add FAQ section to homepage
+  - "What are the best slicer settings for 3D printing?"
+  - "What are the best OrcaSlicer settings for PLA?"
+  - "How do I optimize 3D print strength?"
+  - 10-15 questions total (see SEO_STRATEGY.md)
+- [ ] Add structured data for FAQs (Schema.org)
+- [ ] Improve internal linking (cross-link materials)
+- [ ] **SEO Impact:** Featured snippets, long-tail keyword rankings
 
 **Expected Results:**
 - ✅ 100% material coverage (28/28 with products)
 - ✅ Higher CTR through better product presentation
 - ✅ Seasonal optimization increases relevance
 - ✅ Data-driven insights for continuous improvement
+- ✅ FAQ section improves SEO and user engagement
 - 💰 **Estimated Revenue:** $15-25/month (2-3× improvement from Phase 0)
+- 📊 **SEO Improvement:** +20% organic traffic from FAQ featured snippets
 
 ---
 
@@ -941,6 +986,60 @@ KV_REST_API_TOKEN=...                        # From Vercel dashboard
 - [ ] **ENHANCEMENT:** Multi-region support (Amazon.co.uk, Amazon.de, etc.)
 - [ ] **ENHANCEMENT:** Product comparison tool (side-by-side specs)
 
+### Slicer Compatibility & Multi-Slicer Support (HIGH SEO VALUE - Phase 15)
+**Goal:** Support multiple slicers with slicer-specific terminology  
+**Time:** 6 hours | **SEO Impact:** 🟢 VERY HIGH | **Revenue Impact:** 🟢 HIGH
+
+**Why This Matters for SEO:**
+- Unlocks 6+ slicer-specific keyword variations
+- 5-6× keyword coverage (one tool serves six slicer markets)
+- Reduced competition (few tools support multiple slicers)
+- Better user satisfaction = higher engagement = better rankings
+
+**Target Keywords Unlocked:**
+- "best prusaslicer settings for 3d printing"
+- "cura settings for 3d printing"
+- "orcaslicer settings guide"
+- "bambu studio settings"
+- "simplify3d settings optimization"
+- "superslicer settings for [material]"
+
+**Implementation Tasks:**
+- [ ] **Group 15A: Slicer Selection UI (2 hours)**
+  - Add slicer dropdown: OrcaSlicer, PrusaSlicer, Cura, Bambu Studio, Simplify3D, ideaMaker, KISSlicer
+  - Save slicer preference to localStorage
+  - Update page title dynamically: "Best [Slicer] Settings for 3D Printing"
+  - Add slicer logos/icons for recognition
+
+- [ ] **Group 15B: Terminology Mapping Database (2 hours)**
+  - Create terminology mapping for 50+ common settings
+  - Examples: OrcaSlicer "Sparse infill density" vs Cura "Infill Density" vs Simplify3D "Internal Fill Percentage"
+  - Add slicer-specific tooltips
+  - Document all terminology differences
+
+- [ ] **Group 15C: Dynamic Recommendations (1 hour)**
+  - Update recommendations to use selected slicer's terminology
+  - Add slicer-specific setting paths (e.g., "Print Settings → Speed")
+  - Highlight terminology differences
+  - Add "Copy to clipboard" for slicer profiles
+
+- [ ] **Group 15D: SEO Landing Pages (1 hour)**
+  - Support URL parameters: `?slicer=prusaslicer`
+  - Auto-select slicer from URL
+  - Update meta tags dynamically per slicer
+  - Create slicer-specific landing pages: `/prusaslicer`, `/cura`, `/bambu-studio`
+
+**Expected Results:**
+- ✅ +30% traffic Month 1 (broader targeting)
+- ✅ +50% traffic Month 3 (multiple rankings)
+- ✅ +100% traffic Month 6 (dominating multiple keywords)
+- ✅ Higher conversion (familiar terminology)
+
+**YouTube Content Opportunities:**
+- "Best PrusaSlicer Settings for 3D Printing (2025 Guide)"
+- "Cura vs OrcaSlicer vs PrusaSlicer - Settings Comparison"
+- "Best Bambu Studio Settings for Bambu Lab Printers"
+
 
 ## ✅ COMPLETED TASKS
 
@@ -960,21 +1059,25 @@ KV_REST_API_TOKEN=...                        # From Vercel dashboard
 - [x] **Test all 28 materials** with warning system
 
 
-## 📝 NOTES
+### 📝 NOTES
 
 ### Success Metrics
+- **Phase 0:** ✅ **SEO OPTIMIZED** - Target keyword implemented, YouTube integration ready
 - **Phase 1:** ✅ **EXCEEDED** - 16 new materials added (target: 6-8), 100% tested
 - **Phase 2:** ✅ **COMPLETE** - Engineering materials added, composite detection working
 - **Phase 3:** ✅ **COMPLETE** - High-performance materials added, warnings working
 - **Phase 5:** ⏳ **PENDING** - Data quality enhancement needed
 - **Phase 7:** ✅ **MAJOR MILESTONE** - Warning system complete (10 warning types)
 - **Overall:** Current: 28 materials, Target: 90+ materials, 95%+ accuracy
+- **SEO Status:** Optimized for "best slicer settings for 3d printing" (Nov 12, 2025)
 
 ### Time Estimates
 - **Total Development Time (Original):** 50-60 hours
 - **Time Invested (Nov 2025):** ~12 hours (material expansion + warning system)
+- **Time Invested (SEO):** ~1 hour (meta tags, structured data, heading updates)
 - **Remaining Development Time:** ~40-45 hours
 - **Quick Wins (Phase 1):** ✅ **COMPLETED** in 1 weekend
+- **SEO Quick Wins (Phase 0):** ✅ **COMPLETED** in 1 hour
 
 ### Data Quality Goals
 **Current Status:**
@@ -990,6 +1093,43 @@ KV_REST_API_TOKEN=...                        # From Vercel dashboard
 - Only major gap: elongation_at_break_pct (0/28 materials)
 - All other TDS properties well-documented
 - Phase 5B targets filling elongation data through manufacturer TDS research
+
+### SEO Strategy (NEW - November 12, 2025)
+**Target Keyword:** "best slicer settings for 3d printing"
+**Source:** YouTube Analytics - Channel Trends (youtube.com/channel/UCM_8Mv-0S1LnnJpRJLjahaw)
+
+**Completed SEO Optimizations:**
+- ✅ Title tag: "Best Slicer Settings for 3D Printing - OrcaSlicer Expert Assistant"
+- ✅ Meta description: Target keyword + material list + value prop
+- ✅ H1 heading: "Best Slicer Settings for 3D Printing"
+- ✅ Schema.org structured data: WebApplication with keywords
+- ✅ Open Graph tags: Social sharing optimization
+- ✅ YouTube channel link: Prominent in header
+- ✅ Canonical URL: Prevents duplicate content issues
+
+**Pending SEO Actions:**
+- [ ] OG image (1200x630px) for social sharing
+- [ ] Sitemap.xml and robots.txt
+- [ ] Google Search Console setup
+- [ ] YouTube channel description update
+- [ ] FAQ section for long-tail keywords
+- [ ] Material landing pages (28 pages for "[material] settings")
+
+**YouTube Strategy:**
+- Video companion content planned (see `SEO_STRATEGY.md`)
+- Target: "Best Slicer Settings for 3D Printing - Complete Guide 2025"
+- Cross-promotion: YouTube videos → web app traffic
+- End screens and cards linking to tool
+- Pin comments with tool link
+
+**Expected SEO Impact (3 months):**
+- 10,000+ impressions/month in Google Search Console
+- 500+ organic clicks/month (5% CTR)
+- Top 10 ranking for "best slicer settings for 3d printing"
+- 40% of traffic from organic search
+- 30% of traffic from YouTube referrals
+
+See `SEO_STRATEGY.md` for comprehensive plan.
 
 ### Priority Order Rationale (Revenue-First Approach)
 **NEW STRATEGY:** Monetize immediately, then enhance iteratively
@@ -1017,27 +1157,42 @@ KV_REST_API_TOKEN=...                        # From Vercel dashboard
 
 ### Next Recommended Actions (Revenue-First Priority)
 1. 🔴 **CRITICAL - DO FIRST:** Deploy to Vercel (30 min) - See `VERCEL_DEPLOYMENT.md`
-2. 🔴 **CRITICAL - DO SECOND:** Add Google Analytics 4 tracking (30 min)
-3. 🟢 **QUICK WIN:** Expand affiliate products to 20/28 materials (2 hours)
-4. 🟢 **QUICK WIN:** Complete affiliate coverage to 28/28 materials (2 hours)
-5. 🟡 **HIGH PRIORITY:** Add material search/filter functionality (Phase 7A) - 2 hours
-6. 🟡 **MEDIUM PRIORITY:** Add localStorage for persistent warning dismissals - 1 hour
-7. 🟡 **MEDIUM PRIORITY:** Research elongation_at_break_pct (Phase 5B) - See `MISSING_TDS_DATA.md` - 4 hours
-8. ⚪ **FUTURE:** Begin Phase 11 - Python backend for PA-API (8 hours)
-9. ⚪ **FUTURE:** Create merge_extracted_to_csv.py script with tests
-10. ⚪ **LOWER PRIORITY:** Add brand-specific material variants
+2. 🔴 **CRITICAL - SEO:** Create OG image + sitemap (45 min) - See `SEO_STRATEGY.md`
+3. 🔴 **CRITICAL - YOUTUBE:** Update channel with tool links (15 min) - Description + banner
+4. 🟢 **QUICK WIN:** Add Google Analytics 4 tracking (30 min)
+5. 🟢 **QUICK WIN:** Expand affiliate products to 20/28 materials (2 hours)
+6. 🟢 **QUICK WIN:** Complete affiliate coverage to 28/28 materials (2 hours)
+7. 🟡 **HIGH PRIORITY:** Add FAQ section for SEO (1 hour) - See `SEO_STRATEGY.md`
+8. 🟡 **HIGH PRIORITY:** Add material search/filter functionality (Phase 7A) - 2 hours
+9. 🟡 **MEDIUM PRIORITY:** Add localStorage for persistent warning dismissals - 1 hour
+10. 🟡 **MEDIUM PRIORITY:** Research elongation_at_break_pct (Phase 5B) - See `MISSING_TDS_DATA.md` - 4 hours
+11. 🔵 **SEO CONTENT:** Create "Best Slicer Settings" YouTube video - 3-4 hours production
+12. 🔵 **SEO CONTENT:** Create material landing pages (start with top 5) - 2 hours
+13. ⚪ **FUTURE:** Begin Phase 11 - Python backend for PA-API (8 hours)
+14. ⚪ **FUTURE:** Create merge_extracted_to_csv.py script with tests
+15. ⚪ **LOWER PRIORITY:** Add brand-specific material variants
 
 **Priority Rationale:**
-- 🔴 **Deploy first** → Application must be live to generate revenue
+- 🔴 **Deploy + SEO first** → Application must be live AND findable to generate revenue
 - 🟢 **Static enhancements** → High ROI, low effort (8 hours → 2-3× revenue)
-- 🟡 **User engagement** → Medium ROI, low effort (keeps users on site longer)
+- 🟡 **User engagement + SEO content** → Medium ROI, builds authority
+- 🔵 **Content creation** → Long-term SEO investment, YouTube traffic funnel
 - ⚪ **Backend/PA-API** → High effort, delayed ROI (requires 20+ hours development)
 
 **Revenue Timeline:**
-- **Week 1:** Deploy + basic affiliate expansion → $5-10/month
-- **Week 2:** Complete static enhancements → $15-25/month
-- **Week 3:** User engagement features → $25-35/month
-- **Weeks 4-9:** PA-API integration → $50-100/month (with dynamic pricing/images)
+- **Week 1:** Deploy + SEO optimization + basic affiliate expansion → $5-10/month
+- **Week 2:** Complete static enhancements + YouTube video → $15-25/month
+- **Week 3:** User engagement features + FAQ content → $25-35/month
+- **Month 2:** YouTube traffic ramps up + Google rankings improve → $40-60/month
+- **Months 3-6:** Material landing pages + additional videos → $60-100/month
+- **Months 7-9:** PA-API integration (if justified by data) → $100-200/month
+
+**SEO Timeline:**
+- **Week 1:** Site live, submitted to Google Search Console
+- **Week 2-4:** Google indexing, initial rankings (pages 3-5)
+- **Month 2:** Rankings improve (pages 1-2) as YouTube videos drive traffic
+- **Month 3:** Target top 10 for "best slicer settings for 3d printing"
+- **Month 6:** Target top 3 with comprehensive content + backlinks
 
 
 **Current Status:** The application has evolved significantly with 28 materials and an intelligent warning system. The foundation is solid for continued expansion. Focus should shift to data quality enhancement and additional UI features (search/filter, tier badges).
