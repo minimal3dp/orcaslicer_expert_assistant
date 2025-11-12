@@ -1,0 +1,329 @@
+{
+  "PLA": {
+    "common": {
+      "nozzle_temperature": 210,
+      "bed_temperature": 60,
+      "print_speed": 60,
+      "fan_speed": 100,
+      "retraction_distance_mm": 5.0,
+      "retraction_speed_mm_s": 45,
+      "first_layer_speed_pct": 50
+    },
+    "fea": {
+      "Material_Youngs_Modulus_GPa": 3.5,
+      "Material_Tensile_Yield_Strenght_MPa": 50,
+      "Material_Poissons_Ratio": 0.36
+    },
+    "thermal": {
+      "thermal_expansion_coefficient": 68,
+      "thermal_conductivity_W_mK": 0.13,
+      "specific_heat_capacity_J_gK": 1.8
+    },
+    "creep_resistance": "Low - Not recommended for constant load applications",
+    "fatigue": {
+      "cycles_to_failure_at_50pct_UTS": 10000,
+      "fatigue_strength_MPa": 32,
+      "notes": "Prone to creep under sustained load"
+    },
+    "density_g_cm3": 1.24,
+    "properties": {
+      "tensile_strength_MPa": 65.0,
+      "tensile_modulus_MPa": 2850.0,
+      "elongation_at_break_pct": 7.0,
+      "HDT_C": 56.0,
+      "impact_strength_kJ_m2": 6.5,
+      "density_g_cm3": 1.23
+    }
+  },
+  "ABS": {
+    "common": {
+      "nozzle_temperature": 245,
+      "bed_temperature": 100,
+      "print_speed": 60,
+      "fan_speed": 30,
+      "retraction_distance_mm": 5.0,
+      "retraction_speed_mm_s": 45,
+      "first_layer_speed_pct": 50
+    },
+    "fea": {
+      "Material_Youngs_Modulus_GPa": 2.3,
+      "Material_Tensile_Yield_Strenght_MPa": 40,
+      "Material_Poissons_Ratio": 0.35
+    },
+    "thermal": {
+      "thermal_expansion_coefficient": 90,
+      "thermal_conductivity_W_mK": 0.17,
+      "specific_heat_capacity_J_gK": 1.5
+    },
+    "creep_resistance": "Moderate - Good for general-purpose applications",
+    "fatigue": {
+      "cycles_to_failure_at_50pct_UTS": 100000,
+      "fatigue_strength_MPa": 21,
+      "notes": "Better creep resistance than PLA, moderate fatigue performance"
+    },
+    "density_g_cm3": 1.04,
+    "properties": {
+      "tensile_strength_MPa": 43.0,
+      "tensile_modulus_MPa": 2300.0,
+      "elongation_at_break_pct": 3.0,
+      "HDT_C": 98.0,
+      "impact_strength_kJ_m2": 20.0,
+      "density_g_cm3": 1.04
+    }
+  },
+  "PETG": {
+    "common": {
+      "nozzle_temperature": 245,
+      "bed_temperature": 80,
+      "print_speed": 50,
+      "fan_speed": 50,
+      "retraction_distance_mm": 4.5,
+      "retraction_speed_mm_s": 40,
+      "first_layer_speed_pct": 50
+    },
+    "fea": {
+      "Material_Youngs_Modulus_GPa": 2.1,
+      "Material_Tensile_Yield_Strenght_MPa": 50,
+      "Material_Poissons_Ratio": 0.38
+    },
+    "thermal": {
+      "thermal_expansion_coefficient": 60,
+      "thermal_conductivity_W_mK": 0.29,
+      "specific_heat_capacity_J_gK": 1.0
+    },
+    "creep_resistance": "Good - Suitable for moderate load applications",
+    "fatigue": {
+      "cycles_to_failure_at_50pct_UTS": 500000,
+      "fatigue_strength_MPa": 26,
+      "notes": "Excellent creep resistance, good for functional parts"
+    },
+    "density_g_cm3": 1.27,
+    "properties": {
+      "tensile_strength_MPa": 53.0,
+      "tensile_modulus_MPa": 2080.0,
+      "elongation_at_break_pct": 6.0,
+      "HDT_C": 70.0,
+      "impact_strength_kJ_m2": 7.2,
+      "density_g_cm3": 1.27
+    }
+  },
+  "Nylon": {
+    "common": {
+      "nozzle_temperature": 255,
+      "bed_temperature": 85,
+      "print_speed": 40,
+      "fan_speed": 20,
+      "retraction_distance_mm": 6.0,
+      "retraction_speed_mm_s": 40,
+      "first_layer_speed_pct": 50
+    },
+    "fea": {
+      "Material_Youngs_Modulus_GPa": 1.6,
+      "Material_Tensile_Yield_Strenght_MPa": 46,
+      "Material_Poissons_Ratio": 0.39
+    },
+    "thermal": {
+      "thermal_expansion_coefficient": 80,
+      "thermal_conductivity_W_mK": 0.25,
+      "specific_heat_capacity_J_gK": 1.7
+    },
+    "creep_resistance": "Excellent - Ideal for constant load applications",
+    "fatigue": {
+      "cycles_to_failure_at_50pct_UTS": 1000000,
+      "fatigue_strength_MPa": 37,
+      "notes": "Outstanding creep and fatigue resistance, hygroscopic"
+    },
+    "density_g_cm3": 1.14,
+    "properties": {
+      "tensile_strength_MPa": 75.0,
+      "tensile_modulus_MPa": 1600.0,
+      "elongation_at_break_pct": 50.0,
+      "HDT_C": 85.0,
+      "impact_strength_kJ_m2": 10.0,
+      "density_g_cm3": 1.14
+    }
+  },
+  "PC (Polycarbonate)": {
+    "common": {
+      "nozzle_temperature": 280,
+      "bed_temperature": 110,
+      "print_speed": 30,
+      "fan_speed": 0
+    },
+    "fea": {
+      "Material_Youngs_Modulus_GPa": 2.4,
+      "Material_Tensile_Yield_Strenght_MPa": 65,
+      "Material_Poissons_Ratio": 0.38
+    },
+    "fatigue": null,
+    "density_g_cm3": 1.2
+  },
+  "TPU": {
+    "common": {
+      "nozzle_temperature": 225,
+      "bed_temperature": 60,
+      "print_speed": 25,
+      "fan_speed": 80,
+      "retraction_distance_mm": 2.0,
+      "retraction_speed_mm_s": 25,
+      "first_layer_speed_pct": 50
+    },
+    "fea": {
+      "Material_Youngs_Modulus_GPa": 0.026,
+      "Material_Tensile_Yield_Strenght_MPa": 6.9,
+      "Material_Poissons_Ratio": 0.5
+    },
+    "thermal": {
+      "thermal_expansion_coefficient": 150,
+      "thermal_conductivity_W_mK": 0.16,
+      "specific_heat_capacity_J_gK": 1.8
+    },
+    "creep_resistance": "Excellent - Elastomeric behavior, recovers from deformation",
+    "fatigue": {
+      "cycles_to_failure_at_50pct_UTS": 5000000,
+      "fatigue_strength_MPa": 13,
+      "notes": "Exceptional fatigue resistance due to elastomeric nature"
+    },
+    "density_g_cm3": 1.21,
+    "properties": {
+      "tensile_strength_MPa": 26.0,
+      "tensile_modulus_MPa": 26.0,
+      "elongation_at_break_pct": 450.0,
+      "HDT_C": 55.0,
+      "impact_strength_kJ_m2": 60.0,
+      "density_g_cm3": 1.21
+    }
+  },
+  "ASA": {
+    "common": {
+      "nozzle_temperature": 250,
+      "bed_temperature": 100,
+      "print_speed": 55,
+      "fan_speed": 30,
+      "retraction_distance_mm": 5.0,
+      "retraction_speed_mm_s": 45,
+      "first_layer_speed_pct": 50
+    },
+    "fea": {
+      "Material_Youngs_Modulus_GPa": 2.15,
+      "Material_Tensile_Yield_Strenght_MPa": 42,
+      "Material_Poissons_Ratio": 0.35
+    },
+    "thermal": {
+      "thermal_expansion_coefficient": 85,
+      "thermal_conductivity_W_mK": 0.18,
+      "specific_heat_capacity_J_gK": 1.5
+    },
+    "creep_resistance": "Good - UV and weather resistant, better than ABS",
+    "fatigue": {
+      "cycles_to_failure_at_50pct_UTS": 150000,
+      "fatigue_strength_MPa": 24,
+      "notes": "Excellent outdoor durability, good creep resistance"
+    },
+    "density_g_cm3": 1.06,
+    "properties": {
+      "tensile_strength_MPa": 49.5,
+      "tensile_modulus_MPa": 2150.0,
+      "elongation_at_break_pct": 17.5,
+      "HDT_C": 95.0,
+      "impact_strength_kJ_m2": 41.0,
+      "density_g_cm3": 1.06
+    }
+  },
+  "PEI__ULTEM_9085": {
+    "common": {
+      "nozzle_temperature": null,
+      "bed_temperature": null,
+      "print_speed": null,
+      "fan_speed": null
+    },
+    "properties": {
+      "tensile_strength_MPa": 66.0,
+      "tensile_modulus_MPa": 2465.0,
+      "elongation_at_break_pct": 3.6500000000000004,
+      "HDT_C": 165.0,
+      "Tg_C": 177.0,
+      "density_g_cm3": 1.27
+    }
+  },
+  "PEKK": {
+    "common": {
+      "nozzle_temperature": null,
+      "bed_temperature": null,
+      "print_speed": null,
+      "fan_speed": null
+    },
+    "properties": {
+      "tensile_strength_MPa": 105.0,
+      "tensile_modulus_MPa": 3205.0,
+      "elongation_at_break_pct": 9.5,
+      "HDT_C": 247.0,
+      "Tg_C": 162.0,
+      "density_g_cm3": 1.28
+    }
+  },
+  "PEEK": {
+    "common": {
+      "nozzle_temperature": 400,
+      "bed_temperature": 140,
+      "print_speed": 30,
+      "fan_speed": 0,
+      "retraction_distance_mm": 3.0,
+      "retraction_speed_mm_s": 30,
+      "first_layer_speed_pct": 50
+    },
+    "fea": {
+      "Material_Youngs_Modulus_GPa": 3.72,
+      "Material_Tensile_Yield_Strenght_MPa": 92,
+      "Material_Poissons_Ratio": 0.38
+    },
+    "thermal": {
+      "thermal_expansion_coefficient": 47,
+      "thermal_conductivity_W_mK": 0.25,
+      "specific_heat_capacity_J_gK": 1.3
+    },
+    "creep_resistance": "Excellent - Superior high-temperature performance",
+    "fatigue": {
+      "cycles_to_failure_at_50pct_UTS": 2000000,
+      "fatigue_strength_MPa": 50,
+      "notes": "Exceptional creep resistance, biocompatible, aerospace-grade"
+    },
+    "density_g_cm3": 1.31,
+    "properties": {
+      "tensile_strength_MPa": 101.0,
+      "tensile_modulus_MPa": 3720.0,
+      "elongation_at_break_pct": 27.0,
+      "HDT_C": 216.5,
+      "Tg_C": 143.0,
+      "density_g_cm3": 1.31
+    }
+  },
+  "TPE__E_G___85A": {
+    "common": {
+      "nozzle_temperature": null,
+      "bed_temperature": null,
+      "print_speed": null,
+      "fan_speed": null
+    },
+    "properties": {
+      "shore_hardness": "85A",
+      "tensile_strength_MPa": 8.0,
+      "elongation_at_break_pct": 350.0,
+      "density_g_cm3": 1.0
+    }
+  },
+  "TPU__E_G___95A": {
+    "common": {
+      "nozzle_temperature": null,
+      "bed_temperature": null,
+      "print_speed": null,
+      "fan_speed": null
+    },
+    "properties": {
+      "shore_hardness": "95A",
+      "tensile_strength_MPa": 34.5,
+      "elongation_at_break_pct": 450.0,
+      "density_g_cm3": 1.21
+    }
+  }
+}

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrcaSlicer Expert Assistant</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Use Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom slider track */
+        input[type="range"]::-webkit-slider-runnable-track {
+            height: 8px;
+            border-radius: 4px;
+        }
+
+        input[type="range"]::-moz-range-track {
+            height: 8px;
+            border-radius: 4px;
+        }
+
+        /* Custom slider thumb */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-top: -6px;
+            /* Center thumb on track */
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: none;
+        }
+    </style>
+    <!-- Import Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gray-900 text-gray-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-3xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1
+                class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">
+                OrcaSlicer Expert Assistant
+            </h1>
+            <p class="text-lg text-gray-400 mt-2">
+                Get setting recommendations based on your print goals.
+            </p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="bg-gray-800 rounded-2xl shadow-2xl p-6 md:p-8">
+
+            <!-- Step 1: Material Selection -->
+            <div class="mb-6">
+                <label for="material-select" class="block text-lg font-semibold mb-2 text-gray-200">
+                    Step 1: Select Your Material
+                </label>
+                <select id="material-select"
+                    class="w-full p-3 bg-gray-700 border-2 border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                    <!-- Options will be dynamically populated by JavaScript -->
+                    <option value="">Loading materials...</option>
+                </select>
+            </div>
+
+            <!-- Step 2: Priority Ranker -->
+            <div class="mb-8">
+                <label class="block text-lg font-semibold mb-3 text-gray-200">
+                    Step 2: Rank Your Priorities (0 = Not Important, 100 = Max Priority)
+                </label>
+
+                <!-- Mechanical Strength Slider -->
+                <div class="mb-4 p-4 border border-gray-700 rounded-lg">
+                    <div class="flex justify-between items-center mb-1">
+                        <label for="strength-slider" class="font-medium text-gray-300">Mechanical Strength</label>
+                        <span id="strength-value"
+                            class="text-sm font-semibold text-blue-300 bg-blue-900/50 px-2 py-0.5 rounded-md">50%</span>
+                    </div>
+                    <input type="range" id="strength-slider" min="0" max="100" value="50"
+                        class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500">
+                    <!-- Strength Type Selector -->
+                    <div id="strength-type-container" class="mt-3">
+                        <label for="strength-type-select" class="block text-sm font-medium mb-1 text-gray-400">Primary
+                            Strength Goal:</label>
+                        <select id="strength-type-select"
+                            class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-gray-100 focus:outline-none focus:border-blue-500 text-sm">
+                            <option value="tensile_z">Tensile Strength (Z-Axis / Layer Adhesion)</option>
+                            <option value="xy_strength">XY-Plane Strength (In-plane)</option>
+                            <option value="flexural">Flexural Strength (Bending)</option>
+                            <option value="compressive">Compressive Strength (Crushing)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Build Time Slider -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-1">
+                        <label for="build-time-slider" class="font-medium text-gray-300">Build Time (Speed)</label>
+                        <span id="build-time-value"
+                            class="text-sm font-semibold text-green-300 bg-green-900/50 px-2 py-0.5 rounded-md">50%</span>
+                    </div>
+                    <input type="range" id="build-time-slider" min="0" max="100" value="50"
+                        class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-green-500">
+                </div>
+
+                <!-- Surface Roughness Slider -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-1">
+                        <label for="surface-roughness-slider" class="font-medium text-gray-300">Surface Roughness
+                            (Quality)</label>
+                        <span id="surface-roughness-value"
+                            class="text-sm font-semibold text-purple-300 bg-purple-900/50 px-2 py-0.5 rounded-md">50%</span>
+                    </div>
+                    <input type="range" id="surface-roughness-slider" min="0" max="100" value="50"
+                        class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-500">
+                </div>
+
+                <!-- Dimensional Accuracy Slider -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-1">
+                        <label for="accuracy-slider" class="font-medium text-gray-300">Dimensional Accuracy</label>
+                        <span id="accuracy-value"
+                            class="text-sm font-semibold text-orange-300 bg-orange-900/50 px-2 py-0.5 rounded-md">50%</span>
+                    </div>
+                    <input type="range" id="accuracy-slider" min="0" max="100" value="50"
+                        class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-orange-500">
+                </div>
+            </div>
+
+            <!-- Step 3: Generate Button -->
+            <button id="generate-button"
+                class="w-full text-lg font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg px-5 py-3 transition-all duration-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800">
+                Get Recommendations
+            </button>
+
+        </main>
+
+        <!-- Step 4: Results Container -->
+        <div id="results-container" class="mt-8 hidden">
+            <!-- This will be populated by JavaScript -->
+        </div>
+
+    </div>
+
+    <script>
+        // --- This is the "Knowledge Base" synthesized from your documents ---
+
+        // Load the full materials JSON you provided
+        const materialsData = {
+            "PLA": { "common": { "nozzle_temperature": 210, "bed_temperature": 60, "print_speed": 60, "fan_speed": 100 }, "properties": { "tensile_strength_MPa": 65.0, "tensile_modulus_MPa": 2850.0, "elongation_at_break_pct": 7.0, "HDT_C": 56.0, "Tg_C": 60.0, "density_g_cm3": 1.24 }, "notes": "Easy to print, good all-rounder, but low temp resistance. Prone to creep." },
+            "PLA_CF": { "common": { "nozzle_temperature": 230, "bed_temperature": 60, "print_speed": 50, "fan_speed": 100 }, "properties": { "tensile_strength_MPa": 80.0, "tensile_modulus_MPa": 5500.0, "elongation_at_break_pct": 1.5, "HDT_C": 75.0, "Tg_C": 60.0, "density_g_cm3": 1.35 }, "notes": "Stiff and strong, but brittle. Requires hardened nozzle. Good for structural parts without impact." },
+            "PETG": { "common": { "nozzle_temperature": 240, "bed_temperature": 70, "print_speed": 50, "fan_speed": 50 }, "properties": { "tensile_strength_MPa": 50.0, "tensile_modulus_MPa": 2000.0, "elongation_at_break_pct": 20.0, "HDT_C": 70.0, "Tg_C": 80.0, "density_g_cm3": 1.27 }, "notes": "Durable, chemical resistant, good layer adhesion. Prone to stringing. Needs drying." },
+            "PETG_CF": { "common": { "nozzle_temperature": 250, "bed_temperature": 80, "print_speed": 50, "fan_speed": 50 }, "properties": { "tensile_strength_MPa": 75.0, "tensile_modulus_MPa": 6000.0, "elongation_at_break_pct": 2.0, "HDT_C": 85.0, "Tg_C": 80.0, "density_g_cm3": 1.4 }, "notes": "Very stiff, high temp resistance. Brittle. Requires hardened nozzle. Needs drying." },
+            "ABS": { "common": { "nozzle_temperature": 250, "bed_temperature": 100, "print_speed": 60, "fan_speed": 20 }, "properties": { "tensile_strength_MPa": 45.0, "tensile_modulus_MPa": 2100.0, "elongation_at_break_pct": 15.0, "HDT_C": 95.0, "Tg_C": 105.0, "density_g_cm3": 1.04 }, "notes": "Tough, high temp resistance. Prone to warping, requires an enclosure. Emits VOCs." },
+            "ASA": { "common": { "nozzle_temperature": 250, "bed_temperature": 100, "print_speed": 60, "fan_speed": 20 }, "properties": { "tensile_strength_MPa": 50.0, "tensile_modulus_MPa": 2200.0, "elongation_at_break_pct": 12.0, "HDT_C": 98.0, "Tg_C": 108.0, "density_g_cm3": 1.07 }, "notes": "Like ABS but with UV resistance. Ideal for outdoor parts. Requires an enclosure." },
+            "PC": { "common": { "nozzle_temperature": 270, "bed_temperature": 110, "print_speed": 40, "fan_speed": 30 }, "properties": { "tensile_strength_MPa": 60.0, "tensile_modulus_MPa": 2300.0, "elongation_at_break_pct": 50.0, "HDT_C": 135.0, "Tg_C": 145.0, "density_g_cm3": 1.2 }, "notes": "Extremely strong, high temp resistance. Very difficult to print (warping). Must be very dry." },
+            "PA6_CF": { "common": { "nozzle_temperature": 280, "bed_temperature": 90, "print_speed": 50, "fan_speed": 30 }, "properties": { "tensile_strength_MPa": 120.0, "tensile_modulus_MPa": 8000.0, "elongation_at_break_pct": 3.0, "HDT_C": 180.0, "Tg_C": 70.0, "density_g_cm3": 1.25 }, "notes": "High strength and stiffness. Very hygroscopic (must be dried). Requires hardened nozzle." },
+            "PA12_CF": { "common": { "nozzle_temperature": 290, "bed_temperature": 100, "print_speed": 50, "fan_speed": 30 }, "properties": { "tensile_strength_MPa": 110.0, "tensile_modulus_MPa": 7500.0, "elongation_at_break_pct": 4.0, "HDT_C": 150.0, "Tg_C": 80.0, "density_g_cm3": 1.15 }, "notes": "Easier to print than PA6-CF, less hygroscopic. Excellent layer adhesion. Requires hardened nozzle." },
+            "ULTEM_9085": { "common": { "nozzle_temperature": 360, "bed_temperature": 170, "print_speed": 30, "fan_speed": 0 }, "properties": { "tensile_strength_MPa": 101.0, "tensile_modulus_MPa": 3720.0, "elongation_at_break_pct": 27.0, "HDT_C": 216.5, "Tg_C": 143.0, "density_g_cm3": 1.31 }, "notes": "Aerospace grade. High-temp, high-strength. Requires specialized high-temp printer." },
+            "TPU_95A": { "common": { "nozzle_temperature": 220, "bed_temperature": 50, "print_speed": 30, "fan_speed": 80 }, "properties": { "tensile_strength_MPa": 30.0, "tensile_modulus_MPa": 100.0, "elongation_at_break_pct": 500.0, "HDT_C": 40.0, "Tg_C": -40.0, "density_g_cm3": 1.21 }, "notes": "Flexible. Must be printed slowly. Retraction tuning is critical. Very hygroscopic." },
+            "TPE_85A": { "common": { "nozzle_temperature": 230, "bed_temperature": 50, "print_speed": 25, "fan_speed": 80 }, "properties": { "tensile_strength_MPa": 15.0, "tensile_modulus_MPa": 50.0, "elongation_at_break_pct": 600.0, "HDT_C": 35.0, "Tg_C": -50.0, "density_g_cm3": 1.15 }, "notes": "Very flexible (softer than TPU 95A). Extremely slow printing. Direct drive extruder required." }
+        };
+
+        // Expanded knowledge base mapping goals to settings
+        const knowledgeBase = {
+            goals: {
+                // Settings for Z-AXIS TENSILE STRENGTH
+                'tensile_z': [
+                    { setting: "Layer Height", value: "0.12 - 0.16mm", note: "LOWER layer height increases Z-axis (layer) adhesion and strength.", tradeoff: "Dramatically increases print time." },
+                    { setting: "Temperature", value: "+10-15°C (from baseline)", note: "Printing hotter creates better layer-to-layer fusion, maximizing Z-axis strength.", tradeoff: "Increases stringing, reduces overhang/bridging quality." },
+                    { setting: "Print Speed (All)", value: "40 - 60 mm/s", note: "Slower printing allows for better melting and fusion between layers.", tradeoff: "Significantly increases print time." }
+                ],
+                // Settings for XY-PLANE STRENGTH
+                'xy_strength': [
+                    { setting: "Wall Loops", value: "4-8", note: "This is the *primary* driver of XY (in-plane) strength. More is stronger.", tradeoff: "Increases time and material cost." },
+                    { setting: "Line Width (Inner/Infill)", value: "110-125% (of nozzle)", note: "Wider lines (e.g., 0.5mm on 0.4mm nozzle) fuse better and create stronger parts.", tradeoff: "May require slightly higher temps to maintain flow." },
+                    { setting: "Infill/Wall Overlap", value: "25-30%", note: "Increases the bond between the infill and the inner walls.", tradeoff: "Can cause over-extrusion at corners if set too high." }
+                ],
+                // Settings for FLEXURAL STRENGTH
+                'flexural': [
+                    { setting: "Wall Loops", value: "4-6", note: "Bending strength relies heavily on strong outer perimeters.", tradeoff: "Increases time and material cost." },
+                    { setting: "Infill %", value: "30-50%", note: "More infill provides internal support against bending.", tradeoff: "Increases time and material cost." },
+                    { setting: "Infill Pattern", value: "Gyroid or Cubic", note: "Provides good multi-directional support against bending forces.", tradeoff: "Gyroid can be slower to print." }
+                ],
+                // Settings for COMPRESSIVE STRENGTH
+                'compressive': [
+                    { setting: "Infill %", value: "40-80%", note: "This is the *primary* driver of compressive strength. More is stronger.", tradeoff: "Dramatically increases time and material cost." },
+                    { setting: "Infill Pattern", value: "Cubic, Grid, or Triangles", note: "These patterns provide the best vertical support.", tradeoff: "Can be slower to print." },
+                    { setting: "Wall Loops", value: "3-5", note: "Walls also contribute significantly to compressive load.", tradeoff: "Increases time and material cost." }
+                ],
+                // Settings for BUILD TIME (SPEED)
+                'build_time': [
+                    { setting: "Layer Height", value: "0.24 - 0.32mm (max 75% of nozzle)", note: "This is the *primary* driver of print speed.", tradeoff: "Reduces Z-axis strength and visual quality (visible layer lines)." },
+                    { setting: "Speed: Sparse Infill", value: "150-300+ mm/s", note: "Huge time saver. Set as high as your printer can handle.", tradeoff: "Can reduce infill quality, but often doesn't matter." },
+                    { setting: "Speed: Inner Wall", value: "100-150 mm/s", note: "Print inner walls faster than the outer wall.", tradeoff: "None, as long as outer wall is slow." },
+                    { setting: "Infill Pattern", value: "Lightning or Rectilinear", note: "These patterns use simpler, faster movements. Lightning is fastest.", tradeoff: "Weaker than Gyroid. Lightning offers no structural support." },
+                    { setting: "Acceleration", value: "5000-10000+ mm/s²", note: "Higher acceleration (if printer is tuned) is key to *achieving* high speeds.", tradeoff: "Can cause 'ringing' artifacts if set too high for the hardware." }
+                ],
+                // Settings for SURFACE ROUGHNESS (QUALITY)
+                'surface_roughness': [
+                    { setting: "Layer Height", value: "0.08 - 0.12mm", note: "This is the *primary* driver of high-detail, smooth-looking prints.", tradeoff: "Dramatically increases print time." },
+                    { setting: "Speed: Outer Wall", value: "40-60 mm/s", note: "A slow, steady outer wall speed is critical for a clean surface finish.", tradeoff: "Increases print time." },
+                    { setting: "Seam Position", value: "Aligned or Back", note: "Hides the seam (the 'zipper'). Use 'Seam Painting' for full control.", tradeoff: "Can create a localized weak point or bulge." },
+                    { setting: "Wall Generator", value: "Arachne", note: "Allows for variable line widths, which captures fine details better.", tradeoff: "Slightly increases slicing and print time." },
+                    { setting: "Ironing", value: "Enable (All Top Surfaces)", note: "Flattens the very top layer for a glass-smooth finish.", tradeoff: "Adds significant time to the print." }
+                ],
+                // Settings for DIMENSIONAL ACCURACY
+                'accuracy': [
+                    { setting: "Shrinkage", value: "Set per material (e.g., 99.5% for ABS)", note: "Compensates for material shrinking as it cools. Critical for ABS, ASA, PC.", tradeoff: "Requires calibration per-material to find the right value." },
+                    { setting: "Speed: Outer Wall", value: "30-50 mm/s", note: "Very slow outer walls reduce 'corner swell' and increase accuracy.", tradeoff: "Increases print time." },
+                    { setting: "Wall Generator", value: "Arachne", note: "Arachne is generally better at hitting target dimensions for small features.", tradeoff: "Slightly slower slicing." },
+                    { setting: "Layer Height", value: "0.12 - 0.16mm", note: "Lower layer heights improve accuracy in the Z-dimension and on curved surfaces.", tradeoff: "Dramatically increases print time." }
+                ]
+            },
+            // This new database checks for conflicts between goals.
+            conflictDatabase: {
+                'tensile_z-build_time': {
+                    title: "Conflict: Z-Strength vs. Speed",
+                    icon: '⚡',
+                    color: 'blue',
+                    advice: "This is a primary conflict. Max Z-Strength (layer adhesion) requires <strong>low layer heights</strong> and <strong>slow speeds</strong>. Max Speed requires <strong>high layer heights</strong> and <strong>fast speeds</strong>. \n<br><br><strong>Expert Compromise:</strong> Use a moderate layer height (0.16-0.20mm), print hotter (+10°C), and use wider line widths (110-120%) to increase fusion and throughput simultaneously."
+                },
+                'accuracy-build_time': {
+                    title: "Conflict: Accuracy vs. Speed",
+                    icon: '🎯',
+                    color: 'orange',
+                    advice: "High dimensional accuracy requires <strong>slow, precise movements</strong>, especially on outer walls. High speed introduces ringing and corner bulging, reducing accuracy. \n<br><br><strong>Expert Compromise:</strong> Print <strong>Outer Walls slowly (50-60mm/s)</strong> but print <strong>Inner Walls and Infill *very* fast (150mm/s+)</strong>. Use higher acceleration to reduce time on short movements."
+                },
+                'surface_roughness-build_time': {
+                    title: "Conflict: Quality vs. Speed",
+                    icon: '✨',
+                    color: 'purple',
+                    advice: "Aesthetic quality is achieved with <strong>low layer heights</strong> and <strong>slow outer walls</strong>. This is the direct opposite of a fast print. \n<br><br><strong>Expert Compromise:</strong> Use <strong>Lightning Infill</strong> (very fast), high-speed inner walls, and a moderate layer height (0.20mm), but keep the <strong>Outer Wall speed slow (60mm/s)</strong>."
+                },
+                'tensile_z-surface_roughness': {
+                    title: "Conflict: Z-Strength vs. Quality",
+                    icon: '💎',
+                    color: 'blue',
+                    advice: "These goals often align, but have one conflict: Temperature. Max Z-Strength requires auto (hot) temperatures, which can <strong>increase stringing and blobs</strong>, reducing aesthetic quality. \n<br><br><strong>Expert Compromise:</strong> Print hotter (+10°C) but ensure your <strong>retraction settings are perfectly tuned</strong> to manage stringing. Dry your filament!"
+                }
+            },
+            // Helper map for styling
+            goalColors: {
+                'tensile_z': 'blue',
+                'xy_strength': 'blue',
+                'flexural': 'blue',
+                'compressive': 'blue',
+                'build_time': 'green',
+                'surface_roughness': 'purple',
+                'accuracy': 'orange',
+                'default': 'gray'
+            }
+        };
+
+        // --- Element Selectors ---
+        const strengthSlider = document.getElementById('strength-slider');
+        const buildTimeSlider = document.getElementById('build-time-slider');
+        const surfaceRoughnessSlider = document.getElementById('surface-roughness-slider');
+        const accuracySlider = document.getElementById('accuracy-slider');
+
+        const strengthValue = document.getElementById('strength-value');
+        const buildTimeValue = document.getElementById('build-time-value');
+        const surfaceRoughnessValue = document.getElementById('surface-roughness-value');
+        const accuracyValue = document.getElementById('accuracy-value');
+
+        const strengthTypeContainer = document.getElementById('strength-type-container');
+        const strengthTypeSelect = document.getElementById('strength-type-select');
+
+        const materialSelect = document.getElementById('material-select');
+        const generateButton = document.getElementById('generate-button');
+        const resultsContainer = document.getElementById('results-container');
+
+        // --- Event Listeners ---
+
+        // Update slider value displays
+        strengthSlider.addEventListener('input', (e) => {
+            strengthValue.textContent = `${e.target.value}%`;
+            // Show/hide the strength type selector based on slider value
+            strengthTypeContainer.style.display = e.target.value > 10 ? 'block' : 'none';
+        });
+        buildTimeSlider.addEventListener('input', (e) => buildTimeValue.textContent = `${e.target.value}%`);
+        surfaceRoughnessSlider.addEventListener('input', (e) => surfaceRoughnessValue.textContent = `${e.target.value}%`);
+        accuracySlider.addEventListener('input', (e) => accuracyValue.textContent = `${e.target.value}%`);
+
+        // Main function on button click
+        generateButton.addEventListener('click', () => {
+            // Get current values
+            const strength = parseInt(strengthSlider.value);
+            const buildTime = parseInt(buildTimeSlider.value);
+            const surfaceRoughness = parseInt(surfaceRoughnessSlider.value);
+            const accuracy = parseInt(accuracySlider.value);
+            const strengthType = strengthTypeSelect.value;
+            const materialKey = materialSelect.value;
+
+            // Clear previous results
+            resultsContainer.innerHTML = '';
+            resultsContainer.classList.remove('hidden');
+
+            // --- Priority Logic ---
+            let priorities = [];
+
+            // Build the list of priorities based on sliders
+            if (strength > 70) priorities.push(strengthType);
+            if (buildTime > 70) priorities.push('build_time');
+            if (surfaceRoughness > 70) priorities.push('surface_roughness');
+            if (accuracy > 70) priorities.push('accuracy');
+
+            // Handle "Balanced" case
+            if (priorities.length === 0) {
+                resultsContainer.appendChild(
+                    createResultCard(
+                        "Goal: Balanced Print",
+                        '⚖️',
+                        'default',
+                        "<p class->A good all-around profile. Uses 0.20mm layer height, 3 walls, and 15% Gyroid infill. Adjust sliders to >70% to prioritize a specific goal.</p>"
+                    )
+                );
+                return; // Stop here
+            }
+
+            // --- Render Results ---
+
+            // 1. Render Material Info
+            const matInfo = materialsData[materialKey];
+            if (matInfo) {
+                const matNote = matInfo.notes || "No additional notes.";
+                const temp = matInfo.common;
+                resultsContainer.appendChild(
+                    createResultCard(
+                        `Baseline: ${materialKey.toUpperCase()}`,
+                        `🌡️`,
+                        'default',
+                        `<p class="text-gray-300"><strong>Note:</strong> ${matNote} <br> <strong>Starting Temp:</strong> ${temp.nozzle_temperature}°C Nozzle, ${temp.bed_temperature}°C Bed.</p>`
+                    )
+                );
+            }
+
+            // 2. Render "Key Conflicts"
+            const conflictsFound = new Set();
+            // Check all pairs in priorities for conflicts
+            for (let i = 0; i < priorities.length; i++) {
+                for (let j = i + 1; j < priorities.length; j++) {
+                    let key1 = `${priorities[i]}-${priorities[j]}`;
+                    let key2 = `${priorities[j]}-${priorities[i]}`;
+
+                    if (knowledgeBase.conflictDatabase[key1]) {
+                        conflictsFound.add(key1);
+                    } else if (knowledgeBase.conflictDatabase[key2]) {
+                        conflictsFound.add(key2);
+                    }
+                }
+            }
+
+            if (conflictsFound.size > 0) {
+                const conflictsHeader = document.createElement('h3');
+                conflictsHeader.className = "text-2xl font-semibold text-gray-200 mt-8 mb-4";
+                conflictsHeader.textContent = "Expert Advice: Goal Conflicts";
+                resultsContainer.appendChild(conflictsHeader);
+
+                conflictsFound.forEach(conflictKey => {
+                    const conflict = knowledgeBase.conflictDatabase[conflictKey];
+                    resultsContainer.appendChild(
+                        createResultCard(conflict.title, conflict.icon, conflict.color, conflict.advice)
+                    );
+                });
+            }
+
+            // 3. Render the specific settings for each prioritized goal
+            if (priorities.length > 0) {
+                // Main header for the whole section
+                const mainSettingsHeader = document.createElement('h3');
+                mainSettingsHeader.className = "text-2xl font-semibold text-gray-200 mt-8 mb-4";
+                mainSettingsHeader.textContent = "Key Settings to Adjust";
+                resultsContainer.appendChild(mainSettingsHeader);
+
+                // We will no longer use a Set, to allow settings to be grouped by goal
+
+                // A map to get "pretty names" for goal keys
+                const goalPrettyNames = {
+                    'tensile_z': 'Tensile Strength (Z-Axis)',
+                    'xy_strength': 'XY-Plane Strength',
+                    'flexural': 'Flexural Strength',
+                    'compressive': 'Compressive Strength',
+                    'build_time': 'Build Time (Speed)',
+                    'surface_roughness': 'Surface Roughness (Quality)',
+                    'accuracy': 'Dimensional Accuracy'
+                };
+
+                priorities.forEach(goal => {
+                    const goalSettings = knowledgeBase.goals[goal];
+
+                    if (goalSettings && goalSettings.length > 0) {
+                        // Create a specific sub-header for this goal
+                        const goalHeader = document.createElement('h4');
+                        const goalName = goalPrettyNames[goal] || goal;
+                        const goalColor = knowledgeBase.goalColors[goal] || 'gray';
+                        const colorClasses = {
+                            blue: 'text-blue-300',
+                            green: 'text-green-300',
+                            purple: 'text-purple-300',
+                            orange: 'text-orange-300',
+                            gray: 'text-gray-300'
+                        };
+
+                        goalHeader.className = `text-xl font-semibold ${colorClasses[goalColor]} mt-6 mb-2 pb-1 border-b border-gray-700`;
+                        goalHeader.textContent = `Goal: ${goalName}`;
+                        resultsContainer.appendChild(goalHeader);
+
+                        // Render all settings for THIS goal
+                        goalSettings.forEach(setting => {
+                            resultsContainer.appendChild(
+                                createSettingCard(setting, goal)
+                            );
+                        });
+                    }
+                });
+            }
+        });
+
+        /**
+         * Dynamically populates the material select dropdown
+         */
+        function populateMaterialSelect() {
+            materialSelect.innerHTML = ''; // Clear "Loading..."
+            const materialKeys = Object.keys(materialsData);
+
+            materialKeys.sort().forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = key.replace(/_/g, ' '); // Make 'PLA_CF' -> 'PLA CF'
+                materialSelect.appendChild(option);
+            });
+
+            // Set default to PLA
+            materialSelect.value = "PLA";
+        }
+
+        // --- Helper Functions to create HTML elements ---
+
+        /**
+         * Creates the main "Expert Advice" card
+         */
+        function createResultCard(title, icon, colorKey, htmlContent) {
+            const card = document.createElement('div');
+            const color = knowledgeBase.goalColors[colorKey] || 'gray';
+            const colorClasses = {
+                blue: 'border-blue-500',
+                green: 'border-green-500',
+                purple: 'border-purple-500',
+                orange: 'border-orange-500',
+                gray: 'border-gray-600'
+            };
+            card.className = `bg-gray-800 rounded-lg shadow-lg p-5 border-l-4 ${colorClasses[color]} mb-6`;
+            card.innerHTML = `
+                <h3 class="text-2xl font-semibold text-gray-100 mb-3 flex items-center">
+                    <span class="text-3xl mr-3">${icon}</span>
+                    ${title}
+                </h3>
+                <div class="prose prose-invert prose-sm text-gray-300">${htmlContent}</div>
+            `;
+            return card;
+        }
+
+        /**
+         * Creates a smaller card for a specific setting
+         */
+        function createSettingCard(setting, goal) {
+            const card = document.createElement('div');
+            const color = knowledgeBase.goalColors[goal] || 'gray';
+            const colorClasses = {
+                blue: 'border-blue-500 bg-blue-900/20',
+                green: 'border-green-500 bg-green-900/20',
+                purple: 'border-purple-500 bg-purple-900/20',
+                orange: 'border-orange-500 bg-orange-900/20',
+                gray: 'border-gray-600 bg-gray-700/20'
+            };
+            card.className = `bg-gray-800 rounded-lg shadow-md p-4 border-l-4 ${colorClasses[color]} mb-3`;
+
+            card.innerHTML = `
+                <div class="flex justify-between items-center mb-2">
+                    <h4 class="text-lg font-semibold text-gray-100">${setting.setting}</h4>
+                    <span class="text-base font-bold text-teal-300">${setting.value}</span>
+                </div>
+                <p class="text-sm text-gray-300 mb-2">${setting.note}</p>
+                <p class="text-xs text-gray-400 italic"><strong>Trade-off:</strong> ${setting.tradeoff}</p>
+            `;
+            return card;
+        }
+
+        // --- Initial setup on page load ---
+        document.addEventListener('DOMContentLoaded', () => {
+            populateMaterialSelect();
+            // Hide strength type selector initially
+            strengthTypeContainer.style.display = 'block'; // Show it by default since slider is at 50
+            if (strengthSlider.value <= 10) {
+                strengthTypeContainer.style.display = 'none';
+            }
+        });
+
+    </script>
+</body>
+
+</html>

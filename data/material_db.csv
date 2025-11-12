@@ -1,0 +1,30 @@
+Material,Cluster,Strength_XY_MPa,Strength_Z_MPa,Stiffness_Modulus_MPa,Toughness_Impact_kJ_m2,Heat_Resistance_HDT_C,Printability_Score,Cost_Score,UV_Resistant,Hygroscopic,Prone_to_Creep,Requires_Enclosure,Releases_Fumes,Chemical_Resistance_Score,Low_Friction,Annealable_for_HDT,Price_USD_per_kg,Density_g_cm3,Nozzle_Temp_C_Min,Nozzle_Temp_C_Max,Bed_Temp_C_Min,Bed_Temp_C_Max,Requires_Hardened_Nozzle,Strength_XY_MPa_Annealed,Strength_Z_MPa_Annealed,Heat_Resistance_HDT_Annealed_C
+PLA (Standard),Standard,65,29.3,2800,7,56,9,2,false,false,true,false,false,0,false,false,20,1.24,190,215,0,60,false,,, 
+Tough PLA / PLA+,Engineering,65,29.3,2102,8.5,52,8,3,false,false,true,false,false,0,false,false,24,1.24,200,225,50,60,false,,, 
+HTPLA (Annealable),Standard,60,27,2800,7,58,9,4,false,false,false,false,false,0,false,true,28,1.24,200,230,50,60,false,63,28.35,150
+PLA - Carbon Fiber,Engineering,70,31.5,7000,8,62,7,6,false,false,false,false,false,0,false,false,45,1.30,200,225,50,60,true,,, 
+PETG,Functional,49,22.05,1913,10.5,75,7,3,false,true,false,false,false,1,false,false,25,1.27,230,245,70,90,false,,, 
+PETG - Carbon Fiber,Engineering,58,26.1,6500,12,82,6,7,false,true,false,false,false,1,false,false,45,1.30,240,255,75,90,true,,, 
+PET (non-glycol),Engineering,55,24.75,2100,9.5,78,6,4,true,true,false,false,false,1,false,false,30,1.27,240,250,75,90,false,,, 
+ABS,Functional,38,17.1,2100,26.5,91,4,3,false,true,false,true,true,2,false,false,22,1.04,230,250,90,110,false,,, 
+ASA,Functional,49.5,22.28,1930,41,95,4,5,true,true,false,true,true,2,false,false,28,1.07,240,255,90,110,false,,, 
+HIPS,Functional,34,15.3,1675,37.5,87.5,5,3,false,false,false,true,true,1,false,false,22,1.04,230,245,90,110,false,,, 
+PC-ABS Blend,Engineering,38.5,17.33,1225,44,123,4,7,false,true,false,true,true,2,false,false,38,1.15,255,270,100,115,false,,, 
+Polycarbonate (PC),Engineering,64.5,29.03,2175,35,127.5,2,8,false,true,false,true,false,1,false,false,35,1.20,260,300,110,130,false,,, 
+Nylon (PA6),Engineering,62.5,31.25,2200,40,90,3,6,false,true,true,true,false,2,true,true,60,1.13,240,255,70,90,false,65.6,32.8,100
+Nylon (PA12),Engineering,62.5,31.25,2200,40,90,3,7,false,true,true,true,false,2,true,true,60,1.01,240,255,70,90,false,65.6,32.8,100
+Nylon - Carbon Fiber (PA12-CF),High-Performance,77.5,41.8,7910,25,140,3,10,false,true,false,true,false,2,true,false,75,1.15,250,270,80,100,true,,, 
+Nylon - Glass Fiber (PA-GF),High-Performance,72,36,9000,22,135,3,9,false,true,false,true,false,2,false,false,70,1.20,250,270,80,100,true,,, 
+TPU 95A (Flexible),Functional,34.5,15.53,52.5,35,61.5,4,5,false,false,false,false,false,2,true,false,30,1.21,215,235,30,60,false,,, 
+TPU 85A (Soft Flexible),Functional,8,3.6,50,6,60,3,5,false,false,false,false,false,2,true,false,32,1.21,215,230,30,50,false,,, 
+PP (Polypropylene),Functional,35.1,18.7,660,49.1,64,1,5,false,false,false,true,false,3,true,false,40,0.90,230,250,85,105,false,,, 
+PVA (Soluble Support),Functional,10,4.5,3860,2,60,2,9,false,true,true,false,false,0,false,false,90,1.23,190,210,45,60,false,,, 
+PVB (IPA-Smoothable),Functional,45,13.5,2500,10,55,8,4,false,true,true,false,false,0,false,false,30,1.24,205,225,60,70,false,,, 
+PLA - Wood-filled,Functional,26,11.7,2780,15.7,57,7,4,false,false,true,false,false,0,false,false,30,1.21,190,210,50,60,true,,, 
+PLA - Metal-filled,Functional,34,15.3,2290,4,52,6,8,false,false,true,false,false,0,false,false,60,3.00,195,220,50,60,true,,, 
+PLA - Silk,Functional,26,11.7,2816,25.5,54,8,3,false,false,true,false,false,0,false,false,25,1.25,190,210,50,60,false,,, 
+PLA - Glow-in-the-dark,Functional,32,14.4,2640,27.3,55,7,4,false,false,true,false,false,0,false,false,30,1.26,195,220,50,60,true,,, 
+ULTEM 9085 (PEI),High-Performance,76.2,34.29,2465,10,160,1,10,true,true,false,true,false,3,false,false,120,1.27,350,380,120,160,false,78,35.3,170
+PEEK,High-Performance,101,50.5,3720,15,217,1,10,true,false,false,true,false,3,true,false,200,1.32,360,400,120,160,false,103,51.5,225
+PEKK,High-Performance,105,52.5,3205,12,247,1,10,true,false,false,true,false,3,true,false,180,1.32,355,390,120,150,false,107,53.5,255
+PPSU,High-Performance,85,42.5,2800,18,190,1,10,true,false,false,true,false,3,true,false,110,1.29,360,390,120,160,false,87,43.5,195
