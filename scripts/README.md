@@ -155,6 +155,106 @@ cat output/extracted_materials.json
 
 ---
 
+### 3. `check_amazon_links.py` - Amazon Link Validator
+
+Validates Amazon affiliate product links in `index.html` to ensure they're still active and accessible.
+
+**Features:**
+- ✅ Checks top N products per category (default: 2)
+- ✅ Color-coded output (green = working, red = broken)
+- ✅ Detailed error reporting
+- ✅ Retry logic for transient failures
+- ✅ Exit code: 0 if all links work, 1 if any are broken
+
+**Usage:**
+
+```bash
+# Check top 2 products per category (default)
+uv run scripts/check_amazon_links.py
+
+# Check top 3 products per category
+uv run scripts/check_amazon_links.py --top 3
+
+# Verbose output with HTTP status codes
+uv run scripts/check_amazon_links.py --verbose
+
+# Check all products in all categories
+uv run scripts/check_amazon_links.py --top 999
+```
+
+**When to run:**
+- Before deploying to production
+- After updating product ASINs
+- Monthly maintenance check (recommended)
+- When GA4 shows increase in broken link clicks
+
+**Sample output:**
+```
+=== Amazon Product Link Checker ===
+
+Checking top 2 products in each category...
+
+Category: PLA
+  [1] SUNLU - SUNLU PLA 3D Printer Filament
+      ASIN: B07XG3RM58 ... ✓ Working
+  [2] OVERTURE - OVERTURE PLA Filament
+      ASIN: B07PGY2JP1 ... ✓ Working
+
+...
+
+=== Summary ===
+Total products checked: 28
+Working links: 28
+Broken links: 0
+
+✓ All checked links are working!
+```
+
+**CI/CD Integration:**
+
+You can add this to your CI/CD pipeline:
+
+```yaml
+# .github/workflows/check-links.yml
+name: Check Amazon Links
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Every Monday
+  push:
+    paths:
+      - 'index.html'
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - name: Check Amazon product links
+        run: uv run scripts/check_amazon_links.py --top 2
+```
+
+**Exit Codes:**
+- `0`: All checked links are working
+- `1`: One or more links are broken (check output for details)
+
+**Requirements:**
+- Python 3.11+
+- No external dependencies (uses stdlib only)
+- UV package manager (recommended) or standard Python
+
+**Troubleshooting:**
+
+If links fail but you know they work:
+1. **Rate limiting**: Amazon may block rapid requests. The script includes delays, but you can increase them.
+2. **User-Agent**: Amazon blocks some user agents. The script uses a Chrome user agent.
+3. **Region-specific**: Some ASINs may redirect based on location.
+4. **Temporary outages**: Retry after a few minutes.
+
+---
+
 ## 📁 File Organization
 
 Recommended structure for TDS files:
