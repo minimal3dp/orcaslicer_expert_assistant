@@ -16,7 +16,7 @@
 **SEO Focus:** ✅ **CRITICAL** - Optimize for "best slicer settings for 3d printing"
 
 - [ ] **CRITICAL:** Deploy current app to Vercel (30 min)
-  - Follow `VERCEL_DEPLOYMENT.md` instructions
+  - Follow `dev_docs/VERCEL_DEPLOYMENT.md` instructions
   - Set up custom domain: orcaslicer.minimal3dp.com
   - Enable HTTPS and configure security headers
 - [x] **SEO - COMPLETED:** Optimize HTML for target keyword (30 min)
@@ -26,20 +26,24 @@
   - [x] Added Open Graph tags for social sharing
   - [x] Updated H1 heading with target keyword
   - [x] Added YouTube channel link in header
-- [ ] **SEO:** Create OG image for social sharing (30 min)
-  - Design 1200x630px image with Canva
-  - Save as `/og-image.png`
-  - Update deployment
+- [x] **SEO - COMPLETED:** Create OG image for social sharing (30 min)
+  - [x] Added og_image.png to images/ folder
+  - [x] Updated meta tags to reference /images/og_image.png
+  - [x] Deployed to production
 - [x] **SEO - COMPLETED:** Create sitemap.xml and robots.txt (15 min)
   - [x] Created sitemap.xml with main page entry
   - [x] Created robots.txt with sitemap reference
-  - [ ] Submit to Google Search Console
-- [ ] **CRITICAL:** Add Google Analytics 4 (30 min)
-  - Track page views, material selections
-  - Track affiliate link clicks (CTR measurement)
-  - Set up conversion goals
-  - **NEW:** Track YouTube referral traffic
-- [ ] **QUICK WIN:** Expand affiliate products to 20/28 materials (2 hours)
+  - [x] Verified files accessible at production URLs
+  - [x] Submitted to Google Search Console
+- [x] **CRITICAL - COMPLETED:** Add Google Analytics 4 (30 min)
+  - [x] GA4 tracking code added to index.html (Measurement ID: G-GERCPZ07KR)
+  - [x] Track page views, material selections
+  - [ ] **READY TO IMPLEMENT:** Track affiliate link clicks (CTR measurement) - See `dev_docs/GA4_SETUP_GUIDE.md` Phase 1 (45 min)
+  - [ ] **READY TO IMPLEMENT:** Set up conversion goals in GA4 dashboard - See `dev_docs/GA4_SETUP_GUIDE.md` Phase 2 (30 min)
+  - [ ] **READY TO IMPLEMENT:** Track YouTube referral traffic with custom dimensions - See `dev_docs/GA4_SETUP_GUIDE.md` Phase 3 (30 min)
+  - [ ] **READY TO TEST:** Test all events in GA4 Realtime view - See `dev_docs/GA4_SETUP_GUIDE.md` Phase 4 (30 min)
+  - [ ] **Total Time:** 2-3 hours for complete implementation
+- [ ] **IN PROGRESS:** Expand affiliate products to 20/28 materials (2 hours)
   - Current: 14 materials have products
   - Target: 20 materials (71% coverage)
   - Focus on popular materials: Nylon, PC, HIPS, PP, PLA_Wood, PLA_Silk
@@ -111,13 +115,14 @@
 - [ ] **Revenue Impact:** +10% mobile conversions
 
 #### Group 10D: Analytics Deep Dive (1 hour)
-- [ ] Set up GA4 custom events for:
-  - Material selection events (which materials are popular?)
-  - Product card impressions (which products are seen?)
-  - Product card clicks (which products are clicked?)
-  - Warning card interactions (do warnings affect purchases?)
-  - **NEW:** YouTube referral tracking (which videos drive traffic?)
-  - **NEW:** Search keyword tracking (organic vs. YouTube)
+- [ ] **READY TO IMPLEMENT:** Set up GA4 custom events - See `dev_docs/GA4_SETUP_GUIDE.md` (2-3 hours total)
+  - [ ] Material selection events (which materials are popular?)
+  - [ ] Product card impressions (which products are seen?)
+  - [ ] Product card clicks (which products are clicked?)
+  - [ ] Warning card interactions (do warnings affect purchases?)
+  - [ ] **NEW:** YouTube referral tracking (which videos drive traffic?)
+  - [ ] **NEW:** Search keyword tracking (organic vs. YouTube)
+  - [ ] **Guide includes:** Complete JavaScript code, GA4 dashboard setup, UTM parameters, testing procedures
 - [ ] Create basic dashboard for daily monitoring
 - [ ] Set up weekly email reports
 - [ ] **Revenue Impact:** Data-driven optimization decisions
@@ -127,7 +132,7 @@
   - "What are the best slicer settings for 3D printing?"
   - "What are the best OrcaSlicer settings for PLA?"
   - "How do I optimize 3D print strength?"
-  - 10-15 questions total (see SEO_STRATEGY.md)
+  - 10-15 questions total (see dev_docs/SEO_STRATEGY.md)
 - [ ] Add structured data for FAQs (Schema.org)
 - [ ] Improve internal linking (cross-link materials)
 - [ ] **SEO Impact:** Featured snippets, long-tail keyword rankings
@@ -380,12 +385,12 @@ Added comprehensive material requirement warning system with:
     - Check Stratasys, Apium, Intamsys documentation
     - Academic papers on high-temp polymers
     - Target: 6 materials with elongation data
-- [ ] **TRACKING:** Use `MISSING_TDS_DATA.md` to track progress
+- [ ] **TRACKING:** Use `dev_docs/MISSING_TDS_DATA.md` to track progress
 - [ ] **ACCEPTANCE CRITERIA:**
   - All 28 materials have elongation_at_break_pct values
   - Sources cited in data/material_db.csv or documentation
   - Values validated against typical ranges for material class
-  - MISSING_TDS_DATA.md updated with completion status
+  - dev_docs/MISSING_TDS_DATA.md updated with completion status
 
 ### Group 5C: Validate Data Quality (2 hours)
 - [x] **COMPLETED:** Basic validation done during material sync
@@ -807,11 +812,11 @@ Added comprehensive material requirement warning system with:
   - Can track affiliate revenue vs. costs
 
 ### Group 14D: Documentation & Deployment (1 hour)
-- [ ] Update AFFILIATE_SETUP.md:
+- [ ] Update dev_docs/AFFILIATE_SETUP.md:
   - Document PA-API integration
   - Explain caching strategy
   - Document environment variables
-- [ ] Create PA_API_GUIDE.md:
+- [ ] Create dev_docs/PA_API_GUIDE.md:
   - Setup instructions for PA-API credentials
   - Troubleshooting common errors
   - Rate limit management strategies
@@ -962,6 +967,17 @@ KV_REST_API_TOKEN=...                        # From Vercel dashboard
 
 
 ## �📋 BACKLOG: Future Enhancements
+
+### Documentation & User Guides
+- [ ] **HIGH PRIORITY:** Create user-facing documentation in `docs/` folder (2-3 hours)
+  - [ ] Getting Started Guide (How to use the tool)
+  - [ ] Material Selection Guide (How to choose the right material)
+  - [ ] Troubleshooting Guide (Common printing issues and solutions)
+  - [ ] Settings Explained (What each setting does and why it matters)
+  - [ ] Advanced Tips & Tricks (Expert-level optimization strategies)
+  - [ ] **Purpose:** Help users get the most value from the tool
+  - [ ] **SEO Benefit:** More content = better search rankings
+  - [ ] **User Benefit:** Reduces confusion, increases success rate
 
 ### Material Database
 - [ ] **HIGH PRIORITY:** Add merge_extracted_to_csv.py script with unit tests
@@ -1117,7 +1133,7 @@ KV_REST_API_TOKEN=...                        # From Vercel dashboard
 - [ ] Material landing pages (28 pages for "[material] settings")
 
 **YouTube Strategy:**
-- Video companion content planned (see `SEO_STRATEGY.md`)
+- Video companion content planned (see `dev_docs/SEO_STRATEGY.md`)
 - Target: "Best Slicer Settings for 3D Printing - Complete Guide 2025"
 - Cross-promotion: YouTube videos → web app traffic
 - End screens and cards linking to tool
@@ -1130,7 +1146,7 @@ KV_REST_API_TOKEN=...                        # From Vercel dashboard
 - 40% of traffic from organic search
 - 30% of traffic from YouTube referrals
 
-See `SEO_STRATEGY.md` for comprehensive plan.
+See `dev_docs/SEO_STRATEGY.md` for comprehensive plan.
 
 ### Priority Order Rationale (Revenue-First Approach)
 **NEW STRATEGY:** Monetize immediately, then enhance iteratively
@@ -1157,16 +1173,20 @@ See `SEO_STRATEGY.md` for comprehensive plan.
 9. Phase 9: Deployment
 
 ### Next Recommended Actions (Revenue-First Priority)
-1. 🔴 **CRITICAL - DO FIRST:** Deploy to Vercel (30 min) - See `VERCEL_DEPLOYMENT.md`
-2. 🔴 **CRITICAL - SEO:** Create OG image + sitemap (45 min) - See `SEO_STRATEGY.md`
+1. 🔴 **CRITICAL - DO FIRST:** Deploy to Vercel (30 min) - See `dev_docs/VERCEL_DEPLOYMENT.md`
+2. 🔴 **CRITICAL - SEO:** Create OG image + sitemap (45 min) - See `dev_docs/SEO_STRATEGY.md`
 3. 🔴 **CRITICAL - YOUTUBE:** Update channel with tool links (15 min) - Description + banner
-4. 🟢 **QUICK WIN:** Add Google Analytics 4 tracking (30 min)
+4. 🟢 **QUICK WIN:** Add Google Analytics 4 custom events (2-3 hours) - See `dev_docs/GA4_SETUP_GUIDE.md`
+   - Add affiliate click tracking (Phase 1)
+   - Set up conversion goals (Phase 2)
+   - Add YouTube referral tracking (Phase 3)
+   - Test in GA4 Realtime (Phase 4)
 5. 🟢 **QUICK WIN:** Expand affiliate products to 20/28 materials (2 hours)
 6. 🟢 **QUICK WIN:** Complete affiliate coverage to 28/28 materials (2 hours)
-7. 🟡 **HIGH PRIORITY:** Add FAQ section for SEO (1 hour) - See `SEO_STRATEGY.md`
+7. 🟡 **HIGH PRIORITY:** Add FAQ section for SEO (1 hour) - See `dev_docs/SEO_STRATEGY.md`
 8. 🟡 **HIGH PRIORITY:** Add material search/filter functionality (Phase 7A) - 2 hours
 9. 🟡 **MEDIUM PRIORITY:** Add localStorage for persistent warning dismissals - 1 hour
-10. 🟡 **MEDIUM PRIORITY:** Research elongation_at_break_pct (Phase 5B) - See `MISSING_TDS_DATA.md` - 4 hours
+10. 🟡 **MEDIUM PRIORITY:** Research elongation_at_break_pct (Phase 5B) - See `dev_docs/MISSING_TDS_DATA.md` - 4 hours
 11. 🔵 **SEO CONTENT:** Create "Best Slicer Settings" YouTube video - 3-4 hours production
 12. 🔵 **SEO CONTENT:** Create material landing pages (start with top 5) - 2 hours
 13. ⚪ **FUTURE:** Begin Phase 11 - Python backend for PA-API (8 hours)
