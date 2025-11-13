@@ -170,6 +170,23 @@
             });
         }
 
+        /**
+         * Track OrcaSlicer documentation link clicks
+         * Fires when user clicks a setting documentation link
+         */
+        function trackSettingLinkClick(settingName, linkUrl) {
+            gtag('event', 'setting_doc_click', {
+                'setting_name': settingName,
+                'link_url': linkUrl,
+                'timestamp': new Date().toISOString()
+            });
+
+            console.log('📊 GA4 Event: setting_doc_click', {
+                setting_name: settingName,
+                link_url: linkUrl
+            });
+        }
+
         // Track page engagement (time on site)
         let pageLoadTime = new Date();
         let engagementTracked = false;
@@ -332,6 +349,83 @@
         </script>
     </div>
 
+    <!-- Featured on YouTube Badge (SEO: Build credibility & drive YouTube traffic) -->
+    <div class="max-w-7xl mx-auto mb-6 text-center">
+        <a href="https://youtube.com/channel/UCM_8Mv-0S1LnnJpRJLjahaw?sub_confirmation=1" 
+           target="_blank"
+           rel="noopener noreferrer"
+           onclick="gtag('event', 'click', {'event_category': 'youtube', 'event_label': 'featured_badge'});"
+           class="inline-flex items-center bg-red-600/20 border border-red-600/50 rounded-lg px-4 py-2 hover:bg-red-600/30 transition-colors"
+           aria-label="Visit minimal3dp YouTube channel for 3D printing tutorials">
+            <span class="text-2xl mr-3" aria-hidden="true">📺</span>
+            <div class="text-left">
+                <div class="text-sm font-semibold text-red-300">As Featured On</div>
+                <div class="text-xs text-gray-400">minimal3dp YouTube Channel</div>
+            </div>
+        </a>
+    </div>
+
+    <!-- How to Use Section (SEO: Answers "how to use slicer settings" queries) -->
+    <div class="max-w-7xl mx-auto mb-6">
+        <div class="bg-blue-900/20 border border-blue-700/50 rounded-lg overflow-hidden">
+            <button 
+                onclick="toggleHowToUse()"
+                class="w-full p-4 text-left flex justify-between items-center hover:bg-blue-900/30 transition-colors"
+                aria-expanded="false"
+                aria-controls="how-to-use-content">
+                <span class="text-lg font-semibold text-blue-300">
+                    ❓ How to Use This Tool - Get Perfect 3D Prints
+                </span>
+                <span id="how-to-use-icon" class="text-blue-400">▼</span>
+            </button>
+            <div id="how-to-use-content" class="hidden p-6 bg-gray-800/50" role="region">
+                <ol class="space-y-3 text-gray-300">
+                    <li class="flex items-start">
+                        <span class="font-bold text-blue-400 mr-3 text-lg">1.</span>
+                        <div>
+                            <strong class="text-gray-200">Select your filament material</strong> from the dropdown (e.g., PLA, PETG, ABS, Nylon)
+                            <span class="text-sm text-gray-400 block mt-1">⚠️ Read any warnings that appear! They tell you critical requirements like enclosure needs or drying.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="font-bold text-blue-400 mr-3 text-lg">2.</span>
+                        <div>
+                            <strong class="text-gray-200">Set your print priorities</strong> using the sliders (0 = don't care, 100 = max priority)
+                            <span class="text-sm text-gray-400 block mt-1">💡 Tip: You can't maximize everything! Focus on what matters most for your print.</span>
+                            <ul class="text-sm text-gray-400 mt-2 ml-4 space-y-1">
+                                <li>• <strong>Strength:</strong> For functional parts, tools, mechanical components</li>
+                                <li>• <strong>Speed:</strong> For quick prototypes and iterations</li>
+                                <li>• <strong>Quality:</strong> For display models, miniatures, smooth surfaces</li>
+                                <li>• <strong>Accuracy:</strong> For parts that must fit together perfectly</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="font-bold text-blue-400 mr-3 text-lg">3.</span>
+                        <div>
+                            <strong class="text-gray-200">Click "Get Expert Recommendations"</strong> and apply the settings to OrcaSlicer
+                            <span class="text-sm text-gray-400 block mt-1">📖 Each setting includes a direct link to official OrcaSlicer documentation for more details.</span>
+                        </div>
+                    </li>
+                </ol>
+                <div class="mt-4 p-4 bg-green-900/20 border border-green-700/50 rounded">
+                    <p class="text-sm text-green-300">
+                        <strong>🎯 Pro Tip:</strong> Start with the defaults (all sliders at 50%) to see a balanced profile, then adjust based on your specific needs! This gives you the best slicer settings for general 3D printing.
+                    </p>
+                </div>
+                <div class="mt-3 text-center">
+                    <a href="https://youtube.com/channel/UCM_8Mv-0S1LnnJpRJLjahaw" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       onclick="gtag('event', 'click', {'event_category': 'youtube', 'event_label': 'how_to_use_video_link'});"
+                       class="text-sm text-blue-400 hover:text-blue-300 underline">
+                        📺 Watch the video tutorial on YouTube →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Two Column Layout -->
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -423,9 +517,18 @@
             </div>
 
             <!-- Step 3: Generate Button -->
+            <!-- Step 3: Generate Button -->
             <button id="generate-button"
-                class="w-full text-lg font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg px-5 py-3 transition-all duration-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800">
-                Get Recommendations
+                class="w-full text-lg font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg px-5 py-3 transition-all duration-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+                aria-label="Generate expert slicer settings recommendations">
+                🎯 Get Expert Recommendations
+            </button>
+            
+            <!-- Reset Sliders Button -->
+            <button id="reset-sliders-button"
+                class="w-full text-sm font-semibold text-gray-300 bg-gray-700 hover:bg-gray-600 rounded-lg px-4 py-2 mt-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+                aria-label="Reset all sliders to default values">
+                🔄 Reset Sliders
             </button>
 
         </main>
@@ -1534,7 +1637,7 @@
                 ],
                 // Settings for DIMENSIONAL ACCURACY
                 'accuracy': [
-                    { setting: "Shrinkage", value: "Set per material (e.g., 99.5% for ABS)", note: "Compensates for material shrinking as it cools. Critical for ABS, ASA, PC.", tradeoff: "Requires calibration per-material to find the right value." },
+                    { setting: "Shrinkage", value: "Set per material (e.g., 99.5% for ABS)", note: "Compensates for material shrinking as it cools. Critical for ABS, ASA, PC.", tradeoff: "Requires calibration per-material to find the right value.", calculatorLink: "https://minimal3dp.com/tools/m3dp-shinkage-calculator/" },
                     { setting: "Speed: Outer Wall", value: "30-50 mm/s", note: "Very slow outer walls reduce 'corner swell' and increase accuracy.", tradeoff: "Increases print time." },
                     { setting: "Wall Generator", value: "Arachne", note: "Arachne is generally better at hitting target dimensions for small features.", tradeoff: "Slightly slower slicing." },
                     { setting: "Layer Height", value: "0.12 - 0.16mm", note: "Lower layer heights improve accuracy in the Z-dimension and on curved surfaces.", tradeoff: "Dramatically increases print time." }
@@ -2232,6 +2335,31 @@
             ]
         };
 
+        // OrcaSlicer Documentation Links Database
+        const orcaSlicerLinks = {
+            // Direct setting name matches
+            "Layer Height": "https://github.com/SoftFever/OrcaSlicer/wiki/Calibration#layer-height",
+            "Wall Loops": "https://github.com/SoftFever/OrcaSlicer/wiki/Calibration#wall-loops",
+            "Infill %": "https://github.com/SoftFever/OrcaSlicer/wiki/Calibration#infill",
+            "Infill Pattern": "https://github.com/SoftFever/OrcaSlicer/wiki/Calibration#infill-pattern",
+            "Temperature": "https://github.com/SoftFever/OrcaSlicer/wiki/Calibration#temperature",
+            "Print Speed": "https://github.com/SoftFever/OrcaSlicer/wiki/Speed",
+            "Print Speed (All)": "https://github.com/SoftFever/OrcaSlicer/wiki/Speed",
+            "Speed: Outer Wall": "https://github.com/SoftFever/OrcaSlicer/wiki/Speed#outer-wall-speed",
+            "Speed: Inner Wall": "https://github.com/SoftFever/OrcaSlicer/wiki/Speed#inner-wall-speed",
+            "Speed: Sparse Infill": "https://github.com/SoftFever/OrcaSlicer/wiki/Speed#sparse-infill-speed",
+            "Acceleration": "https://github.com/SoftFever/OrcaSlicer/wiki/Advanced-Settings#acceleration",
+            "Line Width (Inner/Infill)": "https://github.com/SoftFever/OrcaSlicer/wiki/Advanced-Settings#line-width",
+            "Infill/Wall Overlap": "https://github.com/SoftFever/OrcaSlicer/wiki/Advanced-Settings#infill-wall-overlap",
+            "Wall Generator": "https://github.com/SoftFever/OrcaSlicer/wiki/Advanced-Settings#arachne",
+            "Seam Position": "https://github.com/SoftFever/OrcaSlicer/wiki/Advanced-Settings#seam",
+            "Ironing": "https://github.com/SoftFever/OrcaSlicer/wiki/Advanced-Settings#ironing",
+            "Shrinkage": "https://github.com/SoftFever/OrcaSlicer/wiki/Advanced-Settings#shrinkage",
+            
+            // Fallback for generic terms
+            "_default": "https://github.com/SoftFever/OrcaSlicer/wiki/Calibration"
+        };
+
         // --- Element Selectors ---
         const strengthSlider = document.getElementById('strength-slider');
         const buildTimeSlider = document.getElementById('build-time-slider');
@@ -2279,15 +2407,68 @@
             }
         });
 
+        // Reset sliders to default values
+        const resetSlidersButton = document.getElementById('reset-sliders-button');
+        resetSlidersButton.addEventListener('click', () => {
+            // Reset all sliders to 50% (balanced)
+            strengthSlider.value = 50;
+            buildTimeSlider.value = 50;
+            surfaceRoughnessSlider.value = 50;
+            accuracySlider.value = 50;
+            
+            // Update value displays
+            strengthValue.textContent = '50%';
+            buildTimeValue.textContent = '50%';
+            surfaceRoughnessValue.textContent = '50%';
+            accuracyValue.textContent = '50%';
+            
+            // Hide strength type selector since strength is at 50%
+            strengthTypeContainer.style.display = 'none';
+            
+            // Track reset action in GA4
+            gtag('event', 'sliders_reset', {
+                'event_category': 'engagement',
+                'event_label': 'User reset all sliders to default'
+            });
+            
+            // Optional: Show brief feedback
+            const originalText = resetSlidersButton.innerHTML;
+            resetSlidersButton.innerHTML = '✓ Reset Complete';
+            setTimeout(() => {
+                resetSlidersButton.innerHTML = originalText;
+            }, 1500);
+        });
+
         // Main function on button click
         generateButton.addEventListener('click', () => {
+            // Validate material selection
+            const materialKey = materialSelect.value;
+            if (!materialKey) {
+                alert('⚠️ Please select a material first!');
+                return;
+            }
+
+            // Show loading state
+            generateButton.disabled = true;
+            generateButton.innerHTML = '⏳ Generating Recommendations...';
+            
             // Get current values
             const strength = parseInt(strengthSlider.value);
             const buildTime = parseInt(buildTimeSlider.value);
             const surfaceRoughness = parseInt(surfaceRoughnessSlider.value);
             const accuracy = parseInt(accuracySlider.value);
             const strengthType = strengthTypeSelect.value;
-            const materialKey = materialSelect.value;
+
+            // Track recommendation generation in GA4 (SEO: User engagement metric)
+            gtag('event', 'generate_recommendations', {
+                'event_category': 'engagement',
+                'material': materialKey,
+                'strength': strength,
+                'build_time': buildTime,
+                'surface_quality': surfaceRoughness,
+                'accuracy': accuracy,
+                'strength_type': strengthType
+            });
 
             // Clear previous results
             resultsContainer.innerHTML = '';
@@ -2312,6 +2493,13 @@
                         "<p class->A good all-around profile. Uses 0.20mm layer height, 3 walls, and 15% Gyroid infill. Adjust sliders to >70% to prioritize a specific goal.</p>"
                     )
                 );
+                
+                // Reset button
+                generateButton.disabled = false;
+                generateButton.innerHTML = '🎯 Get Expert Recommendations';
+                
+                // Scroll to results
+                resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 return; // Stop here
             }
 
@@ -2412,6 +2600,13 @@
                     }
                 });
             }
+            
+            // Reset button state after rendering all results
+            generateButton.disabled = false;
+            generateButton.innerHTML = '🎯 Get Expert Recommendations';
+            
+            // Scroll to results
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
         /**
@@ -2887,13 +3082,41 @@
             };
             card.className = `bg-gray-800 rounded-lg shadow-md p-4 border-l-4 ${colorClasses[color]} mb-3`;
 
+            // Get the OrcaSlicer documentation link for this setting
+            const settingName = setting.setting;
+            const orcaLink = orcaSlicerLinks[settingName] || orcaSlicerLinks["_default"];
+            
+            // Build calculator link HTML if available
+            let calculatorHTML = '';
+            if (setting.calculatorLink) {
+                calculatorHTML = `
+                    <a href="${setting.calculatorLink}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center text-green-400 hover:text-green-300 text-xs font-medium transition-colors duration-200 mr-4"
+                       onclick="gtag('event', 'calculator_click', {'event_category': 'tools', 'event_label': '${settingName} Calculator'})">
+                        🧮 Use Calculator Tool →
+                    </a>
+                `;
+            }
+
             card.innerHTML = `
                 <div class="flex justify-between items-center mb-2">
                     <h4 class="text-lg font-semibold text-gray-100">${setting.setting}</h4>
                     <span class="text-base font-bold text-teal-300">${setting.value}</span>
                 </div>
                 <p class="text-sm text-gray-300 mb-2">${setting.note}</p>
-                <p class="text-xs text-gray-400 italic"><strong>Trade-off:</strong> ${setting.tradeoff}</p>
+                <p class="text-xs text-gray-400 italic mb-3"><strong>Trade-off:</strong> ${setting.tradeoff}</p>
+                <div class="flex flex-wrap gap-2">
+                    ${calculatorHTML}
+                    <a href="${orcaLink}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center text-blue-400 hover:text-blue-300 text-xs font-medium transition-colors duration-200"
+                       onclick="trackSettingLinkClick('${settingName}', '${orcaLink}')">
+                        📖 View in OrcaSlicer Docs →
+                    </a>
+                </div>
             `;
             return card;
         }
@@ -2911,7 +3134,75 @@
             displayAffiliateLinks('PLA');
         });
 
+        // --- How to Use Toggle Function ---
+        function toggleHowToUse() {
+            const content = document.getElementById('how-to-use-content');
+            const icon = document.getElementById('how-to-use-icon');
+            const button = content.previousElementSibling;
+            
+            const isHidden = content.classList.contains('hidden');
+            
+            if (isHidden) {
+                content.classList.remove('hidden');
+                icon.textContent = '▲';
+                button.setAttribute('aria-expanded', 'true');
+                
+                // Track expansion in GA4
+                gtag('event', 'how_to_use_expanded', {
+                    'event_category': 'engagement',
+                    'event_label': 'how_to_use_section'
+                });
+            } else {
+                content.classList.add('hidden');
+                icon.textContent = '▼';
+                button.setAttribute('aria-expanded', 'false');
+            }
+        }
+
     </script>
+
+    <!-- Footer Call-to-Action (SEO: Encourage engagement & YouTube traffic) -->
+    <footer class="max-w-7xl mx-auto mt-12 mb-8 px-4">
+        <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-lg p-6 md:p-8 border border-blue-700/50 text-center">
+            <h3 class="text-xl md:text-2xl font-bold text-gray-200 mb-2">
+                📺 Want More 3D Printing Tips & Tutorials?
+            </h3>
+            <p class="text-gray-300 mb-4 max-w-2xl mx-auto">
+                Subscribe to <strong>minimal3dp</strong> on YouTube for more guides on the best slicer settings, material reviews, troubleshooting, and 3D printing optimization!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
+                <a href="https://youtube.com/channel/UCM_8Mv-0S1LnnJpRJLjahaw?sub_confirmation=1" 
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   onclick="gtag('event', 'click', {'event_category': 'youtube', 'event_label': 'footer_subscribe'});"
+                   class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg">
+                    🔔 Subscribe on YouTube
+                </a>
+                <a href="https://ko-fi.com/J3J41MTJUB" 
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   onclick="gtag('event', 'click', {'event_category': 'support', 'event_label': 'footer_kofi'});"
+                   class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg">
+                    ☕ Support on Ko-fi
+                </a>
+            </div>
+            
+            <!-- Social Proof & Links -->
+            <div class="border-t border-gray-700 pt-4 mt-4">
+                <p class="text-sm text-gray-400 mb-2">
+                    Free tool by <a href="https://youtube.com/channel/UCM_8Mv-0S1LnnJpRJLjahaw" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">minimal3dp</a> • 
+                    <a href="https://github.com/minimal3dp/orcaslicer_expert_assistant" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">Open Source on GitHub</a> • 
+                    Version 0.3
+                </p>
+                <p class="text-xs text-gray-500">
+                    Last updated November 2025 • 28 materials • Optimized for OrcaSlicer, PrusaSlicer, Cura, Bambu Studio
+                </p>
+                <p class="text-xs text-gray-500 mt-2">
+                    Keywords: best slicer settings for 3d printing, orcaslicer settings, pla petg abs settings, bambu lab settings, 3d printing optimization
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

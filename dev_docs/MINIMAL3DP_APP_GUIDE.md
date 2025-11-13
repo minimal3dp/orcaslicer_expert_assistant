@@ -1,6 +1,6 @@
 # minimal3dp.com Application Development Guide
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Last Updated:** November 12, 2025  
 **Purpose:** Unified deployment, SEO, and monetization strategy for all minimal3dp.com applications
 
@@ -1076,6 +1076,96 @@ style: Improve button hover states
 
 ---
 
+## 📋 Case Study: OrcaSlicer Expert Assistant
+
+### Pre-Launch Improvements (November 2025)
+
+**Context:** Preparing for YouTube launch video, identified 4 critical UI/UX improvements with SEO focus.
+
+#### 1. Featured YouTube Badge
+**Problem:** No visual connection between tool and YouTube channel  
+**Solution:** Added prominent red badge at top of page  
+**Implementation:**
+- Positioned after Ko-fi button for high visibility
+- Red color (#DC2626) for brand recognition
+- Link includes `?sub_confirmation=1` for direct subscribe
+- GA4 tracking: `youtube_featured_click` event
+
+**Impact:** Drives YouTube traffic, builds credibility, cross-promotes content
+
+#### 2. How to Use Section
+**Problem:** First-time users had no guidance on tool functionality  
+**Solution:** Added collapsible "How to Use" section with 3-step instructions  
+**Implementation:**
+- Collapsible design (doesn't clutter interface)
+- SEO-optimized content with target keywords
+- 3-step process: Select Material → Adjust Priorities → Get Recommendations
+- Pro tips section for advanced users
+- Link to companion YouTube video
+- GA4 tracking: `how_to_use_expanded` event
+
+**Impact:** Reduces bounce rate, improves user experience, adds SEO content
+
+#### 3. Enhanced Generate Button
+**Problem:** No feedback during generation, no validation, generic text  
+**Solution:** Comprehensive button enhancement  
+**Implementation:**
+- Updated text: "🎯 Get Expert Recommendations" (more descriptive)
+- Material validation with alert if no material selected
+- Loading state: "⏳ Generating Recommendations..." while processing
+- Button reset after recommendations complete
+- Auto-scroll to results after generation
+- GA4 tracking: `generate_recommendations` event with material/slider data
+
+**Impact:** Better UX, prevents errors, tracks user behavior
+
+#### 4. Reset Sliders Button
+**Problem:** Users had to manually adjust all 4 sliders back to default  
+**Solution:** One-click reset button  
+**Implementation:**
+- Secondary button styling (gray, smaller)
+- Positioned below main generate button
+- Resets all sliders to 50% (balanced)
+- Updates all percentage displays
+- Hides strength type selector
+- Visual feedback: "✓ Reset Complete" for 1.5 seconds
+- GA4 tracking: `sliders_reset` event
+
+**Impact:** Improves experimentation, reduces friction
+
+#### 5. Footer CTA
+**Problem:** No engagement opportunity at bottom of page  
+**Solution:** Comprehensive footer with multiple CTAs  
+**Implementation:**
+- YouTube subscribe CTA with 40-video social proof
+- Ko-fi support link
+- Version info and copyright
+- SEO keywords embedded
+- GA4 tracking: `footer_youtube_subscribe` and `footer_kofi_support` events
+
+**Impact:** Captures bottom-of-page engagement, provides multiple conversion paths
+
+### Key Learnings
+
+1. **User Guidance is Critical:** Even simple tools need instructions
+2. **Loading States Matter:** Users need feedback during processing
+3. **Validation Prevents Frustration:** Check inputs before processing
+4. **Visual Feedback Builds Trust:** Show users their actions succeeded
+5. **Cross-Promotion Works:** Multiple touchpoints to YouTube/support
+6. **Track Everything:** GA4 events provide valuable behavior insights
+7. **SEO in UI:** Every new element is an opportunity for keywords
+
+### Before/After Metrics (To Be Measured)
+
+**Expected Improvements:**
+- Bounce rate: 65% → 45% (How to Use section reduces confusion)
+- Average session: 1:30 → 2:30 (better engagement)
+- Generate button clicks: +20% (clearer CTA, better guidance)
+- YouTube traffic: +30% (multiple promotion points)
+- Affiliate clicks: +15% (longer sessions, more engaged users)
+
+---
+
 ## 🆘 Common Issues & Solutions
 
 ### DNS/Deployment Issues
@@ -1203,6 +1293,7 @@ style: Improve button hover states
 
 ## 📝 Version History
 
+- **v1.1 (2025-11-12):** Added Case Study section documenting OrcaSlicer Assistant pre-launch improvements (Featured YouTube badge, How to Use section, Enhanced Generate button, Reset Sliders button, Footer CTA)
 - **v1.0 (2025-11-12):** Initial guide created based on OrcaSlicer Assistant deployment experience
 
 ---
