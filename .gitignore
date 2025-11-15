@@ -19,3 +19,4 @@ data/materials_sync.json
 .DS_Store
 Thumbs.db
 tds/*.pdf
+.vercel
