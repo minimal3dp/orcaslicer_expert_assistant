@@ -15,7 +15,7 @@
 **Difficulty:** 🟢 **EASY** - Just deployment + minor tweaks
 **SEO Focus:** ✅ **CRITICAL** - Optimize for "best slicer settings for 3d printing"
 
-- [ ] **CRITICAL:** Deploy current app to Vercel (30 min)
+- [x] **CRITICAL:** Deploy current app to Vercel (30 min)
   - Follow `dev_docs/VERCEL_DEPLOYMENT.md` instructions
   - Set up custom domain: orcaslicer.minimal3dp.com
   - Enable HTTPS and configure security headers
@@ -61,7 +61,18 @@
   - Increases viral potential
 
 **User Feedback and Suggestions:**
-- [ ] Add simple feedback form (15 min)
+ - [x] Add simple feedback form (15 min)
+    - "Was this helpful?" Yes/No buttons
+    - Optional comment box
+    - Collects user insights for future improvements
+
+ - [x] Add a user feedback form to the application UI so users can submit suggestions directly (instead of via YouTube comments).
+    - Implement a simple form in `index.html`.
+    - Ensure the form is visible and accessible from the main app interface.
+    - (Optional, next step) Integrate backend/email or Google Form for submissions.
+    - Add a privacy/disclaimer note about data usage.
+    - Link the form in the navigation or footer for easy access.
+- [x] Add simple feedback form (15 min)
   - "Was this helpful?" Yes/No buttons
   - Optional comment box
   - Collects user insights for future improvements
