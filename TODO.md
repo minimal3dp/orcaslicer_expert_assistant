@@ -60,12 +60,21 @@
   - Copy link button
   - Increases viral potential
 
+**User Feedback and Suggestions:**
+- [ ] Add simple feedback form (15 min)
+  - "Was this helpful?" Yes/No buttons
+  - Optional comment box
+  - Collects user insights for future improvements
+- [ ] Filament and Slicer Support Settings nd Recommendations
+- [ ] Review if the application is factoring in Line Width settings for different materials.
+  - Does Line Width show as a speed and strength recommendation?
+
 **SEO Actions (YouTube Integration):**
 - [ ] **HIGH PRIORITY:** Update YouTube channel description (5 min)
-  - Add link to orcaslicer.minimal3dp.com
+  - Add link to settings.minimal3dp.com
   - Add "Best slicer settings tool" in description
 - [ ] **HIGH PRIORITY:** Update YouTube channel banner (10 min)
-  - Add text: "orcaslicer.minimal3dp.com - Free Settings Tool"
+  - Add text: "settings.minimal3dp.com - Free Settings Tool"
 - [ ] **MEDIUM PRIORITY:** Update all video descriptions (30 min)
   - Add tool link to all existing videos
   - Pin comment with tool link on popular videos
