@@ -81,6 +81,88 @@
   - "Choosing Between Stiff and Tough Materials"
   - Examples: PLA-CF (stiff/brittle) vs Nylon (tough/ductile)
 
+**NEW - Advanced Settings Research (From YouTube Feedback - Nov 18, 2025):**
+**Source:** User comment highlighting advanced OrcaSlicer optimization strategies
+**Priority:** MEDIUM - These are power-user features that significantly improve results
+
+- [ ] **RESEARCH: Line Width Optimization Strategies (2-3 hours)**
+  - [ ] Research "increase line width to 200-250% of nozzle size for vase mode strength"
+    - OrcaSlicer wiki: Variable line width settings
+    - When does wide line width improve vs harm quality?
+    - Optimal line width ratios for different goals (strength/speed/quality)
+  - [ ] Research "use outer walls count AND/OR line width for strength (not just infill)"
+    - Wall count vs line width trade-offs
+    - When to prioritize thick walls over more walls?
+  - [ ] Research "increase line width for infill to print faster without quality loss"
+    - Speed optimization through wider infill lines
+    - Relationship between infill line width and structural integrity
+  - [ ] **Deliverable:** Add Line Width recommendations to knowledgeBase.goals
+    - strength goal: "Increase outer wall line width to 120-150% of nozzle diameter"
+    - build_time goal: "Increase infill line width to 150-200% for faster printing"
+    - Vase mode strength tip: "Use 200-250% line width for single-wall parts"
+
+- [ ] **RESEARCH: Variable Layer Height (2 hours)**
+  - [ ] Research "use variable layer heights for quality-to-speed balance"
+    - OrcaSlicer variable layer height feature documentation
+    - Adaptive layer height strategies (thin for curves, thick for flat areas)
+    - Performance impact on print time
+  - [ ] **Deliverable:** Add recommendation for surface_roughness + build_time goals
+    - "Enable Variable Layer Height: 0.08mm (detailed areas) to 0.20mm (flat areas)"
+    - Link to OrcaSlicer variable layer height wiki
+
+- [ ] **RESEARCH: Support Optimization (1 hour)**
+  - [ ] Research "print support every 'n' layer" setting
+    - OrcaSlicer support interface layers documentation
+    - When to use sparse support layers vs continuous
+    - Trade-offs: adhesion strength vs ease of removal
+  - [ ] **Deliverable:** Add support-related recommendations
+    - accuracy goal: "Use support every 1 layer for best surface quality"
+    - build_time goal: "Use support every 2-3 layers to reduce material/time"
+
+- [ ] **RESEARCH: Extrusion Rate Smoothing (2 hours)**
+  - [ ] Research "Extrusion Rate Smoothing + slow down for overhangs"
+    - OrcaSlicer Extrusion Rate Smoothing feature
+    - Relationship with "slow down for overhangs" setting
+    - How it enables high-speed printing (150mm/s) without quality loss
+  - [ ] Research interaction with Pressure Advance tuning
+  - [ ] **Deliverable:** Add advanced speed optimization recommendations
+    - build_time goal: "Enable Extrusion Rate Smoothing for smooth flow transitions"
+    - surface_roughness goal: "Enable 'slow down for overhangs' for better overhang quality"
+    - Add note: "Requires properly tuned Pressure Advance"
+
+- [ ] **RESEARCH: Pressure Advance Tuning (1 hour)**
+  - [ ] Research Pressure Advance calibration methods
+    - OrcaSlicer pressure advance calibration guide
+    - Klipper vs Marlin pressure advance differences
+    - Optimal PA values for different materials
+  - [ ] **Deliverable:** Add calibration guide link
+    - Add to material warnings: "⚙️ Calibration Recommended: Tune Pressure Advance for optimal results"
+    - Link to OrcaSlicer PA calibration wiki
+
+**ACCEPTANCE CRITERIA:**
+- [ ] Research complete with OrcaSlicer wiki links documented
+- [ ] Advanced recommendations added to knowledgeBase.goals
+- [ ] Line width settings added for strength, speed, and vase mode
+- [ ] Variable layer height strategy documented
+- [ ] Extrusion Rate Smoothing explained with prerequisites
+- [ ] User understands when to use advanced vs basic recommendations
+
+**IMPLEMENTATION PRIORITY:**
+1. Line Width Optimization (highest impact, most requested)
+2. Extrusion Rate Smoothing + Overhangs (significant speed/quality benefit)
+3. Variable Layer Height (good balance feature)
+4. Support Optimization (niche but valuable)
+5. Pressure Advance (prerequisite for other features)
+
+**ESTIMATED TOTAL TIME:** 8-10 hours research + 3-4 hours implementation
+
+**USER'S FEEDBACK CONTEXT:**
+- Acknowledges application is "great for somebody just getting started" ✅
+- Suggests expanding beyond "obvious settings" to power-user optimizations
+- Highlights Chinese TDS data quality concerns (validates our FDM-specific research approach)
+- Emphasizes line width as overlooked but critical parameter
+- Points out 100+ parameters exist (confirms need for prioritized, curated recommendations)
+
 **SEO Actions (YouTube Integration):**
 - [ ] **HIGH PRIORITY:** Update YouTube channel description (5 min)
   - Add link to settings.minimal3dp.com
@@ -591,6 +673,120 @@ Added comprehensive material requirement warning system with:
 - [ ] **ENHANCEMENT:** Add localStorage for persistent dismissals
 - [ ] **PENDING:** Release tag (recommend v0.3-warning-system)
 
+
+## 🎓 PHASE 7B: ADVANCED SETTINGS INTEGRATION (NEW - Week 8-9)
+**Goal:** Add power-user optimization strategies from YouTube feedback
+**Estimated Time:** 11-14 hours total (8-10 hours research + 3-4 hours implementation)
+**Status:** Not started - Research phase
+**Priority:** MEDIUM - Enhances application for intermediate/advanced users
+**Source:** YouTube user feedback (Nov 18, 2025)
+
+### Group 7B.1: Line Width Optimization Research & Implementation (4 hours)
+**Impact:** 🟢 HIGH - Line width is overlooked but critical for strength/speed balance
+
+- [ ] **Research Phase (2.5 hours):**
+  - [ ] Study OrcaSlicer line width documentation
+  - [ ] Research optimal line width ratios (% of nozzle diameter)
+  - [ ] Investigate vase mode line width strategies (200-250% for single-wall strength)
+  - [ ] Analyze wall count vs wall line width trade-offs
+  - [ ] Test infill line width impact on print speed vs structural integrity
+  - [ ] Document when wide lines help vs harm quality
+
+- [ ] **Implementation Phase (1.5 hours):**
+  - [ ] Add line width recommendations to knowledgeBase.goals:
+    - **strength goal:** "Outer Wall Line Width: 120-150% of nozzle diameter (0.48-0.60mm for 0.4mm nozzle)"
+    - **build_time goal:** "Infill Line Width: 150-200% (faster printing without quality loss)"
+    - **NEW setting:** "Vase Mode Line Width: 200-250% (single-wall strength)"
+  - [ ] Add wall strategy recommendation: "Prioritize wall count (4-6) over infill for structural strength"
+  - [ ] Link to OrcaSlicer line width wiki
+
+**Expected Results:**
+- Users understand line width as strength/speed lever
+- Vase mode prints are 2-3× stronger with wide lines
+- Print time reduced 20-30% with optimized infill line width
+
+### Group 7B.2: Variable Layer Height Research & Implementation (2.5 hours)
+**Impact:** 🟡 MEDIUM - Good quality/speed balance for complex geometries
+
+- [ ] **Research Phase (1.5 hours):**
+  - [ ] Study OrcaSlicer variable/adaptive layer height feature
+  - [ ] Research when variable layer height provides best ROI
+  - [ ] Analyze layer height transitions (thin for curves, thick for flat areas)
+  - [ ] Measure time savings vs quality improvement
+  - [ ] Document limitations and edge cases
+
+- [ ] **Implementation Phase (1 hour):**
+  - [ ] Add to knowledgeBase.goals:
+    - **surface_roughness + build_time (combined):** "Variable Layer Height: 0.08-0.12mm (detailed) to 0.20-0.24mm (flat)"
+  - [ ] Add explanation: "Automatically adjusts layer height based on geometry complexity"
+  - [ ] Link to OrcaSlicer variable layer height wiki
+
+**Expected Results:**
+- 15-25% time savings on complex models
+- Maintains quality on detailed areas (curves, overhangs)
+- Users understand when variable layer height is beneficial
+
+### Group 7B.3: Extrusion Rate Smoothing Research & Implementation (3 hours)
+**Impact:** 🟢 HIGH - Enables high-speed printing without quality loss
+
+- [ ] **Research Phase (2 hours):**
+  - [ ] Study OrcaSlicer Extrusion Rate Smoothing (flow smoothing)
+  - [ ] Research "slow down for overhangs" interaction
+  - [ ] Investigate Pressure Advance prerequisites
+  - [ ] Analyze how smoothing enables 150mm/s outer walls without artifacts
+  - [ ] Test material-specific considerations (flexible vs rigid)
+  - [ ] Document firmware requirements (Klipper, Marlin 2.x)
+
+- [ ] **Implementation Phase (1 hour):**
+  - [ ] Add to knowledgeBase.goals:
+    - **build_time goal:** "Enable Extrusion Rate Smoothing for smooth acceleration/flow transitions"
+    - **surface_roughness goal:** "Enable 'Slow Down for Overhangs' (50-70% speed) for better overhang quality"
+  - [ ] Add prerequisite warning: "⚙️ Requires Pressure Advance calibration for best results"
+  - [ ] Add advanced tip: "Combination allows 150mm/s outer walls with excellent quality"
+  - [ ] Link to OrcaSlicer smoothing and PA calibration wikis
+
+**Expected Results:**
+- Users can print 2-3× faster without quality degradation
+- Overhang quality improves dramatically
+- Clear guidance on prerequisites (PA tuning)
+
+### Group 7B.4: Support & Pressure Advance Research (2.5 hours)
+**Impact:** 🟡 MEDIUM - Nice-to-have optimizations
+
+- [ ] **Support Optimization (1 hour):**
+  - [ ] Research "support every N layers" setting in OrcaSlicer
+  - [ ] Document trade-offs: adhesion vs removal ease vs print time
+  - [ ] Add recommendation: accuracy goal = every 1 layer, build_time goal = every 2-3 layers
+
+- [ ] **Pressure Advance Tuning (1.5 hours):**
+  - [ ] Study OrcaSlicer PA calibration methods
+  - [ ] Document Klipper vs Marlin differences
+  - [ ] Create calibration guide reference
+  - [ ] Add material-specific PA value ranges
+  - [ ] Add to material warnings: "⚙️ Calibration: Tune Pressure Advance for optimal flow"
+
+**Expected Results:**
+- Support structures easier to remove without sacrificing quality
+- Users understand PA tuning importance
+- Links to calibration guides provided
+
+### Group 7B.5: Documentation & Integration (1 hour)
+- [ ] Create "Advanced Settings Guide" section in application
+- [ ] Add "Basic" vs "Advanced" toggle in UI (optional)
+- [ ] Update FAQ with line width, variable layer height, smoothing explanations
+- [ ] Add YouTube video script for "Advanced OrcaSlicer Settings" tutorial
+- [ ] Respond to YouTube commenter with update announcement
+
+**TOTAL PHASE 7B TIME:** 13-14 hours
+
+**SEO OPPORTUNITY:**
+- "Advanced OrcaSlicer settings"
+- "OrcaSlicer line width optimization"
+- "Variable layer height guide"
+- "Extrusion rate smoothing explained"
+- Target intermediate users searching for optimization tips
+
+---
 
 ## 📚 PHASE 8: DOCUMENTATION & TESTING (Week 10)
 **Goal:** Complete documentation and comprehensive testing
