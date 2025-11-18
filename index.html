@@ -473,11 +473,12 @@
                             Strength Goal:</label>
                         <select id="strength-type-select"
                             class="w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-gray-100 focus:outline-none focus:border-blue-500 text-sm">
-                            <option value="tensile_z">Tensile Strength (Z-Axis / Layer Adhesion)</option>
-                            <option value="xy_strength">XY-Plane Strength (In-plane)</option>
-                            <option value="flexural">Flexural Strength (Bending)</option>
-                            <option value="compressive">Compressive Strength (Crushing)</option>
+                            <option value="strength">General Strength (Recommended - All-around strong parts)</option>
+                            <option value="compressive">Compressive Strength (Heavy vertical loads)</option>
                         </select>
+                        <p class="mt-1 text-xs text-gray-500">
+                            💡 General Strength optimizes layer bonding, walls, and infill patterns based on OrcaSlicer research
+                        </p>
                     </div>
                 </div>
 
@@ -1595,23 +1596,15 @@
         // Expanded knowledge base mapping goals to settings
         const knowledgeBase = {
             goals: {
-                // Settings for Z-AXIS TENSILE STRENGTH
-                'tensile_z': [
-                    { setting: "Layer Height", value: "0.12 - 0.16mm", note: "LOWER layer height increases Z-axis (layer) adhesion and strength.", tradeoff: "Dramatically increases print time." },
-                    { setting: "Temperature", value: "+10-15°C (from baseline)", note: "Printing hotter creates better layer-to-layer fusion, maximizing Z-axis strength.", tradeoff: "Increases stringing, reduces overhang/bridging quality." },
-                    { setting: "Print Speed (All)", value: "40 - 60 mm/s", note: "Slower printing allows for better melting and fusion between layers.", tradeoff: "Significantly increases print time." }
-                ],
-                // Settings for XY-PLANE STRENGTH
-                'xy_strength': [
-                    { setting: "Wall Loops", value: "4-8", note: "This is the *primary* driver of XY (in-plane) strength. More is stronger.", tradeoff: "Increases time and material cost." },
-                    { setting: "Line Width (Inner/Infill)", value: "110-125% (of nozzle)", note: "Wider lines (e.g., 0.5mm on 0.4mm nozzle) fuse better and create stronger parts.", tradeoff: "May require slightly higher temps to maintain flow." },
-                    { setting: "Infill/Wall Overlap", value: "25-30%", note: "Increases the bond between the infill and the inner walls.", tradeoff: "Can cause over-extrusion at corners if set too high." }
-                ],
-                // Settings for FLEXURAL STRENGTH
-                'flexural': [
-                    { setting: "Wall Loops", value: "4-6", note: "Bending strength relies heavily on strong outer perimeters.", tradeoff: "Increases time and material cost." },
-                    { setting: "Infill %", value: "30-50%", note: "More infill provides internal support against bending.", tradeoff: "Increases time and material cost." },
-                    { setting: "Infill Pattern", value: "Gyroid or Cubic", note: "Provides good multi-directional support against bending forces.", tradeoff: "Gyroid can be slower to print." }
+                // Settings for GENERAL STRENGTH (Consolidated from tensile_z, xy_strength, flexural)
+                'strength': [
+                    { setting: "Layer Height", value: "0.08 - 0.16 mm", note: "Lower layer heights dramatically improve Z-axis strength (layer bonding), which is the weakest point in FDM parts. Use 0.08-0.12mm for maximum strength, 0.12-0.16mm for balanced strength/speed.", tradeoff: "Significantly increases print time, especially at 0.08mm." },
+                    { setting: "Wall Loops", value: "4-6", note: "Walls provide the majority of strength in all directions. More continuous perimeters = stronger part. OrcaSlicer recommends 'Alternate Extra Wall' for improved vertical strength.", tradeoff: "Increases print time and material cost by 20-40%." },
+                    { setting: "Infill %", value: "40-60%", note: "High infill density provides internal support. Combined with proper walls and patterns, this creates a robust structure.", tradeoff: "Increases material use and print time substantially." },
+                    { setting: "Infill Pattern", value: "Grid, Cubic, Gyroid, or Honeycomb", note: "OrcaSlicer rates Grid, Cubic, Gyroid, and Honeycomb as 'High' strength for both X-Y and Z directions. Avoid Rectilinear/Line (rated 'Low' for Z-axis). Lightning is fastest but weakest.", tradeoff: "Gyroid/Honeycomb slower than Grid. Rectilinear is fast but weak in Z." },
+                    { setting: "Temperature", value: "+5 to +15°C above mid-range", note: "Higher temperatures improve layer fusion and interlayer bonding, critical for Z-axis strength. Each material has optimal range.", tradeoff: "Increases stringing and oozing; may cause overhangs to sag." },
+                    { setting: "Infill/Wall Overlap", value: "25-30%", note: "Ensures strong bonding between infill and walls. OrcaSlicer recommends multiline infill fills for additional strength.", tradeoff: "Can cause over-extrusion at corners if too high." },
+                    { setting: "Print Speed (All)", value: "40 - 60 mm/s", note: "Slower speeds allow better layer fusion and more accurate extrusion, improving overall part strength.", tradeoff: "Significantly increases total print time." }
                 ],
                 // Settings for COMPRESSIVE STRENGTH
                 'compressive': [
@@ -1645,11 +1638,41 @@
             },
             // This new database checks for conflicts between goals.
             conflictDatabase: {
-                'tensile_z-build_time': {
-                    title: "Conflict: Z-Strength vs. Speed",
+                'strength-build_time': {
+                    title: "Conflict: Strength vs. Speed",
                     icon: '⚡',
                     color: 'blue',
-                    advice: "This is a primary conflict. Max Z-Strength (layer adhesion) requires <strong>low layer heights</strong> and <strong>slow speeds</strong>. Max Speed requires <strong>high layer heights</strong> and <strong>fast speeds</strong>. \n<br><br><strong>Expert Compromise:</strong> Use a moderate layer height (0.16-0.20mm), print hotter (+10°C), and use wider line widths (110-120%) to increase fusion and throughput simultaneously."
+                    advice: "This is the primary conflict in 3D printing. Maximum strength requires <strong>low layer heights</strong> (better Z-bonding), <strong>more walls</strong>, <strong>high infill</strong>, and <strong>slow speeds</strong>. Fast printing requires the opposite. \n<br><br><strong>Expert Compromise:</strong> Use moderate layer height (0.16-0.20mm), print hotter (+10°C for better layer fusion), use 3-4 walls instead of 5-6, 30-40% infill with Grid/Cubic pattern, and slower outer walls (50-60mm/s) but faster inner walls (120mm/s+)."
+                },
+                'strength-surface_roughness': {
+                    title: "Compatible: Strength & Quality",
+                    icon: '✓',
+                    color: 'blue',
+                    advice: "These goals are <strong>highly compatible</strong>. Both benefit from lower layer heights, more walls, and slower outer wall speeds. Settings optimized for strength will also produce smooth, high-quality surfaces. Minor note: Hotter temperatures for layer bonding may increase stringing - ensure retraction is tuned."
+                },
+                'strength-accuracy': {
+                    title: "Compatible: Strength & Accuracy",
+                    icon: '✓',
+                    color: 'blue',
+                    advice: "Strength and accuracy work well together - both benefit from slower speeds and careful printing. Minor considerations: Very thin layer heights (0.08-0.10mm) require perfect flow calibration to avoid dimensional issues. Extra walls may increase outer dimensions slightly but this is predictable and compensated by shrinkage settings."
+                },
+                'compressive-build_time': {
+                    title: "Conflict: Compressive Strength vs. Speed",
+                    icon: '⚡',
+                    color: 'blue',
+                    advice: "Compressive strength requires high infill density, which increases print time. However, it's less of a conflict than general strength vs. speed because you can still use higher layer heights. \n<br><br><strong>Expert Compromise:</strong> Use a high layer height (0.24-0.28mm) with 50-60% infill and fast print speeds to balance time and compressive performance."
+                },
+                'compressive-surface_roughness': {
+                    title: "Compatible: Compressive & Quality",
+                    icon: '✓',
+                    color: 'blue',
+                    advice: "Compressive strength (infill-heavy) is compatible with surface quality. More infill provides internal support without affecting the outer surface much."
+                },
+                'compressive-accuracy': {
+                    title: "Mostly Compatible: Compressive & Accuracy",
+                    icon: '✓',
+                    color: 'blue',
+                    advice: "High infill density can cause slight dimensional bulging on thin walls if not properly tuned, but this is a minor issue. Generally compatible."
                 },
                 'accuracy-build_time': {
                     title: "Conflict: Accuracy vs. Speed",
@@ -1662,19 +1685,11 @@
                     icon: '✨',
                     color: 'purple',
                     advice: "Aesthetic quality is achieved with <strong>low layer heights</strong> and <strong>slow outer walls</strong>. This is the direct opposite of a fast print. \n<br><br><strong>Expert Compromise:</strong> Use <strong>Lightning Infill</strong> (very fast), high-speed inner walls, and a moderate layer height (0.20mm), but keep the <strong>Outer Wall speed slow (60mm/s)</strong>."
-                },
-                'tensile_z-surface_roughness': {
-                    title: "Conflict: Z-Strength vs. Quality",
-                    icon: '💎',
-                    color: 'blue',
-                    advice: "These goals often align, but have one conflict: Temperature. Max Z-Strength requires auto (hot) temperatures, which can <strong>increase stringing and blobs</strong>, reducing aesthetic quality. \n<br><br><strong>Expert Compromise:</strong> Print hotter (+10°C) but ensure your <strong>retraction settings are perfectly tuned</strong> to manage stringing. Dry your filament!"
                 }
             },
             // Helper map for styling
             goalColors: {
-                'tensile_z': 'blue',
-                'xy_strength': 'blue',
-                'flexural': 'blue',
+                'strength': 'blue',
                 'compressive': 'blue',
                 'build_time': 'green',
                 'surface_roughness': 'purple',
@@ -2478,7 +2493,10 @@
             let priorities = [];
 
             // Build the list of priorities based on sliders
-            if (strength > 70) priorities.push(strengthType);
+            if (strength > 70) {
+                // Use the selected strength type (either 'strength' or 'compressive')
+                priorities.push(strengthType);
+            }
             if (buildTime > 70) priorities.push('build_time');
             if (surfaceRoughness > 70) priorities.push('surface_roughness');
             if (accuracy > 70) priorities.push('accuracy');
